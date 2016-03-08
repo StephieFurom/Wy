@@ -2,6 +2,7 @@ package mx.itesm.wayakkk;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -15,7 +16,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 //p
 public class PantallaJuego implements Screen
 {
-    private final Principal principal;
+    private  Principal principal;
     private OrthographicCamera camara;
     private Viewport vista;
 
@@ -35,12 +36,25 @@ public class PantallaJuego implements Screen
     public void show() {
 
         camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
-        camara.position.set(Principal.ANCHO_MUNDO/2, Principal.ALTO_MUNDO/2, 0);
+        camara.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO / 2, 0);
         camara.update();
-        vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO,camara);}
+        vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO,camara);
+        batch = new SpriteBatch();
+        cargarTexturasSprites();
+    }
 
     @Override
     public void render(float delta) {
+        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        batch.setProjectionMatrix(camara.combined);
+
+        batch.begin();
+        spriteFondo.draw(batch);
+
+
+        batch.end();
 
     }
 
@@ -52,7 +66,7 @@ public class PantallaJuego implements Screen
 
     private void cargarTexturasSprites() {
 
-        texturaFondo = new Texture(Gdx.files.internal("fondoPasto.jpg"));
+        texturaFondo = new Texture(Gdx.files.internal("fondoferia.png"));
         spriteFondo = new Sprite(texturaFondo);
     }
 

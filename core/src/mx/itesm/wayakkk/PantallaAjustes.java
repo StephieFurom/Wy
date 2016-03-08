@@ -52,7 +52,7 @@ public class PantallaAjustes implements Screen {
 
     private void cargarTexturasSprites() {
 
-        texturaFondo = new Texture(Gdx.files.internal("fondoPasto.jpg"));
+        texturaFondo = new Texture(Gdx.files.internal("fondoajustes.jpg"));
         spriteFondo = new Sprite(texturaFondo);
     }
 

@@ -2,6 +2,7 @@ package mx.itesm.wayakkk;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -37,11 +38,23 @@ public class PantallaAcercaDe implements Screen {
         camara.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO / 2, 0);
         camara.update();
         vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO, camara);
+        batch = new SpriteBatch();
+        cargarTexturasSprites();
+
     }
 
     @Override
     public void render(float delta) {
+        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        batch.setProjectionMatrix(camara.combined);
+
+        batch.begin();
+        spriteFondo.draw(batch);
+
+
+        batch.end();
     }
 
     @Override
@@ -52,7 +65,7 @@ public class PantallaAcercaDe implements Screen {
 
     private void cargarTexturasSprites() {
 
-        texturaFondo = new Texture(Gdx.files.internal("fondoPasto.jpg"));
+        texturaFondo = new Texture(Gdx.files.internal("fondoacercade.jpg"));
         spriteFondo = new Sprite(texturaFondo);
     }
 

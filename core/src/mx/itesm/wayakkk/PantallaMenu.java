@@ -60,20 +60,20 @@ public class PantallaMenu implements Screen
 
     private void cargarTexturasSprites() {
 
-        texturaFondo = new Texture(Gdx.files.internal("fondoMenu.jpg"));
+        texturaFondo = new Texture(Gdx.files.internal("fondopantallainicio.png"));
         spriteFondo = new Sprite(texturaFondo);
 
-        texturaBtnJugar = new Texture(Gdx.files.internal("playBtn.png"));
+        texturaBtnJugar = new Texture(Gdx.files.internal("PLAY.png"));
         spriteBtnJugar = new Sprite(texturaBtnJugar);
         spriteBtnJugar.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnJugar.getWidth() / 2,
                 Principal.ALTO_MUNDO / 2);
 
-        texturaBtnAcercaDe = new Texture(Gdx.files.internal("exitBtn.png"));
+        texturaBtnAcercaDe = new Texture(Gdx.files.internal("ABOUT.png"));
         spriteBtnAcercaDe = new Sprite(texturaBtnAcercaDe);
         spriteBtnAcercaDe.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnAcercaDe.getWidth() / 2,
-                Principal.ALTO_MUNDO / 4);
+                Principal.ALTO_MUNDO / 3);
 
-        texturaBtnAjustes = new Texture(Gdx.files.internal("exitBtn.png"));
+        texturaBtnAjustes = new Texture(Gdx.files.internal("SETTINGS.png"));
         spriteBtnAjustes = new Sprite(texturaBtnAjustes);
         spriteBtnAjustes.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnAjustes.getWidth() / 2,
                 Principal.ALTO_MUNDO / 6);
@@ -94,6 +94,8 @@ public class PantallaMenu implements Screen
         spriteBtnJugar.draw(batch);
         spriteBtnAcercaDe.draw(batch);
         spriteBtnAjustes.draw(batch);
+
+        batch.end();
     }
 
     private void leerEntrada() {
@@ -105,19 +107,19 @@ public class PantallaMenu implements Screen
             float touchY = coordenadas.y;
 
             if ( touchX>=spriteBtnAcercaDe.getX() &&
-                    touchX<=spriteBtnAcercaDe.getX()+spriteBtnAcercaDe.getWidth()
+                    touchX<spriteBtnAcercaDe.getX()+spriteBtnAcercaDe.getWidth()
                     && touchY>=spriteBtnAcercaDe.getY()
                     && touchY<=spriteBtnAcercaDe.getY()+spriteBtnAcercaDe.getHeight() ) {
                     principal.setScreen(new PantallaAcercaDe(principal));
 
-            } else
+            }
             if ( touchX>=spriteBtnJugar.getX() &&
                     touchX<=spriteBtnJugar.getX()+spriteBtnJugar.getWidth()
                     && touchY>=spriteBtnJugar.getY()
                     && touchY<=spriteBtnJugar.getY()+spriteBtnJugar.getHeight() ) {
                 principal.setScreen(new PantallaJuego(principal));
 
-            } else
+            }
                 if ( touchX>=spriteBtnAjustes.getX() &&
                         touchX<=spriteBtnAjustes.getX()+spriteBtnAjustes.getWidth()
                         && touchY>=spriteBtnAjustes.getY()
