@@ -16,10 +16,10 @@ public class Texto {
     }
 
     /**public void mostrarMensaje(SpriteBatch batch, String mensaje, float x);*/
-        GlyphLayout glyp = new GlyphLayout();
+        GlyphLayout glyp = new GlyphLayout();}
        /** glyp.setText(font, mensaje);*/
         /**float anchoTexto = glyp width;
-        float altoTexto = glyp hight;
+        float altoTexto = glyp hight;*/
 
 
 

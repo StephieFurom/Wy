@@ -12,9 +12,9 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
- * Created by jose arturo on 14/03/2016.
+ * Created by Stephie Furom on 14/03/2016.
  */
-public class PantallaGameOver {
+    public class PantallaGameOver {
     public class PantallaMenu implements Screen
     {
         private final Principal principal;
@@ -87,6 +87,31 @@ public class PantallaGameOver {
             batch.end();
         }
 
+        @Override
+        public void resize(int width, int height) {
+
+        }
+
+        @Override
+        public void pause() {
+
+        }
+
+        @Override
+        public void resume() {
+
+        }
+
+        @Override
+        public void hide() {
+
+        }
+
+        @Override
+        public void dispose() {
+
+        }
+
         private void leerEntrada() {
             if (Gdx.input.justTouched()==true) {
                 Vector3 coordenadas = new Vector3();
@@ -108,35 +133,10 @@ public class PantallaGameOver {
                         touchX<=spriteBtnQuit.getX()+spriteBtnQuit.getWidth()
                         && touchY>=spriteBtnQuit.getY()
                         && touchY<=spriteBtnQuit.getY()+spriteBtnQuit.getHeight() ) {
-                    principal.setScreen(new PantallaAjustes(principal));
+                    principal.setScreen(new PantallaAjustes());
                 }
             }
         }
 
-            @Override
-            public void resize(int width, int height) {
-                vista.update(width,height);
-            }
-
-            @Override
-            public void pause() {
-
-            }
-
-            @Override
-            public void resume() {
-
-            }
-
-            @Override
-            public void hide() {
-
-            }
-
-            @Override
-            public void dispose() {
-
                 texturaFondo.dispose();
-            }
-        }
-    }
+            }}}

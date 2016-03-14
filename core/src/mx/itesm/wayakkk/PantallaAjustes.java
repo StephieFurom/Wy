@@ -14,8 +14,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**p
  * Created by Stephie Furom on 17/02/2016.
  */
-
-public class PantallaAjustes implements Screen {
+    public class PantallaAjustes {
+    public class PantallaMenu implements Screen
     {
         private final Principal principal;
         private OrthographicCamera camara;
@@ -63,7 +63,7 @@ public class PantallaAjustes implements Screen {
         texturaFondo = new Texture(Gdx.files.internal("fondomenustodos.png"));
         spriteFondo = new Sprite(texturaFondo);
 
-        texturaBtnMusica = new Texture(Gdx.files.internal("SOUND.png"));
+        Texture texturaBtnMusica = new Texture(Gdx.files.internal("SOUND.png"));
         spriteBtnMusica = new Sprite(texturaBtnMusica);
         spriteBtnMusica.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnMusica.getWidth() / 2,
                 Principal.ALTO_MUNDO / 2);
@@ -91,9 +91,9 @@ public class PantallaAjustes implements Screen {
 
         batch.begin();
         spriteFondo.draw(batch);
+        spriteBtnMusica.draw(batch);
         spriteBtnVolumen.draw(batch);
-        spriteBtn.draw(batch);
-        spriteBtnAjustes.draw(batch);
+        spriteBtnReturn.draw(batch);
 
         batch.end();
     }
@@ -106,25 +106,25 @@ public class PantallaAjustes implements Screen {
             float touchX = coordenadas.x;
             float touchY = coordenadas.y;
 
-            if ( touchX>=spriteBtnAcercaDe.getX() &&
-                    touchX<spriteBtnAcercaDe.getX()+spriteBtnAcercaDe.getWidth()
-                    && touchY>=spriteBtnAcercaDe.getY()
-                    && touchY<=spriteBtnAcercaDe.getY()+spriteBtnAcercaDe.getHeight() ) {
+            if ( touchX>=spriteBtnMusica.getX() &&
+                    touchX<spriteBtnMusica.getX()+spriteBtnMusica.getWidth()
+                    && touchY>=spriteBtnMusica.getY()
+                    && touchY<=spriteBtnMusica.getY()+spriteBtnMusica.getHeight() ) {
                 principal.setScreen(new PantallaAcercaDe(principal));
 
             }
-            if ( touchX>=spriteBtnJugar.getX() &&
-                    touchX<=spriteBtnJugar.getX()+spriteBtnJugar.getWidth()
-                    && touchY>=spriteBtnJugar.getY()
-                    && touchY<=spriteBtnJugar.getY()+spriteBtnJugar.getHeight() ) {
+            if ( touchX>=spriteBtnVolumen.getX() &&
+                    touchX<=spriteBtnVolumen.getX()+spriteBtnVolumen.getWidth()
+                    && touchY>=spriteBtnVolumen.getY()
+                    && touchY<=spriteBtnVolumen.getY()+spriteBtnVolumen.getHeight() ) {
                 principal.setScreen(new PantallaJuego(principal));
 
             }
-            if ( touchX>=spriteBtnAjustes.getX() &&
-                    touchX<=spriteBtnAjustes.getX()+spriteBtnAjustes.getWidth()
-                    && touchY>=spriteBtnAjustes.getY()
-                    && touchY<=spriteBtnAjustes.getY()+spriteBtnAjustes.getHeight() ) {
-                principal.setScreen(new PantallaAjustes(principal));
+            if ( touchX>=spriteBtnReturn.getX() &&
+                    touchX<=spriteBtnReturn.getX()+spriteBtnReturn.getWidth()
+                    && touchY>=spriteBtnReturn.getY()
+                    && touchY<=spriteBtnReturn.getY()+spriteBtnReturn.getHeight() ) {
+                principal.setScreen((Screen) new PantallaAjustes());
             }
         }
     }
@@ -154,4 +154,4 @@ public class PantallaAjustes implements Screen {
 
         texturaFondo.dispose();
     }
-}
+}}

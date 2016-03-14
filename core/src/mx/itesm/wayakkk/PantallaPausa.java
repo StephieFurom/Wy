@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
- * Created by jose arturo on 14/03/2016.
+ * Created by Stephie Furom on 14/03/2016.
  */
 public class PantallaPausa {
     public class PantallaMenu implements Screen
