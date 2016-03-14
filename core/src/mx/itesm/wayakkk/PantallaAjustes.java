@@ -63,19 +63,19 @@ public class PantallaAjustes implements Screen {
         texturaFondo = new Texture(Gdx.files.internal("fondomenustodos.png"));
         spriteFondo = new Sprite(texturaFondo);
 
-        texturaBtnJugar = new Texture(Gdx.files.internal("PLAY.png"));
-        spriteBtnJugar = new Sprite(texturaBtnJugar);
-        spriteBtnJugar.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnJugar.getWidth() / 2,
+        texturaBtnMusica = new Texture(Gdx.files.internal("PLAY.png"));
+        spriteBtnMusica = new Sprite(texturaBtnMusica);
+        spriteBtnMusica.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnMusica.getWidth() / 2,
                 Principal.ALTO_MUNDO / 2);
 
-        texturaBtnAcercaDe = new Texture(Gdx.files.internal("ABOUT.png"));
-        spriteBtnAcercaDe = new Sprite(texturaBtnAcercaDe);
-        spriteBtnAcercaDe.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnAcercaDe.getWidth() / 2,
+        texturaBtnVolumen = new Texture(Gdx.files.internal("ABOUT.png"));
+        spriteBtnVolumen = new Sprite(texturaBtnVolumen);
+        spriteBtnVolumen.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnVolumen.getWidth() / 2,
                 Principal.ALTO_MUNDO / 3);
 
-        texturaBtnAjustes = new Texture(Gdx.files.internal("SETTINGS.png"));
-        spriteBtnAjustes = new Sprite(texturaBtnAjustes);
-        spriteBtnAjustes.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnAjustes.getWidth() / 2,
+        texturaBtnReturn = new Texture(Gdx.files.internal("SETTINGS.png"));
+        spriteBtnReturn = new Sprite(texturaBtnAjustes);
+        spriteBtnReturn.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnAjustes.getWidth() / 2,
                 Principal.ALTO_MUNDO / 6);
     }
 
