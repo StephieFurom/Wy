@@ -66,7 +66,7 @@ public class PantallaJuego implements Screen
 
     private void cargarTexturasSprites() {
 
-        texturaFondo = new Texture(Gdx.files.internal("fondoferia.png"));
+        texturaFondo = new Texture(Gdx.files.internal("fondoferia.jpg"));
         spriteFondo = new Sprite(texturaFondo);
     }
 

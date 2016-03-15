@@ -14,8 +14,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**p
  * Created by Stephie Furom on 17/02/2016.
  */
-    public class PantallaAjustes {
-    public class PantallaMenu implements Screen
+    public class PantallaAjustes implements Screen
     {
         private final Principal principal;
         private OrthographicCamera camara;
@@ -39,8 +38,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 
         private SpriteBatch batch;
+        private Principal principal1;
 
-        public PantallaMenu(Principal principal) {
+        public PantallaAjustes(Principal principal) {
         this.principal = principal;
     }
 
@@ -60,23 +60,23 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
     private void cargarTexturasSprites() {
 
-        texturaFondo = new Texture(Gdx.files.internal("fondomenustodos.png"));
+        texturaFondo = new Texture(Gdx.files.internal("PANTALLAfonbn.png"));
         spriteFondo = new Sprite(texturaFondo);
 
-        Texture texturaBtnMusica = new Texture(Gdx.files.internal("SOUND.png"));
+        Texture texturaBtnMusica = new Texture(Gdx.files.internal("VOLUME.png"));
         spriteBtnMusica = new Sprite(texturaBtnMusica);
         spriteBtnMusica.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnMusica.getWidth() / 2,
-                Principal.ALTO_MUNDO / 2);
+                (float) (Principal.ALTO_MUNDO / 1.65));
 
-        texturaBtnVolumen = new Texture(Gdx.files.internal("VOLUME.png"));
+        texturaBtnVolumen = new Texture(Gdx.files.internal("SOUND.png"));
         spriteBtnVolumen = new Sprite(texturaBtnVolumen);
         spriteBtnVolumen.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnVolumen.getWidth() / 2,
-                Principal.ALTO_MUNDO / 3);
+                (float) (Principal.ALTO_MUNDO / 2.45));
 
         texturaBtnReturn = new Texture(Gdx.files.internal("RETURN.png"));
         spriteBtnReturn = new Sprite(texturaBtnReturn);
-        spriteBtnReturn.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnReturn.getWidth() / 2,
-                Principal.ALTO_MUNDO / 6);
+        spriteBtnReturn.setPosition((float) (Principal.ANCHO_MUNDO / 1.35 - spriteBtnReturn.getWidth() / 2),
+                Principal.ALTO_MUNDO / 7);
     }
 
     @Override
@@ -109,10 +109,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
             if ( touchX>=spriteBtnMusica.getX() &&
                     touchX<spriteBtnMusica.getX()+spriteBtnMusica.getWidth()
                     && touchY>=spriteBtnMusica.getY()
-                    && touchY<=spriteBtnMusica.getY()+spriteBtnMusica.getHeight() ) {
+                    && touchY<=spriteBtnMusica.getY()+spriteBtnMusica.getHeight() )
                 principal.setScreen(new PantallaAcercaDe(principal));
-
-            }
             if ( touchX>=spriteBtnVolumen.getX() &&
                     touchX<=spriteBtnVolumen.getX()+spriteBtnVolumen.getWidth()
                     && touchY>=spriteBtnVolumen.getY()
@@ -123,9 +121,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
             if ( touchX>=spriteBtnReturn.getX() &&
                     touchX<=spriteBtnReturn.getX()+spriteBtnReturn.getWidth()
                     && touchY>=spriteBtnReturn.getY()
-                    && touchY<=spriteBtnReturn.getY()+spriteBtnReturn.getHeight() ) {
-                principal.setScreen((Screen) new PantallaAjustes());
-            }
+                    && touchY<=spriteBtnReturn.getY()+spriteBtnReturn.getHeight() )
+                principal.setScreen((Screen) new PantallaAjustes(principal));
         }
     }
 
@@ -154,4 +151,4 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
         texturaFondo.dispose();
     }
-}}
+}

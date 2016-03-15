@@ -12,9 +12,9 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
- * Created by Stephie Furom on 14/03/2016.
+ * Created by Stephie Furom on 15/03/2016.
  */
-    public class PantallaGameOver {
+public class PantallaWin {
     public class PantallaMenu implements Screen
     {
         private final Principal principal;
@@ -54,7 +54,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
         private void cargarTexturasSprites() {
 
-            texturaFondo = new Texture(Gdx.files.internal("GAMEPANTALLA2.png"));
+            texturaFondo = new Texture(Gdx.files.internal("WINNERPANTALLA2.png"));
             spriteFondo = new Sprite(texturaFondo);
 
 
@@ -128,14 +128,15 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
                     {
 
+                    }
+                    if ( touchX>=spriteBtnQuit.getX() &&
+                            touchX<=spriteBtnQuit.getX()+spriteBtnQuit.getWidth()
+                            && touchY>=spriteBtnQuit.getY()
+                            && touchY<=spriteBtnQuit.getY()+spriteBtnQuit.getHeight() )
+                        principal.setScreen(new PantallaAjustes(principal));
                 }
-                if ( touchX>=spriteBtnQuit.getX() &&
-                        touchX<=spriteBtnQuit.getX()+spriteBtnQuit.getWidth()
-                        && touchY>=spriteBtnQuit.getY()
-                        && touchY<=spriteBtnQuit.getY()+spriteBtnQuit.getHeight() )
-                    principal.setScreen(new PantallaAjustes(principal));
             }
-        }
 
-                texturaFondo.dispose();
-            }}}
+            texturaFondo.dispose();
+        }}}
+

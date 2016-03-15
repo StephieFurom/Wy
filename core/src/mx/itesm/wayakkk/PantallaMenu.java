@@ -123,9 +123,8 @@ public class PantallaMenu implements Screen
                 if ( touchX>=spriteBtnAjustes.getX() &&
                         touchX<=spriteBtnAjustes.getX()+spriteBtnAjustes.getWidth()
                         && touchY>=spriteBtnAjustes.getY()
-                        && touchY<=spriteBtnAjustes.getY()+spriteBtnAjustes.getHeight() ) {
-                        principal.setScreen(new PantallaAjustes());
-                }
+                        && touchY<=spriteBtnAjustes.getY()+spriteBtnAjustes.getHeight() )
+                    principal.setScreen((Screen) new PantallaAjustes(principal));
         }
     }
 
