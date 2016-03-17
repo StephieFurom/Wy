@@ -14,9 +14,14 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**
  * Created by Stephie Furom on 15/03/2016.
  */
+
 public class PantallaWin {
-    public class PantallaMenu implements Screen
-    {
+
+    public PantallaWin(Principal principal) {
+    }
+
+    public class PantallaMenu implements Screen {
+
         private final Principal principal;
         private OrthographicCamera camara;
         private Viewport vista;
@@ -25,8 +30,10 @@ public class PantallaWin {
         private Texture texturaFondo;
         private Sprite spriteFondo;
 
+
         private Texture texturaBtnRetry;
         private Sprite spriteBtnRetry;
+
 
         private Texture texturaBtnQuit;
         private Sprite spriteBtnQuit;
@@ -43,9 +50,9 @@ public class PantallaWin {
         public void show() {
 
             camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
-            camara.position.set(Principal.ANCHO_MUNDO/2, Principal.ALTO_MUNDO/2, 0);
+            camara.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO / 2, 0);
             camara.update();
-            vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO,camara);
+            vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO, camara);
 
             batch = new SpriteBatch();
 
@@ -58,20 +65,20 @@ public class PantallaWin {
             spriteFondo = new Sprite(texturaFondo);
 
 
-            texturaBtnRetry = new Texture(Gdx.files.internal("ABOUT.png"));
+            texturaBtnRetry = new Texture(Gdx.files.internal("MASSON.png"));
             spriteBtnRetry = new Sprite(texturaBtnRetry);
             spriteBtnRetry.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnRetry.getWidth() / 2,
-                    Principal.ALTO_MUNDO / 3);
+                    (float) (Principal.ALTO_MUNDO / 1.75));
 
             texturaBtnQuit = new Texture(Gdx.files.internal("QUIT.png"));
             spriteBtnQuit = new Sprite(texturaBtnQuit);
-            spriteBtnQuit.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnQuit.getWidth() / 2,
-                    Principal.ALTO_MUNDO / 6);
+            spriteBtnQuit.setPosition((float) (Principal.ANCHO_MUNDO / 2 - spriteBtnQuit.getWidth() / 2),
+                    Principal.ALTO_MUNDO / 3);
+
         }
 
         @Override
         public void render(float delta) {
-
             Gdx.gl.glClearColor(1, 1, 1, 1);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -113,30 +120,32 @@ public class PantallaWin {
         }
 
         private void leerEntrada() {
-            if (Gdx.input.justTouched()==true) {
+            if (Gdx.input.justTouched() == true) {
                 Vector3 coordenadas = new Vector3();
                 coordenadas.set(Gdx.input.getX(), Gdx.input.getY(), 0);
                 camara.unproject(coordenadas);
                 float touchX = coordenadas.x;
                 float touchY = coordenadas.y;
 
-                if ( touchX>=spriteBtnRetry.getX() &&
-                        touchX<spriteBtnRetry.getX()+spriteBtnRetry.getWidth()
-                        && touchY>=spriteBtnRetry.getY()
-                        && touchY<=spriteBtnRetry.getY()+spriteBtnRetry.getHeight() ) {
-                    principal.setScreen(new PantallaAcercaDe(principal));
-
-                    {
-
-                    }
-                    if ( touchX>=spriteBtnQuit.getX() &&
-                            touchX<=spriteBtnQuit.getX()+spriteBtnQuit.getWidth()
-                            && touchY>=spriteBtnQuit.getY()
-                            && touchY<=spriteBtnQuit.getY()+spriteBtnQuit.getHeight() )
-                        principal.setScreen(new PantallaAjustes(principal));
+                if (touchX >= spriteBtnRetry.getX() &&
+                        touchX < spriteBtnRetry.getX() + spriteBtnRetry.getWidth()
+                        && touchY >= spriteBtnRetry.getY()
+                        && touchY <= spriteBtnRetry.getY() + spriteBtnRetry.getHeight()) {
+                    principal.setScreen(new PantallaJuego(principal));
                 }
+
+                if (touchX >= spriteBtnQuit.getX() &&
+                        touchX <= spriteBtnQuit.getX() + spriteBtnQuit.getWidth()
+                        && touchY >= spriteBtnQuit.getY()
+                        && touchY <= spriteBtnQuit.getY() + spriteBtnQuit.getHeight()) {
+                    principal.setScreen((Screen) new PantallaGameOver(principal));
+
+
+                }
+
+
             }
+        }
 
-            texturaFondo.dispose();
-        }}}
-
+    }
+}

@@ -14,18 +14,18 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**p
  * Created by Stephie Furom on 17/02/2016.
  */
-
     public class PantallaAcercaDe implements Screen {
 
-    private final Principal principal;
-    private OrthographicCamera camara;
-    private Viewport vista;
+     private final Principal principal;
+     private OrthographicCamera camara;
+     private Viewport vista;
 
-    private Texture texturaFondo;
-    private Sprite spriteFondo;
+     private Texture texturaFondo;
+        private Sprite spriteFondo;
 
-    private Texture texturaBtnReturn;
-    private Sprite spriteBtnReturn;
+        private Texture texturaBtnReturn;
+        private Sprite spriteBtnReturn;
+
 
     private SpriteBatch batch;
 
@@ -46,14 +46,14 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         cargarTexturasSprites();
     }
 
-
     private void cargarTexturasSprites() {
 
         texturaFondo = new Texture(Gdx.files.internal("ACERCADEBIEN.png"));
         spriteFondo = new Sprite(texturaFondo);
+
         texturaBtnReturn = new Texture(Gdx.files.internal("RETURN.png"));
         spriteBtnReturn = new Sprite(texturaBtnReturn);
-        spriteBtnReturn.setPosition(Principal.ANCHO_MUNDO / 2  - spriteBtnReturn.getWidth() / 2,
+        spriteBtnReturn.setPosition((float) (Principal.ANCHO_MUNDO / 1.2 - spriteBtnReturn.getWidth() / 2),
                 Principal.ALTO_MUNDO / 20);
     }
 
@@ -65,6 +65,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
         batch.setProjectionMatrix(camara.combined);
 
+        leerEntrada();
 
         batch.begin();
         spriteFondo.draw(batch);
@@ -74,7 +75,21 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         batch.end();
     }
 
+    private void leerEntrada() {
+        if (Gdx.input.justTouched()==true) {
+            Vector3 coordenadas = new Vector3();
+            coordenadas.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+            camara.unproject(coordenadas);
+            float touchX = coordenadas.x;
+            float touchY = coordenadas.y;
 
+            if ( touchX>=spriteBtnReturn.getX() &&
+                    touchX<spriteBtnReturn.getX()+spriteBtnReturn.getWidth()
+                    && touchY>=spriteBtnReturn.getY()
+                    && touchY<=spriteBtnReturn.getY()+spriteBtnReturn.getHeight() )
+                principal.setScreen(new PantallaMenu(principal));
+        }
+    }
 
     @Override
     public void resize(int width, int height) {
@@ -101,7 +116,4 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
     }
 
-
-
-
-        }
+}

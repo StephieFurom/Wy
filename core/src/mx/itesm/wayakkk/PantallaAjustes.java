@@ -25,8 +25,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         private Sprite spriteFondo;
 
 
-        private Texture texturaMusica;
-        private Sprite spriteBtnMusica;
+        private Texture texturaBtnSonido;
+        private Sprite spriteBtnSonido;
 
 
         private Texture texturaBtnVolumen;
@@ -38,7 +38,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 
         private SpriteBatch batch;
-        private Principal principal1;
 
         public PantallaAjustes(Principal principal) {
         this.principal = principal;
@@ -63,12 +62,12 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         texturaFondo = new Texture(Gdx.files.internal("PANTALLAfonbn.png"));
         spriteFondo = new Sprite(texturaFondo);
 
-        Texture texturaBtnMusica = new Texture(Gdx.files.internal("VOLUME.png"));
-        spriteBtnMusica = new Sprite(texturaBtnMusica);
-        spriteBtnMusica.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnMusica.getWidth() / 2,
+        texturaBtnSonido = new Texture(Gdx.files.internal("SOUND.png"));
+        spriteBtnSonido = new Sprite(texturaBtnSonido);
+        spriteBtnSonido.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnSonido.getWidth() / 2,
                 (float) (Principal.ALTO_MUNDO / 1.65));
 
-        texturaBtnVolumen = new Texture(Gdx.files.internal("SOUND.png"));
+        texturaBtnVolumen = new Texture(Gdx.files.internal("VOLUME.png"));
         spriteBtnVolumen = new Sprite(texturaBtnVolumen);
         spriteBtnVolumen.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnVolumen.getWidth() / 2,
                 (float) (Principal.ALTO_MUNDO / 2.45));
@@ -81,7 +80,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
     @Override
     public void render(float delta) {
-
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -91,64 +89,65 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
         batch.begin();
         spriteFondo.draw(batch);
-        spriteBtnMusica.draw(batch);
+        spriteBtnSonido.draw(batch);
         spriteBtnVolumen.draw(batch);
         spriteBtnReturn.draw(batch);
 
         batch.end();
     }
 
-    private void leerEntrada() {
-        if (Gdx.input.justTouched()==true) {
+        @Override
+        public void resize(int width, int height) {
+
+        }
+
+        @Override
+        public void pause() {
+
+        }
+
+        @Override
+        public void resume() {
+
+        }
+
+        @Override
+        public void hide() {
+
+        }
+
+        @Override
+        public void dispose() {
+
+        }
+
+        private void leerEntrada() {
+        if (Gdx.input.justTouched() == true) {
             Vector3 coordenadas = new Vector3();
             coordenadas.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             camara.unproject(coordenadas);
             float touchX = coordenadas.x;
             float touchY = coordenadas.y;
 
-            if ( touchX>=spriteBtnMusica.getX() &&
-                    touchX<spriteBtnMusica.getX()+spriteBtnMusica.getWidth()
-                    && touchY>=spriteBtnMusica.getY()
-                    && touchY<=spriteBtnMusica.getY()+spriteBtnMusica.getHeight() )
-                principal.setScreen(new PantallaAcercaDe(principal));
-            if ( touchX>=spriteBtnVolumen.getX() &&
-                    touchX<=spriteBtnVolumen.getX()+spriteBtnVolumen.getWidth()
-                    && touchY>=spriteBtnVolumen.getY()
-                    && touchY<=spriteBtnVolumen.getY()+spriteBtnVolumen.getHeight() ) {
-                principal.setScreen(new PantallaJuego(principal));
+            if (touchX >= spriteBtnSonido.getX() &&
+                    touchX < spriteBtnSonido.getX() + spriteBtnSonido.getWidth()
+                    && touchY >= spriteBtnSonido.getY()
+                    && touchY <= spriteBtnSonido.getY() + spriteBtnSonido.getHeight())
+                principal.setScreen((Screen) new PantallaSonido(principal));
+
+            if (touchX >= spriteBtnVolumen.getX() &&
+                    touchX <= spriteBtnVolumen.getX() + spriteBtnVolumen.getWidth()
+                    && touchY >= spriteBtnVolumen.getY()
+                    && touchY <= spriteBtnVolumen.getY() + spriteBtnVolumen.getHeight()) {
+                principal.setScreen((Screen) new PantallaVolumen(principal));
 
             }
-            if ( touchX>=spriteBtnReturn.getX() &&
-                    touchX<=spriteBtnReturn.getX()+spriteBtnReturn.getWidth()
-                    && touchY>=spriteBtnReturn.getY()
-                    && touchY<=spriteBtnReturn.getY()+spriteBtnReturn.getHeight() )
-                principal.setScreen((Screen) new PantallaAjustes(principal));
+            if (touchX >= spriteBtnReturn.getX() &&
+                    touchX <= spriteBtnReturn.getX() + spriteBtnReturn.getWidth()
+                    && touchY >= spriteBtnReturn.getY()
+                    && touchY <= spriteBtnReturn.getY() + spriteBtnReturn.getHeight()) {
+                principal.setScreen((Screen) new PantallaMenu(principal));
+            }
         }
-    }
 
-    @Override
-    public void resize(int width, int height) {
-        vista.update(width,height);
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
-
-        texturaFondo.dispose();
-    }
-}
+    }}

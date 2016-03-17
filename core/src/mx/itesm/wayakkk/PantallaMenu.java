@@ -2,6 +2,7 @@ package mx.itesm.wayakkk;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -15,12 +16,11 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * Created by Stephie Furom on 17/02/2016.
  */
 
-public class PantallaMenu implements Screen
-{
+    public class PantallaMenu implements Screen
+    {
     private final Principal principal;
     private OrthographicCamera camara;
     private Viewport vista;
-
 
     private Texture texturaFondo;
     private Sprite spriteFondo;
@@ -36,6 +36,7 @@ public class PantallaMenu implements Screen
     // Botón Ajustes
     private Texture texturaBtnAjustes;
     private Sprite spriteBtnAjustes;
+        private Sound MusicaMenu;
 
 
     private SpriteBatch batch;
@@ -81,7 +82,6 @@ public class PantallaMenu implements Screen
 
     @Override
     public void render(float delta) {
-
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -99,7 +99,8 @@ public class PantallaMenu implements Screen
     }
 
     private void leerEntrada() {
-        if (Gdx.input.justTouched()==true) {
+        if (Gdx.input.justTouched()==true)  {
+            Gdx.app.log("leer entrada","procesando");
             Vector3 coordenadas = new Vector3();
             coordenadas.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             camara.unproject(coordenadas);
