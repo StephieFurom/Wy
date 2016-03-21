@@ -19,6 +19,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
     public class PantallaJuego implements Screen {
 
+
     public static final float ANCHO_MAPA = 1280;
     private final Principal principal;
     private OrthographicCamera camara;
@@ -35,39 +36,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
     public PantallaJuego(Principal principal) {
         this.principal = principal;
-        this.camara = camara;
-        this.texturaMael = texturaMael;
     }
-
-    // Mael
-    private Texture texturaMael;
-    private Personaje Mael;
-    //public static final int TAM_CELDA = 16;
-
-    private OrthographicCamera camaraHUD;
-
-
-    // Paletitas
-    private int paletas;
-    //private Texto texto;
-    //private Sound sonidoPaletas;
-
-    // Heladitos
-    private int helados;
-    private Texto texto;
-    //private Sound sonidoHelados;
-
-    // Fin del juego, Gana o Pierde
-    //private Texture texturaGana;
-    //private Boton btnGana;
-    //private Sound sonidoPierde;
-
-    // Estados del juego
-    //private EstadosJuego estadoJuego;
 
     @Override
     public void show() {
-
         camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
         camara.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO / 2, 0);
         camara.update();
@@ -76,42 +48,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         batch = new SpriteBatch();
 
         cargarTexturasSprites();
-
-
-        // Cámara para HUD
-        camaraHUD = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
-        camaraHUD.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO / 2, 0);
-        camaraHUD.update();
-
-        //cargarRecursos();
-        crearObjetos();
-
-        // Indicar el objeto que atiende los eventos de touch (entrada en general)
-        //Gdx.input.setInputProcessor(new ProcesadorEntrada());
-
-        //estadoJuego = EstadosJuego.JUGANDO;
-
-        // Texto
-        texto = new Texto();
     }
-
-    private void crearObjetos() {
-        AssetManager assetManager = principal.getAssetManager();
-        // Cargar frames
-        //texturaMael = assetManager.get("SpriteCa.png");
-        // Crear el personaje
-        //Mael = new Personaje(texturaMael);
-        // Posición inicial del personaje
-        //Mael.getSprite().setPosition(Principal.ANCHO_MUNDO / 10, Principal.ALTO_MUNDO * 0.90f);
-    }
-
-    // Efecto Paleta
-    //sonidoPaleta = assetManager.get("c.wav");
-    //sonidoPierde = assetManager.get("m.wav");
-
-    // Efecto Helado
-    //sonidoHelado = assetManager.get("c.wav");
-    //sonidoPierde = assetManager.get("m.wav");
 
     private void cargarTexturasSprites() {
 
@@ -120,14 +57,12 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
         texturaBtnPause = new Texture(Gdx.files.internal("RETURN.png"));
         spriteBtnPause = new Sprite(texturaBtnPause);
-        spriteBtnPause.setPosition((float) (Principal.ANCHO_MUNDO / 1.2 - spriteBtnPause.getWidth() / 2),
-                Principal.ALTO_MUNDO / 20);
+        spriteBtnPause.setPosition((float) (Principal.ANCHO_MUNDO / 1.15 - spriteBtnPause.getWidth() / 2),
+                (float) (Principal.ALTO_MUNDO / 1.3));
     }
-
 
     @Override
     public void render(float delta) {
-
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -165,8 +100,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
     @Override
     public void dispose() {
-        AssetManager assetManager = principal.getAssetManager();
-        assetManager.unload("Sprite-Camiar.png");
+
     }
 
     private void leerEntrada() {
@@ -183,5 +117,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
                     && touchY <= spriteBtnPause.getY() + spriteBtnPause.getHeight())
                 principal.setScreen(new PantallaMenu(principal));
         }
+
     }
 }

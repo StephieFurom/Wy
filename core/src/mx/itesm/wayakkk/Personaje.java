@@ -12,25 +12,23 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  */
 public class Personaje {
 
-    public static final float VelX = 2;     // Velocidad horizontal
+    public static final float VelY = -4f;
+    public static final float VelX = 2;
 
-    private Sprite sprite;  // Sprite cuando no se mueve
+    private Sprite sprite;
 
-    // Animación
-    private Animation animacion;    // Caminando
-    private float tiempoAnimacion;   // tiempo para calcular el frame
+    private Animation animacion;
+    private float tiempoAnimacion;
 
-    // Estados del personaje
-    private EstadoMovimiento estadoMovimiento;
-    private EstadoSalto estadoSalto;
+    private EstadoMovimiento estadoMov;
+    private EstadoSalto estadoSalt;
 
-    // SALTO del personaje
-    private static final float V0 = 40;     // Velocidad inicial del salto
+    private static final float V0 = 40;
     private static final float G = 9.81f;
-    private static final float G_2 = G/2;   // Gravedad
-    private float yInicial;         // 'y' donde inicia el salto
-    private float tiempoVuelo;       // Tiempo que estará en el aire
-    private float tiempoSalto;      // Tiempo actual de vuelo
+    private static final float G_2 = G/2;
+    private float yInicial;
+    private float tiempoVuelo;
+    private float tiempoSalto;
 
 
     public Personaje(Texture textura) {
@@ -41,22 +39,17 @@ public class Personaje {
         animacion.setPlayMode(Animation.PlayMode.LOOP);
         tiempoAnimacion = 0;
         sprite = new Sprite(texturaPersonaje[0][0]);
-        estadoMovimiento = EstadoMovimiento.INICIANDO;
-        estadoSalto = EstadoSalto.EN_PISO;
+        estadoMov = EstadoMovimiento.Inicia;
+        estadoSalt = EstadoSalto.Piso;
     }
 
-    // Dibuja el personaje
     public void render(SpriteBatch batch) {
-        // Dibuja el personaje dependiendo del estadoMovimiento
-        switch (estadoMovimiento) {
-            case MOV_DERECHA:
-            case MOV_IZQUIERDA:
-                // Incrementa el timer para calcular el frame que se dibuja
+        switch (estadoMov) {
+            case MovDer:
+            case MovIzq:
                 tiempoAnimacion += Gdx.graphics.getDeltaTime();
-                // Obtiene el frame que se debe mostrar (de acuerdo al timer)
                 TextureRegion region = animacion.getKeyFrame(tiempoAnimacion);
-                // Dirección correcta
-                if (estadoMovimiento==EstadoMovimiento.MOV_IZQUIERDA) {
+                if (estadoMov==EstadoMovimiento.MovIzq) {
                     if (!region.isFlipX()) {
                         region.flip(true,false);
                     }
@@ -65,62 +58,53 @@ public class Personaje {
                         region.flip(true,false);
                     }
                 }
-                // Dibuja el frame en las coordenadas del sprite
                 batch.draw(region, sprite.getX(), sprite.getY());
                 break;
-            case INICIANDO:
-            case QUIETO:
-                sprite.draw(batch); // Dibuja el sprite
+            case Inicia:
+            case Reposo:
+                sprite.draw(batch);
                 break;
         }
 
     }
-
-    // Actualiza el sprite, de acuerdo al estadoMovimiento
     public void actualizar() {
-        // Ejecutar movimiento horizontal
         float nuevaX = sprite.getX();
-        switch (estadoMovimiento) {
-            case MOV_DERECHA:
-                // Prueba que no salga del mundo
+        switch (estadoMov) {
+            case MovDer:
                 nuevaX += VelX;
                 if (nuevaX<=PantallaJuego.ANCHO_MAPA-sprite.getWidth()) {
                     sprite.setX(nuevaX);
                 }
                 break;
-            case MOV_IZQUIERDA:
-                // Prueba que no salga del mundo
+            case MovIzq:
                 nuevaX -= VelX;
                 if (nuevaX>=0) {
                     sprite.setX(nuevaX);
                 }
                 break;
-        }
+        }}
+
+    public void caer() {
+        sprite.setY(sprite.getY() + VelY);
     }
 
-    // Actualiza la posición en 'y', está saltando
     public void actualizarSalto() {
-        // Ejecutar movimiento vertical
-        float y = V0 * tiempoSalto - G_2 * tiempoSalto * tiempoSalto;  // Desplazamiento desde que inició el salto
-        if (tiempoSalto > tiempoVuelo / 2) { // Llegó a la altura máxima?
-            // Inicia caída
-            estadoSalto = EstadoSalto.BAJANDO;
+        float y = V0 * tiempoSalto - G_2 * tiempoSalto * tiempoSalto;
+        if (tiempoSalto > tiempoVuelo / 2) {
+            estadoSalt = EstadoSalto.Baja;
         }
-        tiempoSalto += 10 * Gdx.graphics.getDeltaTime();  // Actualiza tiempo
-        sprite.setY(yInicial + y);    // Actualiza posición
+        tiempoSalto += 10 * Gdx.graphics.getDeltaTime();
+        sprite.setY(yInicial + y);
         if (y < 0) {
-            // Regresó al piso
-            sprite.setY(yInicial);  // Lo deja donde inició el salto
-            estadoSalto = EstadoSalto.EN_PISO;  // Ya no está saltando
+            sprite.setY(yInicial);
+            estadoSalt = EstadoSalto.Piso;
         }
     }
 
-    // Accesor de la variable sprite
     public Sprite getSprite() {
         return sprite;
     }
 
-    // Accesores para la posición
     public float getX() {
         return sprite.getX();
     }
@@ -133,47 +117,41 @@ public class Personaje {
         sprite.setPosition(x,y);
     }
 
-    // Accesor del estadoMovimiento
     public EstadoMovimiento getEstadoMovimiento() {
-        return estadoMovimiento;
+        return estadoMov;
     }
 
-    // Modificador del estadoMovimiento
     public void setEstadoMovimiento(EstadoMovimiento estadoMovimiento) {
-        this.estadoMovimiento = estadoMovimiento;
+        this.estadoMov = estadoMovimiento;
     }
 
     public void setEstadoSalto(EstadoSalto estadoSalto) {
-        this.estadoSalto = estadoSalto;
+        this.estadoSalt = estadoSalto;
     }
 
-    // Inicia el salto
     public void saltar() {
-        if (estadoSalto==EstadoSalto.EN_PISO) {
+        if (estadoSalt==EstadoSalto.Piso) {
             tiempoSalto = 0;
             yInicial = sprite.getY();
-            estadoSalto = EstadoSalto.SUBIENDO;
+            estadoSalt = EstadoSalto.Sube;
             tiempoVuelo = 2 * V0 / G;
         }
     }
 
     public EstadoSalto getEstadoSalto() {
-        return estadoSalto;
+        return estadoSalt;
     }
 
     public enum EstadoMovimiento {
-        INICIANDO,
-        QUIETO,
-        MOV_IZQUIERDA,
-        MOV_DERECHA
+        Inicia,
+        Reposo,
+        MovIzq,
+        MovDer
     }
 
     public enum EstadoSalto {
-        EN_PISO,
-        SUBIENDO,
-        BAJANDO,
-        CAIDA_LIBRE // Cayó de una orilla
+        Piso,
+        Sube,
+        Baja,
     }
-
-
 }
