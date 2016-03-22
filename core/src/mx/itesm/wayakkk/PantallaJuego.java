@@ -75,7 +75,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         texturaFondo = new Texture(Gdx.files.internal("fondoferia.jpg"));
         spriteFondo = new Sprite(texturaFondo);
 
-        texturaBtnPause = new Texture(Gdx.files.internal("RETURN.png"));
+        texturaBtnPause = new Texture(Gdx.files.internal("PAUSA.png"));
         spriteBtnPause = new Sprite(texturaBtnPause);
         spriteBtnPause.setPosition((float) (Principal.ANCHO_MUNDO / 1.15 - spriteBtnPause.getWidth() / 2),
                 (float) (Principal.ALTO_MUNDO / 1.3));
