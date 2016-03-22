@@ -1,14 +1,20 @@
 package mx.itesm.wayakkk;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -31,12 +37,18 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     private Texture texturaBtnPause;
     private Sprite spriteBtnPause;
 
+    private Texture texturaMael;
+    private Personaje Mael;
+
 
     private SpriteBatch batch;
+
 
     public PantallaJuego(Principal principal) {
         this.principal = principal;
     }
+
+
 
     @Override
     public void show() {
@@ -47,8 +59,16 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
         batch = new SpriteBatch();
 
+        crearObjetos();
+
         cargarTexturasSprites();
     }
+
+    private void crearObjetos() {
+        AssetManager assetManager = principal.getAssetManager();
+        texturaMael = assetManager.get("SpriteCa.png");
+        Mael = new Personaje(texturaMael);
+        Mael.getSprite().setPosition(Principal.ANCHO_MUNDO / 10, Principal.ALTO_MUNDO * 0.90f);}
 
     private void cargarTexturasSprites() {
 
@@ -61,6 +81,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
                 (float) (Principal.ALTO_MUNDO / 1.3));
     }
 
+
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 1, 1, 1);
@@ -71,9 +92,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         leerEntrada();
 
         batch.begin();
+
+        Mael.render(batch);
         spriteFondo.draw(batch);
         spriteBtnPause.draw(batch);
-
 
         batch.end();
     }
@@ -100,7 +122,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
     @Override
     public void dispose() {
-
+        AssetManager assetManager = principal.getAssetManager();
+        assetManager.unload("SpriteCa.png");
     }
 
     private void leerEntrada() {
