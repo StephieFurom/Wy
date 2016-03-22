@@ -55,14 +55,14 @@ public class PantallaCargando implements Screen {
     private void cargarRecursos() {
         assetManager.load("SpriteCa.png", Texture.class);
         // Texturas de los botones
-        //assetManager.load("derecha.png", Texture.class);
-        //assetManager.load("izquierda.png", Texture.class);
-        //assetManager.load("salto.png", Texture.class);
+        //assetManager.load("der.png", Texture.class);
+        //assetManager.load("izq.png", Texture.class);
+        //assetManager.load("UP.png", Texture.class);
         // Fin del juego
-        //assetManager.load("ganaste.png", Texture.class);
-        // Efecto al tomar la moneda
-        //assetManager.load("coin.wav", Sound.class);
-        //assetManager.load("mariodie.wav", Sound.class);
+        assetManager.load("WINNERPANTALLA2png", Texture.class);
+        // Efecto al tomar dulces
+        //assetManager.load("atrapapaleta.wav", Sound.class);
+        //assetManager.load("atrapahelado.wav", Sound.class);
 
         assetManager.load("WINNERPANTALLA2.png", Texture.class);
         assetManager.finishLoading();
@@ -94,7 +94,7 @@ public class PantallaCargando implements Screen {
 
 
     private void borrarPantalla() {
-        Gdx.gl.glClearColor(0.42f, 0.55f, 1, 1);    // r, g, b, alpha
+        Gdx.gl.glClearColor(0.42f, 0.55f, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
 
