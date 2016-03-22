@@ -66,7 +66,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
     private void crearObjetos() {
         AssetManager assetManager = principal.getAssetManager();
-        texturaMael = assetManager.get("SpriteCa.png");
+        //texturaMael = assetManager.get("SpriteCa.png");
+        texturaMael = new Texture(Gdx.files.internal("SpriteCa.png"));
         Mael = new Personaje(texturaMael);
         Mael.getSprite().setPosition(Principal.ANCHO_MUNDO / 10, Principal.ALTO_MUNDO * 0.90f);}
 
@@ -93,9 +94,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
         batch.begin();
 
-        Mael.render(batch);
         spriteFondo.draw(batch);
         spriteBtnPause.draw(batch);
+        Mael.render(batch);
 
         batch.end();
     }
