@@ -63,7 +63,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
             spriteFondo = new Sprite(texturaFondo);
 
 
-            texturaBtnRetry = new Texture(Gdx.files.internal("MASSON.png"));
+            texturaBtnRetry = new Texture(Gdx.files.internal("RETRY.png"));
             spriteBtnRetry = new Sprite(texturaBtnRetry);
             spriteBtnRetry.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnRetry.getWidth() / 2,
                     (float) (Principal.ALTO_MUNDO / 1.75));
