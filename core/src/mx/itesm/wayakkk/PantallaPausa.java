@@ -64,7 +64,7 @@ public class PantallaPausa {
             spriteBtnResume.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnResume.getWidth() / 2,
                     Principal.ALTO_MUNDO / 3);
 
-            texturaBtnQuit = new Texture(Gdx.files.internal("ABOUT.png"));
+            texturaBtnQuit = new Texture(Gdx.files.internal("QUIT.png"));
             spriteBtnQuit = new Sprite(texturaBtnQuit);
             spriteBtnQuit.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnQuit.getWidth() / 2,
                     Principal.ALTO_MUNDO / 6);
