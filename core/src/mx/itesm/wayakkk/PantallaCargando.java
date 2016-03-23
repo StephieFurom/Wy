@@ -88,7 +88,7 @@ public class PantallaCargando implements Screen {
             principal.setScreen(new PantallaJuego(principal));
         } else {
             float avance = assetManager.getProgress()*100;
-            Gdx.app.log("Cargando",avance+"%");
+            Gdx.app.log("Loading",avance+"%");
         }
     }
 
