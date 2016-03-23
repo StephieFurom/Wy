@@ -87,6 +87,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        
+        actualizarMael();
+
+        actualizarCamara();
 
         batch.setProjectionMatrix(camara.combined);
 
@@ -98,7 +102,21 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         spriteBtnPause.draw(batch);
         Mael.render(batch);
 
+
         batch.end();
+    }
+
+    private void actualizarMael() {
+    }
+
+    private void actualizarCamara() {
+        float posX = Mael.getX();
+        if (posX>=Principal.ANCHO_MUNDO/2 && posX<=ANCHO_MAPA-Principal.ANCHO_MUNDO/2) {
+            camara.position.set((int)posX, camara.position.y, 0);
+        } else if (posX>ANCHO_MAPA-Principal.ANCHO_MUNDO/2) {
+            camara.position.set(ANCHO_MAPA-Principal.ANCHO_MUNDO/2, camara.position.y, 0);
+        }
+        camara.update();
     }
 
     @Override
