@@ -138,7 +138,7 @@ public class PantallaWin {
                         touchX <= spriteBtnQuit.getX() + spriteBtnQuit.getWidth()
                         && touchY >= spriteBtnQuit.getY()
                         && touchY <= spriteBtnQuit.getY() + spriteBtnQuit.getHeight()) {
-                    principal.setScreen((Screen) new PantallaGameOver(principal));
+                    principal.setScreen((Screen) new PantallaMenu(principal));
 
 
                 }
