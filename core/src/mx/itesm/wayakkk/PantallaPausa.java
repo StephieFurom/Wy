@@ -14,8 +14,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**
  * Created by Stephie Furom on 14/03/2016.
  */
-public class PantallaPausa {
-    public class PantallaMenu implements Screen
+
+
+    public class PantallaPausa implements Screen
     {
         private final Principal principal;
         private OrthographicCamera camara;
@@ -36,7 +37,7 @@ public class PantallaPausa {
 
         private SpriteBatch batch;
 
-        public PantallaMenu(Principal principal) {
+        public PantallaPausa(Principal principal) {
             this.principal = principal;
         }
 
@@ -56,18 +57,18 @@ public class PantallaPausa {
 
         private void cargarTexturasSprites() {
 
-            texturaFondo = new Texture(Gdx.files.internal("fondomenustodos.png"));
+            texturaFondo = new Texture(Gdx.files.internal("PANTALLAfonbn.png"));
             spriteFondo = new Sprite(texturaFondo);
 
             texturaBtnResume = new Texture(Gdx.files.internal("RESUME.png"));
             spriteBtnResume = new Sprite(texturaBtnResume);
             spriteBtnResume.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnResume.getWidth() / 2,
-                    Principal.ALTO_MUNDO / 3);
+                    (float) (Principal.ALTO_MUNDO / 1.8));
 
             texturaBtnQuit = new Texture(Gdx.files.internal("QUIT.png"));
             spriteBtnQuit = new Sprite(texturaBtnQuit);
             spriteBtnQuit.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnQuit.getWidth() / 2,
-                    Principal.ALTO_MUNDO / 6);
+                    (float) (Principal.ALTO_MUNDO / 3.4));
 
         }
 
@@ -101,14 +102,14 @@ public class PantallaPausa {
                         touchX<spriteBtnResume.getX()+spriteBtnResume.getWidth()
                         && touchY>=spriteBtnResume.getY()
                         && touchY<=spriteBtnResume.getY()+spriteBtnResume.getHeight() ) {
-                    principal.setScreen(new PantallaAcercaDe(principal));
+                    principal.setScreen(new PantallaJuego(principal));
 
                 }
                 if ( touchX>=spriteBtnQuit.getX() &&
                         touchX<=spriteBtnQuit.getX()+spriteBtnQuit.getWidth()
                         && touchY>=spriteBtnQuit.getY()
                         && touchY<=spriteBtnQuit.getY()+spriteBtnQuit.getHeight() ) {
-                    principal.setScreen(new PantallaJuego(principal));
+                    principal.setScreen(new mx.itesm.wayakkk.PantallaMenu(principal));
 
                 }
             }
@@ -116,7 +117,6 @@ public class PantallaPausa {
 
         @Override
         public void resize(int width, int height) {
-            vista.update(width,height);
         }
 
         @Override
@@ -136,8 +136,5 @@ public class PantallaPausa {
 
         @Override
         public void dispose() {
-
-            texturaFondo.dispose();
         }
     }
-}

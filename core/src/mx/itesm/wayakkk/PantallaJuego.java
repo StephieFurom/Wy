@@ -10,9 +10,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -42,6 +39,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 
     private SpriteBatch batch;
+    private Object EstadoMovimiento;
+    private EstadosJuego estadoJuego;
 
 
     public PantallaJuego(Principal principal) {
@@ -68,7 +67,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         //texturaMael = assetManager.get("SpriteCa.png");
         texturaMael = new Texture(Gdx.files.internal("SpriteCa.png"));
         Mael = new Personaje(texturaMael);
-        Mael.getSprite().setPosition(Principal.ANCHO_MUNDO / 10, Principal.ALTO_MUNDO * 0.90f);}
+        Mael.getSprite().setPosition(Principal.ANCHO_MUNDO / 8, Principal.ALTO_MUNDO * 0.10f);}
 
     private void cargarTexturasSprites() {
 
@@ -143,6 +142,22 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         assetManager.unload("SpriteCa.png");
     }
 
+    public void touch(int screenX, int screenY, int pointer, int button) {
+        transformarCoordenadas(screenX, screenY);
+        if (EstadoMovimiento==EstadosJuego.Jugando) {
+            // Preguntar si las coordenadas están sobre el botón derecho
+            if ((screenX<= 640)){
+                Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovDer);
+            } else {
+                Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovIzq);
+            }
+        }
+    }
+
+    private void transformarCoordenadas(int screenX, int screenY) {
+    }
+
+
     private void leerEntrada() {
         if (Gdx.input.justTouched() == true) {
             Vector3 coordenadas = new Vector3();
@@ -155,8 +170,15 @@ import com.badlogic.gdx.utils.viewport.Viewport;
                     touchX < spriteBtnPause.getX() + spriteBtnPause.getWidth()
                     && touchY >= spriteBtnPause.getY()
                     && touchY <= spriteBtnPause.getY() + spriteBtnPause.getHeight())
-                principal.setScreen(new PantallaMenu(principal));
+                principal.setScreen((Screen) new PantallaPausa(principal));
         }
 
+    }
+
+    public enum EstadosJuego {
+        Gana,
+        Jugando,
+        Pausado,
+        Perdio
     }
 }
