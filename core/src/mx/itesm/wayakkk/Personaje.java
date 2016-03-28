@@ -13,7 +13,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Personaje {
 
     public static final float VelY = -4f;
-    public static final float VelX = 2;
+    public static final float VelX = 3;
 
     private Sprite sprite;
 

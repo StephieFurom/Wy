@@ -79,7 +79,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
         texturaBtnPause = new Texture(Gdx.files.internal("PAUSA.png"));
         spriteBtnPause = new Sprite(texturaBtnPause);
-        spriteBtnPause.setPosition((float) (Principal.ANCHO_MUNDO / 1.15 - spriteBtnPause.getWidth() / 2),
+        spriteBtnPause.setPosition((float) (Principal.ANCHO_MUNDO / 1.09 - spriteBtnPause.getWidth() / 2),
                 (float) (Principal.ALTO_MUNDO / 1.3));
     }
 
@@ -88,22 +88,27 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        moverPersonaje();
         
         actualizarMael();
-        //actualizarCamara();
-
+        actualizarCamara();
+        
+        borrarPantalla();
         batch.setProjectionMatrix(camara.combined);
 
-        //leerEntrada();
+        leerEntrada();
 
         batch.begin();
-
         spriteFondo.draw(batch);
         spriteBtnPause.draw(batch);
         Mael.render(batch);
-
-
         batch.end();
+    }
+
+    private void borrarPantalla() {
+        Gdx.gl.glClearColor(0.42f, 0.55f, 1, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
 
     private void actualizarMael() {
@@ -122,11 +127,12 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     private void moverPersonaje(){
         switch (Mael.getEstadoMovimiento()) {
             case Inicia:
-                }
+
                 break;
             case MovDer:
             case MovIzq:
-                break;
+            break;
+        }
     }
 
 
@@ -196,7 +202,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
         @Override
         public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-            return true;    // Indica que ya procesó el evento
+            return true;
         }
 
 
