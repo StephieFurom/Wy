@@ -60,6 +60,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
         crearObjetos();
         cargarTexturasSprites();
+
+        // Indicar el objeto que atiende los eventos de touch (entrada en general)
+        Gdx.input.setInputProcessor(new ProcesadorEntrada());
     }
 
     private void crearObjetos() {
@@ -87,11 +90,11 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
         actualizarMael();
-        actualizarCamara();
+        //actualizarCamara();
 
         batch.setProjectionMatrix(camara.combined);
 
-        leerEntrada();
+        //leerEntrada();
 
         batch.begin();
 
@@ -116,9 +119,20 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         camara.update();
     }
 
+    private void moverPersonaje(){
+        switch (Mael.getEstadoMovimiento()) {
+            case Inicia:
+                }
+                break;
+            case MovDer:
+            case MovIzq:
+                break;
+    }
+
+
     @Override
     public void resize(int width, int height) {
-
+        vista.update(width, height);
     }
 
     @Override
@@ -142,21 +156,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         assetManager.unload("SpriteCa.png");
     }
 
-    public void touch(int screenX, int screenY, int pointer, int button) {
-        transformarCoordenadas(screenX, screenY);
-        if (EstadoMovimiento==EstadosJuego.Jugando) {
-            // Preguntar si las coordenadas están sobre el botón derecho
-            if ((screenX<= 640)){
-                Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovDer);
-            } else {
-                Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovIzq);
-            }
-        }
-    }
-
-    private void transformarCoordenadas(int screenX, int screenY) {
-    }
-
 
     private void leerEntrada() {
         if (Gdx.input.justTouched() == true) {
@@ -174,6 +173,49 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         }
 
     }
+    public class ProcesadorEntrada extends InputAdapter
+    {
+        private Vector3 coordenadas = new Vector3();
+        private float x, y;
+
+
+        @Override
+        public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+            transformarCoordenadas(screenX, screenY);
+           // if (EstadoMovimiento == EstadosJuego.Jugando) {
+                if ((x >= 640)) {
+                    Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovDer);
+                    Gdx.app.log("touchDown","CaminaDerecha");
+                } else {
+                    Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovIzq);
+                    Gdx.app.log("touchDown", "CaminaIzquierda");
+                }
+           // }
+            return true;
+        }
+
+        @Override
+        public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+            return true;    // Indica que ya procesó el evento
+        }
+
+
+        @Override
+        public boolean touchDragged(int screenX, int screenY, int pointer) {
+            return true;
+        }
+
+
+        private void transformarCoordenadas(int screenX, int screenY) {
+            // Transformar las coordenadas de la pantalla física a la cámara HUD
+            coordenadas.set(screenX, screenY, 0);
+            camara.unproject(coordenadas);
+            // Obtiene las coordenadas relativas a la pantalla virtual
+            x = coordenadas.x;
+            y = coordenadas.y;
+        }
+    }
+
 
     public enum EstadosJuego {
         Gana,
