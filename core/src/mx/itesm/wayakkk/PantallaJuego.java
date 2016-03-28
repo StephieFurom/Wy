@@ -72,6 +72,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         Mael = new Personaje(texturaMael);
         Mael.getSprite().setPosition(Principal.ANCHO_MUNDO / 8, Principal.ALTO_MUNDO * 0.10f);}
 
+
+
     private void cargarTexturasSprites() {
 
         texturaFondo = new Texture(Gdx.files.internal("fondoferia.jpg"));
@@ -92,6 +94,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         moverPersonaje();
         
         actualizarMael();
+        actualizarPaleta();
         actualizarCamara();
         
         borrarPantalla();
@@ -104,6 +107,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         spriteBtnPause.draw(batch);
         Mael.render(batch);
         batch.end();
+    }
+
+    private void actualizarPaleta() {
     }
 
     private void borrarPantalla() {
@@ -191,10 +197,11 @@ import com.badlogic.gdx.utils.viewport.Viewport;
            // if (EstadoMovimiento == EstadosJuego.Jugando) {
                 if ((x >= 640)) {
                     Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovDer);
-                    Gdx.app.log("touchDown","CaminaDerecha");
+                    Gdx.app.log("touchDown", "CaminaDerecha");
                 } else {
                     Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovIzq);
                     Gdx.app.log("touchDown", "CaminaIzquierda");
+                    Mael.actualizar();
                 }
            // }
             return true;
@@ -202,9 +209,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
         @Override
         public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+            Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.Reposo);
             return true;
         }
-
 
         @Override
         public boolean touchDragged(int screenX, int screenY, int pointer) {

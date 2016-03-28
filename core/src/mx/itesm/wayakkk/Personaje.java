@@ -13,7 +13,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Personaje {
 
     public static final float VelY = -4f;
-    public static final float VelX = 3;
+    public static final float VelX = 9;
 
     private Sprite sprite;
 
@@ -48,6 +48,7 @@ public class Personaje {
         switch (estadoMov) {
             case MovDer:
             case MovIzq:
+                actualizar();
                 tiempoAnimacion += Gdx.graphics.getDeltaTime();
                 TextureRegion region = animacion.getKeyFrame(tiempoAnimacion);
                 if (estadoMov==EstadoMovimiento.MovIzq) {
@@ -154,5 +155,6 @@ public class Personaje {
         Piso,
         Sube,
         Baja,
+        Caida
     }
 }
