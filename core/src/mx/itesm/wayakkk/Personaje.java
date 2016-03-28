@@ -73,7 +73,7 @@ public class Personaje {
         switch (estadoMov) {
             case MovDer:
                 nuevaX += VelX;
-                if (nuevaX<=PantallaJuego.ANCHO_MAPA-sprite.getWidth()) {
+                if (nuevaX<=PantallaJuego.ANCHO_MUNDO-sprite.getWidth()) {
                     sprite.setX(nuevaX);
                 }
                 break;

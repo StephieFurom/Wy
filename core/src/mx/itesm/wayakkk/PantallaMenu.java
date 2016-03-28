@@ -16,11 +16,13 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * Created by Stephie Furom on 17/02/2016.
  */
 
-    public class PantallaMenu implements Screen
-    {
+    public class PantallaMenu implements Screen {
     private final Principal principal;
+
     private OrthographicCamera camara;
     private Viewport vista;
+
+    private SpriteBatch batch;
 
     private Texture texturaFondo;
     private Sprite spriteFondo;
@@ -36,10 +38,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     // Botón Ajustes
     private Texture texturaBtnAjustes;
     private Sprite spriteBtnAjustes;
-        private Sound MusicaMenu;
+        //private Sound MusicaMenu;
 
-
-    private SpriteBatch batch;
 
     public PantallaMenu(Principal principal) {
         this.principal = principal;
@@ -58,6 +58,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
         cargarTexturasSprites();
     }
+
 
     private void cargarTexturasSprites() {
 
@@ -82,9 +83,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1, 1, 1, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+        borrarPantalla();
         batch.setProjectionMatrix(camara.combined);
 
         leerEntrada();
@@ -94,8 +93,12 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         spriteBtnJugar.draw(batch);
         spriteBtnAcercaDe.draw(batch);
         spriteBtnAjustes.draw(batch);
-
         batch.end();
+    }
+
+    private void borrarPantalla() {
+        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
 
     private void leerEntrada() {
@@ -153,5 +156,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     public void dispose() {
 
         texturaFondo.dispose();
+        texturaBtnAjustes.dispose();
+        texturaBtnAcercaDe.dispose();
+        texturaBtnJugar.dispose();
     }
 }

@@ -22,11 +22,10 @@ public class PantallaCargando implements Screen {
     private Viewport vista;
     private SpriteBatch batch;
 
-    // Imagen cargando
     private Texture texturaCargando;
     private Sprite spriteCargando;
 
-    private AssetManager assetManager;  // Asset manager principal
+    private AssetManager assetManager;
 
     public PantallaCargando(Principal principal) {
         this.principal = principal;
@@ -42,9 +41,9 @@ public class PantallaCargando implements Screen {
 
         batch = new SpriteBatch();
 
-        assetManager.load("cargando.png", Texture.class);
+        assetManager.load("charging.png", Texture.class);
         assetManager.finishLoading();
-        texturaCargando = assetManager.get("cargando.png");
+        texturaCargando = assetManager.get("charging.png");
         spriteCargando = new Sprite(texturaCargando);
         spriteCargando.setPosition(Principal.ANCHO_MUNDO / 2 - spriteCargando.getWidth() / 2,
                 Principal.ALTO_MUNDO / 2 - spriteCargando.getHeight() / 2);
@@ -65,7 +64,7 @@ public class PantallaCargando implements Screen {
         //assetManager.load("atrapahelado.wav", Sound.class);
 
         assetManager.load("WINNERPANTALLA2.png", Texture.class);
-        assetManager.finishLoading();
+        //assetManager.finishLoading();
     }
 
     @Override

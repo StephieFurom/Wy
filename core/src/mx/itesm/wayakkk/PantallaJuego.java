@@ -26,7 +26,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     public class PantallaJuego implements Screen {
 
 
-    public static final float ANCHO_MAPA = 1280;
+    public static final float ANCHO_MUNDO = 1280;
     private final Principal principal;
     private OrthographicCamera camara;
     private Viewport vista;
@@ -60,12 +60,11 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         batch = new SpriteBatch();
 
         crearObjetos();
-
         cargarTexturasSprites();
     }
 
     private void crearObjetos() {
-        AssetManager assetManager = principal.getAssetManager();
+        //AssetManager assetManager = principal.getAssetManager();
         //texturaMael = assetManager.get("SpriteCa.png");
         texturaMael = new Texture(Gdx.files.internal("SpriteCa.png"));
         Mael = new Personaje(texturaMael);
@@ -89,7 +88,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
         actualizarMael();
-
         actualizarCamara();
 
         batch.setProjectionMatrix(camara.combined);
@@ -111,10 +109,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
     private void actualizarCamara() {
         float posX = Mael.getX();
-        if (posX>=Principal.ANCHO_MUNDO/2 && posX<=ANCHO_MAPA-Principal.ANCHO_MUNDO/2) {
+        if (posX>=Principal.ANCHO_MUNDO/2 && posX<=ANCHO_MUNDO-Principal.ANCHO_MUNDO/2) {
             camara.position.set((int)posX, camara.position.y, 0);
-        } else if (posX>ANCHO_MAPA-Principal.ANCHO_MUNDO/2) {
-            camara.position.set(ANCHO_MAPA-Principal.ANCHO_MUNDO/2, camara.position.y, 0);
+        } else if (posX>ANCHO_MUNDO-Principal.ANCHO_MUNDO/2) {
+            camara.position.set(ANCHO_MUNDO-Principal.ANCHO_MUNDO/2, camara.position.y, 0);
         }
         camara.update();
     }
