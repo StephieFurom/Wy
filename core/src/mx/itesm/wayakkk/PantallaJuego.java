@@ -42,6 +42,12 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     private Texture texturaPaleta;
     private Objetos paleta;
 
+    private Texture texturaPayaso;
+    private Villano payaso;
+
+    private Texture texturaHelado;
+    private Vidas helado;
+
 
     private SpriteBatch batch;
     private Object EstadoMovimiento;
@@ -76,12 +82,12 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     }
 
     private void cargarAudio() {
-        efectoAtrapa = Gdx.audio.newMusic(Gdx.files.internal("AgarrarCosas.mp3"));
+        efectoAtrapa = Gdx.audio.newMusic(Gdx.files.internal("PrimerNivelMus.mp3"));
         efectoAtrapa.setLooping(true);
         efectoAtrapa.play(); // Inicia
 
          //Musica de fondo
-         musicaJuego = Gdx.audio.newMusic(Gdx.files.internal("AgarrarCosas.mp3"));
+         musicaJuego = Gdx.audio.newMusic(Gdx.files.internal("PrimerNivelMus.mp3"));
          musicaJuego.setLooping(true);
          musicaJuego.play(); // Inicia
     }
@@ -96,6 +102,14 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         texturaPaleta = new Texture(Gdx.files.internal("SPRITEPALETA.png"));
         paleta = new Objetos(texturaPaleta);
         paleta.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO);
+
+        texturaPayaso = new Texture(Gdx.files.internal("SpritesMiniPayasos.png"));
+        payaso = new Villano(texturaPayaso);
+        payaso.getSprite().setPosition(Principal.ANCHO_MUNDO / 3, Principal.ALTO_MUNDO);
+
+        texturaHelado = new Texture(Gdx.files.internal("SPRITESHELADO.png"));
+        helado = new Vidas(texturaPayaso);
+        helado.getSprite().setPosition(Principal.ANCHO_MUNDO / 4, Principal.ALTO_MUNDO);
     }
 
 
@@ -133,6 +147,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         spriteBtnPause.draw(batch);
         Mael.render(batch);
         paleta.render(batch);
+        helado.render(batch);
+        payaso.render(batch);
         batch.end();
     }
 
@@ -201,6 +217,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         AssetManager assetManager = principal.getAssetManager();
         assetManager.unload("SpriteCa.png");
         assetManager.unload("SPRITEPALETA.png");
+        assetManager.unload("SPRITESHELADO.png");
+        assetManager.unload("SpritesMiniPayasos.png");
         texturaFondo.dispose();
         texturaBtnPause.dispose();
         texturaMael.dispose();

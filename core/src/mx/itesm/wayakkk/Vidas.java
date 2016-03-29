@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
- * Created by jose arturo on 29/03/2016.
+ * Created by Stephie Furom on 29/03/2016.
  */
 public class Vidas {
     public static final float VelY = -3f;
