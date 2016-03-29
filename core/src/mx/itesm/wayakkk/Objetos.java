@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  * Created by Stephie Furom on 29/03/2016.
  */
 public class Objetos {
-    public static final float VelY = -4f;
+    public static final float VelY = -2f;
     public static final float VelX = 9;
 
     private Sprite sprite;
@@ -38,7 +38,7 @@ public class Objetos {
         animacion.setPlayMode(Animation.PlayMode.LOOP);
         tiempoAnimacion = 0;
         sprite = new Sprite(texturaPersonaje[0][0]);
-        estadoMov = EstadoMovimiento.Inicia;
+        estadoMov = EstadoMovimiento.Caer;
         estadoSalt = EstadoSalto.Piso;
     }
 
@@ -46,42 +46,21 @@ public class Objetos {
         switch (estadoMov) {
             case Inicia:
             case Caer:
+                actualizar();
                 sprite.draw(batch);
                 break;
         }
 
     }
     public void actualizar() {
-        float nuevaY = sprite.getX();
+        float nuevaY = sprite.getY();
         switch (estadoMov) {
-            case MovDer:
-                nuevaY += VelX;
-                if (nuevaY<=PantallaJuego.ANCHO_MUNDO-sprite.getWidth()) {
-                    sprite.setX(nuevaY);
-                }
+            case Caer:
+                nuevaY += VelY;
+                //if (nuevaY<=PantallaJuego.ANCHO_MUNDO-sprite.getWidth()) {
+                    sprite.setY(nuevaY);
+                //}
                 break;
-            case MovIzq:
-                nuevaY -= VelX;
-                if (nuevaY>=0) {
-                    sprite.setX(nuevaY);
-                }
-                break;
-        }}
-
-    public void caer() {
-        sprite.setY(sprite.getY() + VelY);
-    }
-
-    public void actualizarSalto() {
-        float y = V0 * tiempoSalto - G_2 * tiempoSalto * tiempoSalto;
-        if (tiempoSalto > tiempoVuelo / 2) {
-            estadoSalt = EstadoSalto.Baja;
-        }
-        tiempoSalto += 10 * Gdx.graphics.getDeltaTime();
-        sprite.setY(yInicial + y);
-        if (y < 0) {
-            sprite.setY(yInicial);
-            estadoSalt = EstadoSalto.Piso;
         }
     }
 

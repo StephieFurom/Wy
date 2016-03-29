@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -39,14 +40,14 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     private Personaje Mael;
 
     private Texture texturaPaleta;
-    private Objetos Paleta;
+    private Objetos paleta;
 
 
     private SpriteBatch batch;
     private Object EstadoMovimiento;
     private EstadosJuego estadoJuego;
 
-    private Sound efectoAtrapa;
+    private Music efectoAtrapa;
     private Music musicaJuego;
 
 
@@ -68,17 +69,19 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
         crearObjetos();
         cargarTexturasSprites();
-        //cargarAudio();
+        cargarAudio();
 
         // Indicar el objeto que atiende los eventos de touch (entrada en general)
         Gdx.input.setInputProcessor(new ProcesadorEntrada());
     }
 
     private void cargarAudio() {
-        efectoAtrapa = Gdx.audio.newSound(Gdx.files.internal("AgarrarCosas.mp3"));
+        efectoAtrapa = Gdx.audio.newMusic(Gdx.files.internal("AgarrarCosas.mp3"));
+        efectoAtrapa.setLooping(true);
+        efectoAtrapa.play(); // Inicia
 
          //Musica de fondo
-         musicaJuego = Gdx.audio.newMusic(Gdx.files.internal("MusicMenu.mp4"));
+         musicaJuego = Gdx.audio.newMusic(Gdx.files.internal("AgarrarCosas.mp3"));
          musicaJuego.setLooping(true);
          musicaJuego.play(); // Inicia
     }
@@ -88,7 +91,13 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         //texturaMael = assetManager.get("SpriteCa.png");
         texturaMael = new Texture(Gdx.files.internal("SpriteCa.png"));
         Mael = new Personaje(texturaMael);
-        Mael.getSprite().setPosition(Principal.ANCHO_MUNDO / 8, Principal.ALTO_MUNDO * 0.10f);}
+        Mael.getSprite().setPosition(Principal.ANCHO_MUNDO / 8, Principal.ALTO_MUNDO * 0.10f);
+
+        texturaPaleta = new Texture(Gdx.files.internal("SPRITEPALETA.png"));
+        paleta = new Objetos(texturaPaleta);
+        paleta.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO);
+    }
+
 
 
     private void cargarTexturasSprites() {
@@ -112,6 +121,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
         actualizarMael();
         actualizarCamara();
+        probarChoque();
 
         borrarPantalla();
         batch.setProjectionMatrix(camara.combined);
@@ -122,8 +132,16 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         spriteFondo.draw(batch);
         spriteBtnPause.draw(batch);
         Mael.render(batch);
-        //Paleta.render(batch);
+        paleta.render(batch);
         batch.end();
+    }
+
+    public void probarChoque(){
+        Rectangle a = paleta.getSprite().getBoundingRectangle();
+        Rectangle b = Mael.getSprite().getBoundingRectangle();
+        if (b.contains(a)){
+            //sonido,desaparece paleta, contador suma
+        }
     }
 
     private void borrarPantalla() {
@@ -173,9 +191,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
     @Override
     public void hide() {
-       // if ( musicaJuego.isPlaying() ) {
-         //   musicaJuego.stop();
-       //}
+       if ( musicaJuego.isPlaying() ) {
+           musicaJuego.stop();
+       }
     }
 
     @Override
