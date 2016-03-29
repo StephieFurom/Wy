@@ -59,7 +59,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         cargarTexturasSprites();
     }
 
-
     private void cargarTexturasSprites() {
 
         texturaFondo = new Texture(Gdx.files.internal("fondopantallainicio.png"));

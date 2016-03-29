@@ -14,43 +14,42 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**p
  * Created by Stephie Furom on 17/02/2016.
  */
-    public class PantallaAjustes implements Screen
-    {
-        private final Principal principal;
-        private OrthographicCamera camara;
-        private Viewport vista;
+    public class PantallaAjustes implements Screen {
+    private final Principal principal;
+    private OrthographicCamera camara;
+    private Viewport vista;
 
 
-        private Texture texturaFondo;
-        private Sprite spriteFondo;
+    private Texture texturaFondo;
+    private Sprite spriteFondo;
 
 
-        private Texture texturaBtnSonido;
-        private Sprite spriteBtnSonido;
+    private Texture texturaBtnSonido;
+    private Sprite spriteBtnSonido;
 
 
-        private Texture texturaBtnVolumen;
-        private Sprite spriteBtnVolumen;
+    private Texture texturaBtnVolumen;
+    private Sprite spriteBtnVolumen;
 
 
-        private Texture texturaBtnReturn;
-        private Sprite spriteBtnReturn;
+    private Texture texturaBtnReturn;
+    private Sprite spriteBtnReturn;
 
 
-        private SpriteBatch batch;
+    private SpriteBatch batch;
 
-        public PantallaAjustes(Principal principal) {
+    public PantallaAjustes(Principal principal) {
         this.principal = principal;
     }
 
 
-        @Override
-        public void show() {
+    @Override
+    public void show() {
 
         camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
-        camara.position.set(Principal.ANCHO_MUNDO/2, Principal.ALTO_MUNDO/2, 0);
+        camara.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO / 2, 0);
         camara.update();
-        vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO,camara);
+        vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO, camara);
 
         batch = new SpriteBatch();
 
@@ -96,32 +95,32 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         batch.end();
     }
 
-        @Override
-        public void resize(int width, int height) {
+    @Override
+    public void resize(int width, int height) {
 
-        }
+    }
 
-        @Override
-        public void pause() {
+    @Override
+    public void pause() {
 
-        }
+    }
 
-        @Override
-        public void resume() {
+    @Override
+    public void resume() {
 
-        }
+    }
 
-        @Override
-        public void hide() {
+    @Override
+    public void hide() {
 
-        }
+    }
 
-        @Override
-        public void dispose() {
+    @Override
+    public void dispose() {
 
-        }
+    }
 
-        private void leerEntrada() {
+    private void leerEntrada() {
         if (Gdx.input.justTouched() == true) {
             Vector3 coordenadas = new Vector3();
             coordenadas.set(Gdx.input.getX(), Gdx.input.getY(), 0);
@@ -149,5 +148,5 @@ import com.badlogic.gdx.utils.viewport.Viewport;
                 principal.setScreen((Screen) new PantallaMenu(principal));
             }
         }
-
-    }}
+    }
+}

@@ -91,7 +91,6 @@ public class PantallaCargando implements Screen {
         }
     }
 
-
     private void borrarPantalla() {
         Gdx.gl.glClearColor(0.42f, 0.55f, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

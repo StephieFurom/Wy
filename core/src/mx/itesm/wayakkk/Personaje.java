@@ -67,7 +67,6 @@ public class Personaje {
                 sprite.draw(batch);
                 break;
         }
-
     }
     public void actualizar() {
         float nuevaX = sprite.getX();
@@ -84,7 +83,8 @@ public class Personaje {
                     sprite.setX(nuevaX);
                 }
                 break;
-        }}
+        }
+    }
 
     public void caer() {
         sprite.setY(sprite.getY() + VelY);

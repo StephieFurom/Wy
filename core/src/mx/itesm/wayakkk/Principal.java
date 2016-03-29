@@ -29,5 +29,4 @@ public class Principal extends Game
         super.dispose();
         assetManager.clear();
     }
-
 }

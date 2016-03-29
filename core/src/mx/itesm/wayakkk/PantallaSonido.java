@@ -16,7 +16,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  */
 public class PantallaSonido implements Screen {
 
-
     private final Principal principal;
     private OrthographicCamera camara;
     private Viewport vista;
