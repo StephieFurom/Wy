@@ -15,7 +15,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * Created by Stephie Furom on 14/03/2016.
  */
 
-
     public class PantallaPausa implements Screen
     {
         private final Principal principal;
@@ -69,7 +68,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
             spriteBtnQuit = new Sprite(texturaBtnQuit);
             spriteBtnQuit.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnQuit.getWidth() / 2,
                     (float) (Principal.ALTO_MUNDO / 3.4));
-
         }
 
         @Override
