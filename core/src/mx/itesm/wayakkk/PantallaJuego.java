@@ -38,13 +38,16 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     private Texture texturaMael;
     private Personaje Mael;
 
+    private Texture texturaPaleta;
+    private Objetos Paleta;
+
 
     private SpriteBatch batch;
     private Object EstadoMovimiento;
     private EstadosJuego estadoJuego;
 
-    //private Sound efectoAtrapa;
-    //private Music musicaMenu;
+    private Sound efectoAtrapa;
+    private Music musicaJuego;
 
 
 
@@ -71,22 +74,21 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         Gdx.input.setInputProcessor(new ProcesadorEntrada());
     }
 
-    //private void cargarAudio() {
-        //efectoAtrapa = Gdx.audio.newSound(Gdx.files.internal("AgarrarCosas.mp3"));
+    private void cargarAudio() {
+        efectoAtrapa = Gdx.audio.newSound(Gdx.files.internal("AgarrarCosas.mp3"));
 
-        // Musica de fondo
-        //musicaMenu = Gdx.audio.newMusic(Gdx.files.internal("MusicMenu.mp4"));
-        //musicaMenu.setLooping(true);
-        //musicaMenu.play(); // Inicia
-    //}
+         //Musica de fondo
+         musicaJuego = Gdx.audio.newMusic(Gdx.files.internal("MusicMenu.mp4"));
+         musicaJuego.setLooping(true);
+         musicaJuego.play(); // Inicia
+    }
 
     private void crearObjetos() {
-        //AssetManager assetManager = principal.getAssetManager();
+        AssetManager assetManager = principal.getAssetManager();
         //texturaMael = assetManager.get("SpriteCa.png");
         texturaMael = new Texture(Gdx.files.internal("SpriteCa.png"));
         Mael = new Personaje(texturaMael);
         Mael.getSprite().setPosition(Principal.ANCHO_MUNDO / 8, Principal.ALTO_MUNDO * 0.10f);}
-
 
 
     private void cargarTexturasSprites() {
@@ -120,6 +122,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         spriteFondo.draw(batch);
         spriteBtnPause.draw(batch);
         Mael.render(batch);
+        //Paleta.render(batch);
         batch.end();
     }
 
@@ -170,18 +173,21 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
     @Override
     public void hide() {
-
+       // if ( musicaJuego.isPlaying() ) {
+         //   musicaJuego.stop();
+       //}
     }
 
     @Override
     public void dispose() {
         AssetManager assetManager = principal.getAssetManager();
         assetManager.unload("SpriteCa.png");
+        assetManager.unload("SPRITEPALETA.png");
         texturaFondo.dispose();
         texturaBtnPause.dispose();
         texturaMael.dispose();
-        //efectoAtrapa.dispose();
-        //musicaMenu.dispose();
+        efectoAtrapa.dispose();
+        musicaJuego.dispose();
     }
 
 
@@ -199,6 +205,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
                     && touchY <= spriteBtnPause.getY() + spriteBtnPause.getHeight())
                 principal.setScreen((Screen) new PantallaPausa(principal));
         }
+        //efectoAtrapa.play();
 
     }
     public class ProcesadorEntrada extends InputAdapter
@@ -250,6 +257,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         Gana,
         Jugando,
         Pausado,
-        Perdio
+        Perdio,
+        Caer
     }
 }
