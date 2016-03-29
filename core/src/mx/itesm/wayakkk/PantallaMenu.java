@@ -2,6 +2,7 @@ package mx.itesm.wayakkk;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -38,7 +39,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     // Botón Ajustes
     private Texture texturaBtnAjustes;
     private Sprite spriteBtnAjustes;
-        //private Sound MusicaMenu;
+    private Music musicaMenu;
 
 
     public PantallaMenu(Principal principal) {
@@ -57,6 +58,14 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         batch = new SpriteBatch();
 
         cargarTexturasSprites();
+        cargarAudio();
+    }
+
+    private void cargarAudio() {
+        //Musica del menú
+        musicaMenu = Gdx.audio.newMusic(Gdx.files.internal("MenuMus.mp3"));
+        musicaMenu.setLooping(true);
+        musicaMenu.play(); // Inicia
     }
 
     private void cargarTexturasSprites() {
@@ -148,15 +157,17 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
     @Override
     public void hide() {
-
+        if (musicaMenu.isPlaying()) {
+            musicaMenu.stop();
+        }
     }
 
     @Override
     public void dispose() {
-
-        texturaFondo.dispose();
-        texturaBtnAjustes.dispose();
-        texturaBtnAcercaDe.dispose();
-        texturaBtnJugar.dispose();
+            texturaFondo.dispose();
+            texturaBtnAjustes.dispose();
+            texturaBtnAcercaDe.dispose();
+            texturaBtnJugar.dispose();
+            musicaMenu.dispose();
     }
 }

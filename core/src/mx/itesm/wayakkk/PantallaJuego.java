@@ -5,7 +5,6 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -32,6 +31,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
     private Texture texturaFondo;
     private Sprite spriteFondo;
+
+    private int marcador;
+
+    private Texto texto;
 
     private Texture texturaBtnPause;
     private Sprite spriteBtnPause;
@@ -94,7 +97,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
     private void crearObjetos() {
         AssetManager assetManager = principal.getAssetManager();
-        //texturaMael = assetManager.get("SpriteCa.png");
         texturaMael = new Texture(Gdx.files.internal("SpriteCa.png"));
         Mael = new Personaje(texturaMael);
         Mael.getSprite().setPosition(Principal.ANCHO_MUNDO / 8, Principal.ALTO_MUNDO * 0.10f);
@@ -108,8 +110,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         payaso.getSprite().setPosition(Principal.ANCHO_MUNDO / 3, Principal.ALTO_MUNDO);
 
         texturaHelado = new Texture(Gdx.files.internal("SPRITESHELADO.png"));
-        helado = new Vidas(texturaPayaso);
-        helado.getSprite().setPosition(Principal.ANCHO_MUNDO / 4, Principal.ALTO_MUNDO);
+        helado = new Vidas(texturaHelado);
+        helado.getSprite().setPosition(Principal.ANCHO_MUNDO / 6, Principal.ALTO_MUNDO);
     }
 
 
@@ -135,7 +137,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
         actualizarMael();
         actualizarCamara();
-        probarChoque();
+        //probarChoque();
 
         borrarPantalla();
         batch.setProjectionMatrix(camara.combined);
@@ -143,22 +145,32 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         leerEntrada();
 
         batch.begin();
+
         spriteFondo.draw(batch);
         spriteBtnPause.draw(batch);
         Mael.render(batch);
         paleta.render(batch);
         helado.render(batch);
         payaso.render(batch);
+
+        // Mostrar marcador
+        //texto.mostrarMensaje(batch, "Paletas: "+marcador,
+                //Principal.ANCHO_MUNDO/2, Principal.ALTO_MUNDO*0.9f);
+
+        // Mostrar el tiempo de golpe
+        //texto.mostrarMensaje(batch, "Vidas: " + tiempoSinGolpe,
+                //0.1f*Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO*0.9f);
+
         batch.end();
     }
 
-    public void probarChoque(){
-        Rectangle a = paleta.getSprite().getBoundingRectangle();
-        Rectangle b = Mael.getSprite().getBoundingRectangle();
-        if (b.contains(a)){
+    //public void probarChoque(){
+        //Rectangle a = paleta.getSprite().getBoundingRectangle();
+        //Rectangle b = Mael.getSprite().getBoundingRectangle();
+        //if (b.contains(a)){
             //sonido,desaparece paleta, contador suma
-        }
-    }
+        //}
+    //}
 
     private void borrarPantalla() {
         Gdx.gl.glClearColor(0.42f, 0.55f, 1, 1);
