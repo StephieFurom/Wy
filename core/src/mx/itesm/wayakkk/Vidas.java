@@ -1,6 +1,5 @@
 package mx.itesm.wayakkk;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -8,9 +7,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
- * Created by Stephie Furom on 29/03/2016.
+ * Created by jose arturo on 29/03/2016.
  */
-public class Objetos {
+public class Vidas {
     public static final float VelY = -3f;
     public static final float VelX = 9;
 
@@ -30,7 +29,7 @@ public class Objetos {
     private float tiempoSalto;
 
 
-    public Objetos(Texture textura) {
+    public Vidas(Texture textura) {
         TextureRegion texturaCompleta = new TextureRegion(textura);
         TextureRegion[][] texturaPersonaje = texturaCompleta.split(21,48);
         animacion = new Animation(0.25f, texturaPersonaje[0][2],
@@ -58,7 +57,7 @@ public class Objetos {
             case Caer:
                 nuevaY += VelY;
                 //if (nuevaY<=PantallaJuego.ANCHO_MUNDO-sprite.getWidth()) {
-                    sprite.setY(nuevaY);
+                sprite.setY(nuevaY);
                 //}
                 break;
         }
