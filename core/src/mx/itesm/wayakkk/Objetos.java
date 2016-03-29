@@ -5,12 +5,15 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-
+import java.util.Random;
 /**
  * Created by Stephie Furom on 29/03/2016.
  */
 public class Objetos {
-    public static final float VelY = -3f;
+    Random randC3 = new Random();
+    float[] arr = {-2f,-3f,-4f,-5f,-6f,-7f};
+    public final float VelY = arr[randC3.nextInt(5)] ;
+
 
     private Sprite sprite;
 
@@ -42,6 +45,7 @@ public class Objetos {
 
     }
     public void actualizar() {
+        Random rand = new Random();
         float nuevaY = sprite.getY();
         switch (estadoMov) {
             case Caer:
@@ -49,6 +53,10 @@ public class Objetos {
                 //if (nuevaY<=PantallaJuego.ANCHO_MUNDO-sprite.getWidth()) {
                     sprite.setY(nuevaY);
                 //}
+                if(sprite.getY()==0){
+                    sprite.setY(Principal.ALTO_MUNDO);
+                    sprite.setX(rand.nextInt((int) Principal.ANCHO_MUNDO));
+                }
                 break;
         }
     }

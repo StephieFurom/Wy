@@ -6,13 +6,17 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import java.util.Random;
+
 /**
  * Created by Stephie Furom on 29/03/2016.
  */
 public class Vidas {
-    public static final float VelY = -3f;
+    Random randC1 = new Random();
+    float[] arr = {-2f,-3f,-4f,-5f,-6f,-7f};
+    public final float VelY = arr[randC1.nextInt(5)] ;
 
-    private Sprite sprite;
+    public Sprite sprite;
 
     private Animation animacion;
     private float tiempoAnimacion;
@@ -41,6 +45,7 @@ public class Vidas {
         }
     }
     public void actualizar() {
+        Random rand = new Random();
         float nuevaY = sprite.getY();
         switch (estadoMov) {
             case Caer:
@@ -48,6 +53,10 @@ public class Vidas {
                 //if (nuevaY<=PantallaJuego.ANCHO_MUNDO-sprite.getWidth()) {
                 sprite.setY(nuevaY);
                 //}
+                if(sprite.getY()==0){
+                    sprite.setY(Principal.ALTO_MUNDO);
+                    sprite.setX(rand.nextInt((int) Principal.ANCHO_MUNDO));
+                }
                 break;
         }
     }

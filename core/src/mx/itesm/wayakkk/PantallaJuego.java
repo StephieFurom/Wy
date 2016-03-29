@@ -10,11 +10,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import java.util.Random;
+import java.util.Random;
 
 /**
  * Created by Stephie Furom on 17/02/2016.
@@ -96,22 +96,23 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     }
 
     private void crearObjetos() {
+        Random rand = new Random();
         AssetManager assetManager = principal.getAssetManager();
         texturaMael = new Texture(Gdx.files.internal("SpriteCa.png"));
         Mael = new Personaje(texturaMael);
-        Mael.getSprite().setPosition(Principal.ANCHO_MUNDO / 8, Principal.ALTO_MUNDO * 0.10f);
+        Mael.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO* 0.10f);
 
         texturaPaleta = new Texture(Gdx.files.internal("SPRITEPALETA.png"));
         paleta = new Objetos(texturaPaleta);
-        paleta.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO);
+        paleta.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
         texturaPayaso = new Texture(Gdx.files.internal("SpritesMiniPayasos.png"));
         payaso = new Villano(texturaPayaso);
-        payaso.getSprite().setPosition(Principal.ANCHO_MUNDO / 3, Principal.ALTO_MUNDO);
+        payaso.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
         texturaHelado = new Texture(Gdx.files.internal("SPRITESHELADO.png"));
         helado = new Vidas(texturaHelado);
-        helado.getSprite().setPosition(Principal.ANCHO_MUNDO / 6, Principal.ALTO_MUNDO);
+        helado.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
     }
 
 
@@ -268,10 +269,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
            // if (EstadoMovimiento == EstadosJuego.Jugando) {
                 if ((x >= 640)) {
                     Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovDer);
-                    Gdx.app.log("touchDown", "CaminaDerecha");
+                    //Gdx.app.log("touchDown", "CaminaDerecha");
                 } else {
                     Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovIzq);
-                    Gdx.app.log("touchDown", "CaminaIzquierda");
+                    //Gdx.app.log("touchDown", "CaminaIzquierda");
                     Mael.actualizar();
                 }
            // }
