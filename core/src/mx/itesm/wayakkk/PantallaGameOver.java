@@ -140,10 +140,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 
                 }
-
-
             }
         }
-
     }
 }
