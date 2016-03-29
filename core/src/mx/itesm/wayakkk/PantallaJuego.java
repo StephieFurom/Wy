@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -42,6 +43,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     private Object EstadoMovimiento;
     private EstadosJuego estadoJuego;
 
+    //private Sound efectoAtrapa;
+    //private Music musicaMenu;
+
+
 
     public PantallaJuego(Principal principal) {
         this.principal = principal;
@@ -60,10 +65,20 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
         crearObjetos();
         cargarTexturasSprites();
+        //cargarAudio();
 
         // Indicar el objeto que atiende los eventos de touch (entrada en general)
         Gdx.input.setInputProcessor(new ProcesadorEntrada());
     }
+
+    //private void cargarAudio() {
+        //efectoAtrapa = Gdx.audio.newSound(Gdx.files.internal("AgarrarCosas.mp3"));
+
+        // Musica de fondo
+        //musicaMenu = Gdx.audio.newMusic(Gdx.files.internal("MusicMenu.mp4"));
+        //musicaMenu.setLooping(true);
+        //musicaMenu.play(); // Inicia
+    //}
 
     private void crearObjetos() {
         //AssetManager assetManager = principal.getAssetManager();
@@ -92,11 +107,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         moverPersonaje();
-        
+
         actualizarMael();
-        actualizarPaleta();
         actualizarCamara();
-        
+
         borrarPantalla();
         batch.setProjectionMatrix(camara.combined);
 
@@ -107,9 +121,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         spriteBtnPause.draw(batch);
         Mael.render(batch);
         batch.end();
-    }
-
-    private void actualizarPaleta() {
     }
 
     private void borrarPantalla() {
@@ -166,6 +177,11 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     public void dispose() {
         AssetManager assetManager = principal.getAssetManager();
         assetManager.unload("SpriteCa.png");
+        texturaFondo.dispose();
+        texturaBtnPause.dispose();
+        texturaMael.dispose();
+        //efectoAtrapa.dispose();
+        //musicaMenu.dispose();
     }
 
 
