@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  */
 public class Vidas {
     public static final float VelY = -3f;
-    public static final float VelX = 9;
 
     private Sprite sprite;
 
@@ -19,14 +18,6 @@ public class Vidas {
     private float tiempoAnimacion;
 
     private EstadoMovimiento estadoMov;
-    private EstadoSalto estadoSalt;
-
-    private static final float V0 = 40;
-    private static final float G = 9.81f;
-    private static final float G_2 = G/2;
-    private float yInicial;
-    private float tiempoVuelo;
-    private float tiempoSalto;
 
 
     public Vidas(Texture textura) {
@@ -38,7 +29,6 @@ public class Vidas {
         tiempoAnimacion = 0;
         sprite = new Sprite(texturaPersonaje[0][0]);
         estadoMov = EstadoMovimiento.Caer;
-        estadoSalt = EstadoSalto.Piso;
     }
 
     public void render(SpriteBatch batch) {
@@ -49,7 +39,6 @@ public class Vidas {
                 sprite.draw(batch);
                 break;
         }
-
     }
     public void actualizar() {
         float nuevaY = sprite.getY();
@@ -75,47 +64,8 @@ public class Vidas {
         return sprite.getY();
     }
 
-    public void setPosicion(float x, int y) {
-        sprite.setPosition(x,y);
-    }
-
-    public EstadoMovimiento getEstadoMovimiento() {
-        return estadoMov;
-    }
-
-    public void setEstadoMovimiento(EstadoMovimiento estadoMovimiento) {
-        this.estadoMov = estadoMovimiento;
-    }
-
-    public void setEstadoSalto(EstadoSalto estadoSalto) {
-        this.estadoSalt = estadoSalto;
-    }
-
-    public void saltar() {
-        if (estadoSalt==EstadoSalto.Piso) {
-            tiempoSalto = 0;
-            yInicial = sprite.getY();
-            estadoSalt = EstadoSalto.Sube;
-            tiempoVuelo = 2 * V0 / G;
-        }
-    }
-
-    public EstadoSalto getEstadoSalto() {
-        return estadoSalt;
-    }
-
     public enum EstadoMovimiento {
         Inicia,
-        Reposo,
-        MovIzq,
-        MovDer,
         Caer
-    }
-
-    public enum EstadoSalto {
-        Piso,
-        Sube,
-        Baja,
-        Caida
     }
 }

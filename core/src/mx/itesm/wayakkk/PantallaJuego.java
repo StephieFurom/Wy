@@ -155,7 +155,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
         // Mostrar marcador
         //texto.mostrarMensaje(batch, "Paletas: "+marcador,
-                //Principal.ANCHO_MUNDO/2, Principal.ALTO_MUNDO*0.9f);
+               // Principal.ANCHO_MUNDO/2, Principal.ALTO_MUNDO*0.9f);
 
         // Mostrar el tiempo de golpe
         //texto.mostrarMensaje(batch, "Vidas: " + tiempoSinGolpe,
