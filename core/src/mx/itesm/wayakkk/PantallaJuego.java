@@ -10,10 +10,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import java.util.Random;
 import java.util.Random;
 
 /**
@@ -96,6 +96,8 @@ import java.util.Random;
     }
 
     private void crearObjetos() {
+        // Texto
+        texto = new Texto();
         Random rand = new Random();
         AssetManager assetManager = principal.getAssetManager();
         texturaMael = new Texture(Gdx.files.internal("SpriteCa.png"));
@@ -138,7 +140,7 @@ import java.util.Random;
 
         actualizarMael();
         actualizarCamara();
-        //probarChoque();
+        probarChoque();
 
         borrarPantalla();
         batch.setProjectionMatrix(camara.combined);
@@ -162,16 +164,38 @@ import java.util.Random;
         //texto.mostrarMensaje(batch, "Vidas: " + tiempoSinGolpe,
                 //0.1f*Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO*0.9f);
 
+        // Paletas recolectadas
+        texto.mostrarMensaje(batch,"Paletas: ", (float) (Principal.ANCHO_MUNDO/4.2),Principal.ALTO_MUNDO*0.97f);
+
+        // Helados recolectados
+        texto.mostrarMensaje(batch,"Helados: ", (float) (Principal.ANCHO_MUNDO/2 - 0.8),Principal.ALTO_MUNDO*0.97f);
+
+        // Payasos recolectados
+        texto.mostrarMensaje(batch,"Payasos: ", (float) (Principal.ANCHO_MUNDO/1.3),Principal.ALTO_MUNDO*0.97f);
         batch.end();
     }
 
-    //public void probarChoque(){
-        //Rectangle a = paleta.getSprite().getBoundingRectangle();
-        //Rectangle b = Mael.getSprite().getBoundingRectangle();
-        //if (b.contains(a)){
+    public void probarChoque(){
+        Rectangle a = paleta.getSprite().getBoundingRectangle();
+        Rectangle b = Mael.getSprite().getBoundingRectangle();
+        if (b.contains(a)) {
+            paleta.getSprite().setY(Principal.ALTO_MUNDO);
+            Gdx.app.log("probarChoque", "ChocaPaleta");
+        }
             //sonido,desaparece paleta, contador suma
-        //}
-    //}
+
+            Rectangle c = helado.getSprite().getBoundingRectangle();
+            if (b.contains(c)) {
+                helado.getSprite().setY(Principal.ALTO_MUNDO);
+                Gdx.app.log("probarChoque", "ChocaHelado");
+            }
+
+                Rectangle d = payaso.getSprite().getBoundingRectangle();
+                if (b.contains(d)) {
+                    payaso.getSprite().setY(Principal.ALTO_MUNDO);
+                    Gdx.app.log("probarChoque", "ChocaPayaso");
+        }
+    }
 
     private void borrarPantalla() {
         Gdx.gl.glClearColor(0.42f, 0.55f, 1, 1);
