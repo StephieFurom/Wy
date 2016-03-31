@@ -32,7 +32,9 @@ import java.util.Random;
     private Texture texturaFondo;
     private Sprite spriteFondo;
 
-    private int marcador;
+    public int puntos;
+    public int vidas;
+    public int quitavidas;
 
     private Texto texto;
 
@@ -124,10 +126,10 @@ import java.util.Random;
         texturaFondo = new Texture(Gdx.files.internal("fondoferia.jpg"));
         spriteFondo = new Sprite(texturaFondo);
 
-        texturaBtnPause = new Texture(Gdx.files.internal("PAUSA.png"));
+        texturaBtnPause = new Texture(Gdx.files.internal("PAUSACHIQUITO.png"));
         spriteBtnPause = new Sprite(texturaBtnPause);
-        spriteBtnPause.setPosition((float) (Principal.ANCHO_MUNDO / 1.09 - spriteBtnPause.getWidth() / 2),
-                (float) (Principal.ALTO_MUNDO / 1.3));
+        spriteBtnPause.setPosition((float) (Principal.ANCHO_MUNDO / 1.06 - spriteBtnPause.getWidth() / 2),
+                (float) (Principal.ALTO_MUNDO / 1.2));
     }
 
 
@@ -165,13 +167,13 @@ import java.util.Random;
                 //0.1f*Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO*0.9f);
 
         // Paletas recolectadas
-        texto.mostrarMensaje(batch,"Paletas: ", (float) (Principal.ANCHO_MUNDO/4.2),Principal.ALTO_MUNDO*0.97f);
+        texto.mostrarMensaje(batch,"Paletas: "+puntos, (float) (Principal.ANCHO_MUNDO/4.2),Principal.ALTO_MUNDO*0.97f);
 
         // Helados recolectados
-        texto.mostrarMensaje(batch,"Helados: ", (float) (Principal.ANCHO_MUNDO/2 - 0.8),Principal.ALTO_MUNDO*0.97f);
+        texto.mostrarMensaje(batch,"Helados: "+vidas, (float) (Principal.ANCHO_MUNDO/2 - 0.8),Principal.ALTO_MUNDO*0.97f);
 
         // Payasos recolectados
-        texto.mostrarMensaje(batch,"Payasos: ", (float) (Principal.ANCHO_MUNDO/1.3),Principal.ALTO_MUNDO*0.97f);
+        texto.mostrarMensaje(batch,"Payasos: "+quitavidas, (float) (Principal.ANCHO_MUNDO/1.3),Principal.ALTO_MUNDO*0.97f);
         batch.end();
     }
 
@@ -179,21 +181,24 @@ import java.util.Random;
         Rectangle a = paleta.getSprite().getBoundingRectangle();
         Rectangle b = Mael.getSprite().getBoundingRectangle();
         if (b.contains(a)) {
+            puntos++;
             paleta.getSprite().setY(Principal.ALTO_MUNDO);
-            Gdx.app.log("probarChoque", "ChocaPaleta");
+            //Gdx.app.log("probarChoque", "ChocaPaleta");
         }
             //sonido,desaparece paleta, contador suma
 
             Rectangle c = helado.getSprite().getBoundingRectangle();
             if (b.contains(c)) {
+                vidas++;
                 helado.getSprite().setY(Principal.ALTO_MUNDO);
-                Gdx.app.log("probarChoque", "ChocaHelado");
+                //Gdx.app.log("probarChoque", "ChocaHelado");
             }
 
                 Rectangle d = payaso.getSprite().getBoundingRectangle();
                 if (b.contains(d)) {
+                    puntos=puntos-1;
                     payaso.getSprite().setY(Principal.ALTO_MUNDO);
-                    Gdx.app.log("probarChoque", "ChocaPayaso");
+                    //Gdx.app.log("probarChoque", "ChocaPayaso");
         }
     }
 
