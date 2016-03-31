@@ -82,23 +82,20 @@ import java.util.Random;
         cargarTexturasSprites();
         cargarAudio();
 
-        // Indicar el objeto que atiende los eventos de touch (entrada en general)
         Gdx.input.setInputProcessor(new ProcesadorEntrada());
     }
 
     private void cargarAudio() {
         efectoAtrapa = Gdx.audio.newMusic(Gdx.files.internal("PrimerNivelMus.mp3"));
         efectoAtrapa.setLooping(true);
-        efectoAtrapa.play(); // Inicia
+        efectoAtrapa.play(); //
 
-         //Musica de fondo
          musicaJuego = Gdx.audio.newMusic(Gdx.files.internal("PrimerNivelMus.mp3"));
          musicaJuego.setLooping(true);
-         musicaJuego.play(); // Inicia
+         musicaJuego.play();
     }
 
     private void crearObjetos() {
-        // Texto
         texto = new Texto();
         Random rand = new Random();
         AssetManager assetManager = principal.getAssetManager();
@@ -120,7 +117,6 @@ import java.util.Random;
     }
 
 
-
     private void cargarTexturasSprites() {
 
         texturaFondo = new Texture(Gdx.files.internal("fondoferia.jpg"));
@@ -129,7 +125,7 @@ import java.util.Random;
         texturaBtnPause = new Texture(Gdx.files.internal("PAUSACHIQUITO.png"));
         spriteBtnPause = new Sprite(texturaBtnPause);
         spriteBtnPause.setPosition((float) (Principal.ANCHO_MUNDO / 1.06 - spriteBtnPause.getWidth() / 2),
-                (float) (Principal.ALTO_MUNDO / 1.2));
+                (float) (Principal.ALTO_MUNDO / 1.19));
     }
 
 
@@ -158,22 +154,14 @@ import java.util.Random;
         helado.render(batch);
         payaso.render(batch);
 
-        // Mostrar marcador
-        //texto.mostrarMensaje(batch, "Paletas: "+marcador,
-               // Principal.ANCHO_MUNDO/2, Principal.ALTO_MUNDO*0.9f);
-
-        // Mostrar el tiempo de golpe
-        //texto.mostrarMensaje(batch, "Vidas: " + tiempoSinGolpe,
-                //0.1f*Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO*0.9f);
-
         // Paletas recolectadas
-        texto.mostrarMensaje(batch,"Paletas: "+puntos, (float) (Principal.ANCHO_MUNDO/4.2),Principal.ALTO_MUNDO*0.97f);
+        texto.mostrarMensaje(batch,"Paletas: "+puntos+0, (float) (Principal.ANCHO_MUNDO/4),Principal.ALTO_MUNDO*0.97f);
 
         // Helados recolectados
-        texto.mostrarMensaje(batch,"Helados: "+vidas, (float) (Principal.ANCHO_MUNDO/2 - 0.8),Principal.ALTO_MUNDO*0.97f);
+        //texto.mostrarMensaje(batch,"Helados: "+vidas, (float) (Principal.ANCHO_MUNDO/2 - 0.8),Principal.ALTO_MUNDO*0.97f);
 
         // Payasos recolectados
-        texto.mostrarMensaje(batch,"Payasos: "+quitavidas, (float) (Principal.ANCHO_MUNDO/1.3),Principal.ALTO_MUNDO*0.97f);
+        //texto.mostrarMensaje(batch,"Payasos: "+quitavidas, (float) (Principal.ANCHO_MUNDO/1.3),Principal.ALTO_MUNDO*0.97f);
         batch.end();
     }
 
@@ -182,24 +170,20 @@ import java.util.Random;
         Rectangle b = Mael.getSprite().getBoundingRectangle();
         if (b.contains(a)) {
             puntos++;
+            efectoAtrapa.play();
             paleta.getSprite().setY(Principal.ALTO_MUNDO);
-            //Gdx.app.log("probarChoque", "ChocaPaleta");
         }
-            //sonido,desaparece paleta, contador suma
-
             Rectangle c = helado.getSprite().getBoundingRectangle();
             if (b.contains(c)) {
                 vidas++;
                 helado.getSprite().setY(Principal.ALTO_MUNDO);
-                //Gdx.app.log("probarChoque", "ChocaHelado");
             }
 
                 Rectangle d = payaso.getSprite().getBoundingRectangle();
                 if (b.contains(d)) {
                     puntos=puntos-1;
                     payaso.getSprite().setY(Principal.ALTO_MUNDO);
-                    //Gdx.app.log("probarChoque", "ChocaPayaso");
-        }
+                }
     }
 
     private void borrarPantalla() {
@@ -283,7 +267,6 @@ import java.util.Random;
                     && touchY <= spriteBtnPause.getY() + spriteBtnPause.getHeight())
                 principal.setScreen((Screen) new PantallaPausa(principal));
         }
-        //efectoAtrapa.play();
 
     }
     public class ProcesadorEntrada extends InputAdapter
@@ -295,7 +278,6 @@ import java.util.Random;
         @Override
         public boolean touchDown(int screenX, int screenY, int pointer, int button) {
             transformarCoordenadas(screenX, screenY);
-           // if (EstadoMovimiento == EstadosJuego.Jugando) {
                 if ((x >= 640)) {
                     Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovDer);
                     //Gdx.app.log("touchDown", "CaminaDerecha");
@@ -304,7 +286,6 @@ import java.util.Random;
                     //Gdx.app.log("touchDown", "CaminaIzquierda");
                     Mael.actualizar();
                 }
-           // }
             return true;
         }
 
@@ -321,10 +302,8 @@ import java.util.Random;
 
 
         private void transformarCoordenadas(int screenX, int screenY) {
-            // Transformar las coordenadas de la pantalla física a la cámara HUD
             coordenadas.set(screenX, screenY, 0);
             camara.unproject(coordenadas);
-            // Obtiene las coordenadas relativas a la pantalla virtual
             x = coordenadas.x;
             y = coordenadas.y;
         }
