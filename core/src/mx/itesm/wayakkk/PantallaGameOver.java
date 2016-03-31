@@ -12,13 +12,9 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
- * Created by Stephie Furom on 14/03/2016.
- */
-    public class PantallaGameOver {
-    public PantallaGameOver(Principal principal) {
-    }
+ * Created by Stephie Furom on 14/03/2016.*/
 
-    public class PantallaMenu implements Screen {
+    public class PantallaGameOver implements Screen {
 
         private final Principal principal;
         private OrthographicCamera camara;
@@ -39,7 +35,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
         private SpriteBatch batch;
 
-        public PantallaMenu(Principal principal) {
+        public PantallaGameOver(Principal principal) {
             this.principal = principal;
         }
 
@@ -65,13 +61,13 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
             texturaBtnRetry = new Texture(Gdx.files.internal("RETRY.png"));
             spriteBtnRetry = new Sprite(texturaBtnRetry);
-            spriteBtnRetry.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnRetry.getWidth() / 2,
-                    (float) (Principal.ALTO_MUNDO / 1.75));
+            spriteBtnRetry.setPosition(Principal.ANCHO_MUNDO / 3 - spriteBtnRetry.getWidth() / 2,
+                    (float) (Principal.ALTO_MUNDO / 5.5));
 
             texturaBtnQuit = new Texture(Gdx.files.internal("QUIT.png"));
             spriteBtnQuit = new Sprite(texturaBtnQuit);
-            spriteBtnQuit.setPosition((float) (Principal.ANCHO_MUNDO / 2 - spriteBtnQuit.getWidth() / 2),
-                    Principal.ALTO_MUNDO / 3);
+            spriteBtnQuit.setPosition((float) (Principal.ANCHO_MUNDO / 1.5 - spriteBtnQuit.getWidth() / 2),
+                    (float) (Principal.ALTO_MUNDO / 5.5));
 
         }
 
@@ -143,4 +139,3 @@ import com.badlogic.gdx.utils.viewport.Viewport;
             }
         }
     }
-}

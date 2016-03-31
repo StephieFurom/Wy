@@ -29,4 +29,8 @@ public class Principal extends Game
         super.dispose();
         assetManager.clear();
     }
+
+    public void setScreen(PantallaWin pantallaWin) {
+
+    }
 }

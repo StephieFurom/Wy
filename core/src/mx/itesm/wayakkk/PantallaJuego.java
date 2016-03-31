@@ -8,6 +8,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.TextureArray;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -33,8 +34,7 @@ import java.util.Random;
     private Sprite spriteFondo;
 
     public int puntos;
-    public int vidas;
-    public int quitavidas;
+    public int vidas=3;
 
     private Texto texto;
 
@@ -53,6 +53,13 @@ import java.util.Random;
     private Texture texturaHelado;
     private Vidas helado;
 
+    private Texture texturaGanaste;
+    private Sprite spriteGanaste;
+
+    private Texture texturaVida;
+    private Sprite vidaUno;
+    private Sprite vidaDos;
+    private Sprite vidaTres;
 
     private SpriteBatch batch;
     private Object EstadoMovimiento;
@@ -114,6 +121,18 @@ import java.util.Random;
         texturaHelado = new Texture(Gdx.files.internal("SPRITESHELADO.png"));
         helado = new Vidas(texturaHelado);
         helado.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
+
+        texturaVida = new Texture(Gdx.files.internal("vida.png"));
+        vidaUno = new Sprite(texturaVida);
+        vidaUno.setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
+
+        texturaVida = new Texture(Gdx.files.internal("vida.png"));
+        vidaDos = new Sprite(texturaVida);
+        vidaDos.setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
+
+        texturaVida = new Texture(Gdx.files.internal("vida.png"));
+        vidaTres = new Sprite(texturaVida);
+        vidaTres.setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
     }
 
 
@@ -125,6 +144,25 @@ import java.util.Random;
         texturaBtnPause = new Texture(Gdx.files.internal("PAUSACHIQUITO.png"));
         spriteBtnPause = new Sprite(texturaBtnPause);
         spriteBtnPause.setPosition((float) (Principal.ANCHO_MUNDO / 1.06 - spriteBtnPause.getWidth() / 2),
+                (float) (Principal.ALTO_MUNDO / 1.19));
+
+        texturaGanaste = new Texture(Gdx.files.internal("PAUSACHIQUITO.png"));
+        spriteGanaste = new Sprite(texturaGanaste);
+        spriteGanaste.setPosition((float) (Principal.ANCHO_MUNDO / 1.06 - spriteBtnPause.getWidth() / 2),
+                (float) (Principal.ALTO_MUNDO / 1.19));
+
+        texturaVida = new Texture(Gdx.files.internal("vida.png"));
+
+        vidaUno = new Sprite(texturaVida);
+        vidaUno.setPosition((float) (Principal.ANCHO_MUNDO / 1.58 - spriteBtnPause.getWidth() / 2),
+               (float) (Principal.ALTO_MUNDO / 1.19));
+
+        vidaDos = new Sprite(texturaVida);
+        vidaDos.setPosition((float) (Principal.ANCHO_MUNDO / 1.8 - spriteBtnPause.getWidth() / 2),
+                (float) (Principal.ALTO_MUNDO / 1.19));
+
+        vidaTres = new Sprite(texturaVida);
+        vidaTres.setPosition((float) (Principal.ANCHO_MUNDO / 2.1 - spriteBtnPause.getWidth() / 2),
                 (float) (Principal.ALTO_MUNDO / 1.19));
     }
 
@@ -145,23 +183,44 @@ import java.util.Random;
 
         leerEntrada();
 
+            principal.setScreen(new PantallaWin(principal));
+
+
         batch.begin();
 
         spriteFondo.draw(batch);
         spriteBtnPause.draw(batch);
+        //Gdx.app.log("render","puntos = "+puntos);
+
+        if (puntos >= 25){
+            principal.setScreen(new PantallaWin(principal));
+        }
+
+
+
+        switch (vidas) {
+            case 3:
+                vidaUno.draw(batch);
+                vidaDos.draw(batch);
+                vidaTres.draw(batch);
+                break;
+            case 2:
+                vidaDos.draw(batch);
+                vidaTres.draw(batch);
+                break;
+            case 1:
+                vidaTres.draw(batch);
+                break;
+            case 0:
+                principal.setScreen(new PantallaGameOver(principal));
+        }
         Mael.render(batch);
         paleta.render(batch);
         helado.render(batch);
         payaso.render(batch);
 
         // Paletas recolectadas
-        texto.mostrarMensaje(batch,"Paletas: "+puntos+0, (float) (Principal.ANCHO_MUNDO/4),Principal.ALTO_MUNDO*0.97f);
-
-        // Helados recolectados
-        //texto.mostrarMensaje(batch,"Helados: "+vidas, (float) (Principal.ANCHO_MUNDO/2 - 0.8),Principal.ALTO_MUNDO*0.97f);
-
-        // Payasos recolectados
-        //texto.mostrarMensaje(batch,"Payasos: "+quitavidas, (float) (Principal.ANCHO_MUNDO/1.3),Principal.ALTO_MUNDO*0.97f);
+        texto.mostrarMensaje(batch,"Paletas: "+puntos, (float) (Principal.ANCHO_MUNDO/4),Principal.ALTO_MUNDO*0.97f);
         batch.end();
     }
 
@@ -173,15 +232,16 @@ import java.util.Random;
             efectoAtrapa.play();
             paleta.getSprite().setY(Principal.ALTO_MUNDO);
         }
+                if(vidas<3){
             Rectangle c = helado.getSprite().getBoundingRectangle();
             if (b.contains(c)) {
-                vidas++;
+                vidas=vidas+1;}
                 helado.getSprite().setY(Principal.ALTO_MUNDO);
             }
 
                 Rectangle d = payaso.getSprite().getBoundingRectangle();
                 if (b.contains(d)) {
-                    puntos=puntos-1;
+                    vidas=vidas-1;
                     payaso.getSprite().setY(Principal.ALTO_MUNDO);
                 }
     }
@@ -245,6 +305,7 @@ import java.util.Random;
         assetManager.unload("SPRITEPALETA.png");
         assetManager.unload("SPRITESHELADO.png");
         assetManager.unload("SpritesMiniPayasos.png");
+        assetManager.unload("vida.png");
         texturaFondo.dispose();
         texturaBtnPause.dispose();
         texturaMael.dispose();
