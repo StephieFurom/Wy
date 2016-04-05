@@ -183,8 +183,6 @@ import java.util.Random;
 
         leerEntrada();
 
-            principal.setScreen(new PantallaGana(principal));
-
 
         batch.begin();
 
@@ -195,8 +193,6 @@ import java.util.Random;
         if (puntos >= 5){
             principal.setScreen(new PantallaGana(principal));
         }
-
-
 
         switch (vidas) {
             case 3:
@@ -225,12 +221,14 @@ import java.util.Random;
     }
 
     public void probarChoque(){
+        Random randX = new Random();
         Rectangle a = paleta.getSprite().getBoundingRectangle();
         Rectangle b = Mael.getSprite().getBoundingRectangle();
         if (b.contains(a)) {
             puntos++;
             efectoAtrapa.play();
             paleta.getSprite().setY(Principal.ALTO_MUNDO);
+            paleta.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
         }
                 if(vidas<3){
             Rectangle c = helado.getSprite().getBoundingRectangle();
