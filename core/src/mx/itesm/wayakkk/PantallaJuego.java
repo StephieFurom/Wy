@@ -183,7 +183,7 @@ import java.util.Random;
 
         leerEntrada();
 
-            principal.setScreen(new PantallaWin(principal));
+            principal.setScreen(new PantallaGana(principal));
 
 
         batch.begin();
@@ -192,8 +192,8 @@ import java.util.Random;
         spriteBtnPause.draw(batch);
         //Gdx.app.log("render","puntos = "+puntos);
 
-        if (puntos >= 25){
-            principal.setScreen(new PantallaWin(principal));
+        if (puntos >= 5){
+            principal.setScreen(new PantallaGana(principal));
         }
 
 

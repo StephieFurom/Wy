@@ -12,9 +12,9 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
- * Created by Stephie Furom on 14/03/2016.*/
-
-public class PantallaWin implements Screen {
+ * Created by Stephie Furom on 05/04/2016.
+ */
+public class PantallaGana implements Screen {
 
     private final Principal principal;
     private OrthographicCamera camara;
@@ -35,7 +35,7 @@ public class PantallaWin implements Screen {
 
     private SpriteBatch batch;
 
-    public PantallaWin(Principal principal) {
+    public PantallaGana(Principal principal) {
         this.principal = principal;
     }
 

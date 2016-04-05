@@ -30,7 +30,7 @@ public class Principal extends Game
         assetManager.clear();
     }
 
-    public void setScreen(PantallaWin pantallaWin) {
+    public void setScreen(PantallaGana pantallaGana) {
 
     }
 }
