@@ -110,7 +110,7 @@ import java.util.Random;
         Mael = new Personaje(texturaMael);
         Mael.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO* 0.10f);
 
-        texturaPaleta = new Texture(Gdx.files.internal("SPRITEPALETA.png"));
+        texturaPaleta = new Texture(Gdx.files.internal("palsprite.png"));
         paleta = new Objetos(texturaPaleta);
         paleta.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
@@ -300,7 +300,7 @@ import java.util.Random;
     public void dispose() {
         AssetManager assetManager = principal.getAssetManager();
         assetManager.unload("SpriteCa.png");
-        assetManager.unload("SPRITEPALETA.png");
+        assetManager.unload("palsprite.png");
         assetManager.unload("SPRITESHELADO.png");
         assetManager.unload("SpritesMiniPayasos.png");
         assetManager.unload("vida.png");
