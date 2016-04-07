@@ -27,12 +27,12 @@ import com.badlogic.gdx.utils.viewport.Viewport;
             private Sprite spriteFondo;
 
 
-            private Texture texturaBtnMas;
-            private Sprite spriteBtnMas;
+            private Texture texturaBtni;
+            private Sprite spriteBtni;
 
 
-            private Texture texturaBtnMenos;
-            private Sprite spriteBtnMenos;
+            private Texture texturaBtno;
+            private Sprite spriteBtno;
 
             private Texture texturaBtnReturn;
             private Sprite spriteBtnReturn;
@@ -73,14 +73,14 @@ import com.badlogic.gdx.utils.viewport.Viewport;
                 spriteFondo = new Sprite(texturaFondo);
 
 
-                texturaBtnMas = new Texture(Gdx.files.internal("MASSON.png"));
-                spriteBtnMas = new Sprite(texturaBtnMas);
-                spriteBtnMas.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnMas.getWidth() / 2,
+                texturaBtno = new Texture(Gdx.files.internal("sonno.png"));
+                spriteBtno = new Sprite(texturaBtno);
+                spriteBtno.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtno.getWidth() / 2,
                         (float) (Principal.ALTO_MUNDO / 1.75));
 
-                texturaBtnMenos = new Texture(Gdx.files.internal("MENOSSON.png"));
-                spriteBtnMenos = new Sprite(texturaBtnMenos);
-                spriteBtnMenos.setPosition((float) (Principal.ANCHO_MUNDO / 2 - spriteBtnMenos.getWidth() / 2),
+                texturaBtni = new Texture(Gdx.files.internal("sonsi.png"));
+                spriteBtni = new Sprite(texturaBtni);
+                spriteBtni.setPosition((float) (Principal.ANCHO_MUNDO / 2 - spriteBtni.getWidth() / 2),
                         Principal.ALTO_MUNDO / 3);
 
                 texturaBtnReturn = new Texture(Gdx.files.internal("RETURN.png"));
@@ -100,8 +100,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
                 batch.begin();
                 spriteFondo.draw(batch);
-                spriteBtnMas.draw(batch);
-                spriteBtnMenos.draw(batch);
+                spriteBtno.draw(batch);
+                spriteBtni.draw(batch);
                 spriteBtnReturn.draw(batch);
 
                 batch.end();
@@ -115,17 +115,17 @@ import com.badlogic.gdx.utils.viewport.Viewport;
                     float touchX = coordenadas.x;
                     float touchY = coordenadas.y;
 
-                    if ( touchX>=spriteBtnMas.getX() &&
-                            touchX<spriteBtnMas.getX()+spriteBtnMas.getWidth()
-                            && touchY>=spriteBtnMas.getY()
-                            && touchY<=spriteBtnMas.getY()+spriteBtnMas.getHeight() ) {
+                    if ( touchX>=spriteBtno.getX() &&
+                            touchX<spriteBtno.getX()+spriteBtno.getWidth()
+                            && touchY>=spriteBtno.getY()
+                            && touchY<=spriteBtno.getY()+spriteBtno.getHeight() ) {
                         principal.setScreen(new PantallaVolumen(principal));
                     }
 
-                    if ( touchX>=spriteBtnMenos.getX() &&
-                            touchX<=spriteBtnMenos.getX()+spriteBtnMenos.getWidth()
-                            && touchY>=spriteBtnMenos.getY()
-                            && touchY<=spriteBtnMenos.getY()+spriteBtnMenos.getHeight() ) {
+                    if ( touchX>=spriteBtni.getX() &&
+                            touchX<=spriteBtni.getX()+spriteBtni.getWidth()
+                            && touchY>=spriteBtni.getY()
+                            && touchY<=spriteBtni.getY()+spriteBtni.getHeight() ) {
                         principal.setScreen((Screen) new PantallaVolumen(principal));
 
                     }

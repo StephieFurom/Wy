@@ -206,7 +206,6 @@ import java.util.Random;
 
         leerEntrada();
 
-
         batch.begin();
         switch(estadoJuego) {
             case Gana:
@@ -214,7 +213,6 @@ import java.util.Random;
             case Jugando:
                 spriteFondo.draw(batch);
                 spriteBtnPause.draw(batch);
-                //Gdx.app.log("render","puntos = "+puntos);
 
                 if (puntos >= 20) {
                     principal.setScreen(new PantallaGana(principal));
@@ -236,19 +234,23 @@ import java.util.Random;
                     case 0:
                         principal.setScreen(new PantallaGameOver(principal));
                 }
+
                 Mael.render(batch);
                 paleta.render(batch);
                 helado.render(batch);
                 payaso.render(batch);
                 texto.mostrarMensaje(batch, "Paletas: " + puntos, (float) (Principal.ANCHO_MUNDO / 4), Principal.ALTO_MUNDO * 0.97f);
                 break;
+
             case Pausado:
                 spriteFondoU.draw(batch);
                 spriteBtnQuit.draw(batch);
                 spriteBtnResume.draw(batch);
                 break;
+
             case Perdio:
                 break;
+
             case Caer:
                 break;
         }
@@ -269,6 +271,7 @@ import java.util.Random;
             Rectangle c = helado.getSprite().getBoundingRectangle();
             if (b.overlaps(c)) {
                 vidas=vidas+1;}
+                    efectoAtrapa.play();
                 helado.getSprite().setY(Principal.ALTO_MUNDO);
                     helado.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
             }
@@ -397,7 +400,6 @@ import java.util.Random;
                     //Gdx.app.log("touchDown", "CaminaDerecha");
                 } else {
                     Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovIzq);
-                    //Gdx.app.log("touchDown", "CaminaIzquierda");
                     Mael.actualizar();
                 }
             return true;

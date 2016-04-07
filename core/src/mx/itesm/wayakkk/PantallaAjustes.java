@@ -66,7 +66,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         texturaFondo = new Texture(Gdx.files.internal("PANTALLAfonbn.png"));
         spriteFondo = new Sprite(texturaFondo);
 
-        texturaBtnVolumen = new Texture(Gdx.files.internal("VOLUME.png"));
+        texturaBtnVolumen = new Texture(Gdx.files.internal("SOUND.png"));
         spriteBtnVolumen = new Sprite(texturaBtnVolumen);
         spriteBtnVolumen.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnVolumen.getWidth() / 2,
                 (float) (Principal.ALTO_MUNDO / 2.1));
