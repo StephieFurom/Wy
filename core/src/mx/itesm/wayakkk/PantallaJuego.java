@@ -33,6 +33,9 @@ import java.util.Random;
     private Texture texturaFondo;
     private Sprite spriteFondo;
 
+    private Texture texturaFondoU;
+    private Sprite spriteFondoU;
+
     public int puntos;
     public int vidas=3;
 
@@ -55,6 +58,12 @@ import java.util.Random;
 
     private Texture texturaGanaste;
     private Sprite spriteGanaste;
+
+    private Texture texturaBtnResume;
+    private Sprite spriteBtnResume;
+
+    private Texture texturaBtnQuit;
+    private Sprite spriteBtnQuit;
 
     private Texture texturaVida;
     private Sprite vidaUno;
@@ -88,7 +97,7 @@ import java.util.Random;
         crearObjetos();
         cargarTexturasSprites();
         cargarAudio();
-
+        estadoJuego=EstadosJuego.Jugando;
         Gdx.input.setInputProcessor(new ProcesadorEntrada());
     }
 
@@ -151,6 +160,19 @@ import java.util.Random;
         spriteGanaste.setPosition((float) (Principal.ANCHO_MUNDO / 1.06 - spriteBtnPause.getWidth() / 2),
                 (float) (Principal.ALTO_MUNDO / 1.19));
 
+        texturaFondoU = new Texture(Gdx.files.internal("PANTALLAfonbn.png"));
+        spriteFondoU = new Sprite(texturaFondo);
+
+        texturaBtnResume = new Texture(Gdx.files.internal("RESUME.png"));
+        spriteBtnResume = new Sprite(texturaBtnResume);
+        spriteBtnResume.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnResume.getWidth() / 2,
+                (float) (Principal.ALTO_MUNDO / 1.8));
+
+        texturaBtnQuit = new Texture(Gdx.files.internal("QUIT.png"));
+        spriteBtnQuit = new Sprite(texturaBtnQuit);
+        spriteBtnQuit.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnQuit.getWidth() / 2,
+                (float) (Principal.ALTO_MUNDO / 3.4));
+
         texturaVida = new Texture(Gdx.files.internal("vida.png"));
 
         vidaUno = new Sprite(texturaVida);
@@ -172,12 +194,13 @@ import java.util.Random;
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        moverPersonaje();
+        if(estadoJuego==EstadosJuego.Jugando) {
+            moverPersonaje();
 
-        actualizarMael();
-        actualizarCamara();
-        probarChoque();
-
+            actualizarMael();
+            actualizarCamara();
+            probarChoque();
+        }
         borrarPantalla();
         batch.setProjectionMatrix(camara.combined);
 
@@ -185,38 +208,44 @@ import java.util.Random;
 
 
         batch.begin();
+        switch(estadoJuego) {
+            case Jugando:
+                spriteFondo.draw(batch);
+                spriteBtnPause.draw(batch);
+                //Gdx.app.log("render","puntos = "+puntos);
 
-        spriteFondo.draw(batch);
-        spriteBtnPause.draw(batch);
-        //Gdx.app.log("render","puntos = "+puntos);
+                if (puntos >= 5) {
+                    principal.setScreen(new PantallaGana(principal));
+                }
 
-        if (puntos >= 5){
-            principal.setScreen(new PantallaGana(principal));
+                switch (vidas) {
+                    case 3:
+                        vidaUno.draw(batch);
+                        vidaDos.draw(batch);
+                        vidaTres.draw(batch);
+                        break;
+                    case 2:
+                        vidaDos.draw(batch);
+                        vidaTres.draw(batch);
+                        break;
+                    case 1:
+                        vidaTres.draw(batch);
+                        break;
+                    case 0:
+                        principal.setScreen(new PantallaGameOver(principal));
+                }
+                Mael.render(batch);
+                paleta.render(batch);
+                helado.render(batch);
+                payaso.render(batch);
+                texto.mostrarMensaje(batch, "Paletas: " + puntos, (float) (Principal.ANCHO_MUNDO / 4), Principal.ALTO_MUNDO * 0.97f);
+                break;
+            case Pausado:
+
+                break;
+            // Paletas recolectadas
+
         }
-
-        switch (vidas) {
-            case 3:
-                vidaUno.draw(batch);
-                vidaDos.draw(batch);
-                vidaTres.draw(batch);
-                break;
-            case 2:
-                vidaDos.draw(batch);
-                vidaTres.draw(batch);
-                break;
-            case 1:
-                vidaTres.draw(batch);
-                break;
-            case 0:
-                principal.setScreen(new PantallaGameOver(principal));
-        }
-        Mael.render(batch);
-        paleta.render(batch);
-        helado.render(batch);
-        payaso.render(batch);
-
-        // Paletas recolectadas
-        texto.mostrarMensaje(batch,"Paletas: "+puntos, (float) (Principal.ANCHO_MUNDO/4),Principal.ALTO_MUNDO*0.97f);
         batch.end();
     }
 
@@ -235,12 +264,14 @@ import java.util.Random;
             if (b.contains(c)) {
                 vidas=vidas+1;}
                 helado.getSprite().setY(Principal.ALTO_MUNDO);
+                    helado.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
             }
 
                 Rectangle d = payaso.getSprite().getBoundingRectangle();
                 if (b.contains(d)) {
                     vidas=vidas-1;
                     payaso.getSprite().setY(Principal.ALTO_MUNDO);
+                    payaso.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
                 }
     }
 
@@ -305,7 +336,10 @@ import java.util.Random;
         assetManager.unload("SpritesMiniPayasos.png");
         assetManager.unload("vida.png");
         texturaFondo.dispose();
+        texturaFondoU.dispose();
         texturaBtnPause.dispose();
+        texturaBtnQuit.dispose();
+        texturaBtnResume.dispose();
         texturaMael.dispose();
         efectoAtrapa.dispose();
         musicaJuego.dispose();
@@ -324,7 +358,22 @@ import java.util.Random;
                     touchX < spriteBtnPause.getX() + spriteBtnPause.getWidth()
                     && touchY >= spriteBtnPause.getY()
                     && touchY <= spriteBtnPause.getY() + spriteBtnPause.getHeight())
-                principal.setScreen((Screen) new PantallaPausa(principal));
+                estadoJuego=EstadosJuego.Pausado;
+
+            if ( touchX>=spriteBtnResume.getX() &&
+                    touchX<spriteBtnResume.getX()+spriteBtnResume.getWidth()
+                    && touchY>=spriteBtnResume.getY()
+                    && touchY<=spriteBtnResume.getY()+spriteBtnResume.getHeight() ) {
+                principal.setScreen(new PantallaJuego(principal));
+
+            }
+            if ( touchX>=spriteBtnQuit.getX() &&
+                    touchX<=spriteBtnQuit.getX()+spriteBtnQuit.getWidth()
+                    && touchY>=spriteBtnQuit.getY()
+                    && touchY<=spriteBtnQuit.getY()+spriteBtnQuit.getHeight() ) {
+                principal.setScreen(new mx.itesm.wayakkk.PantallaMenu(principal));
+
+            }
         }
 
     }
