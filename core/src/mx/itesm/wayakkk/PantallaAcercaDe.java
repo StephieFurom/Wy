@@ -2,6 +2,7 @@ package mx.itesm.wayakkk;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -26,6 +27,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         private Texture texturaBtnReturn;
         private Sprite spriteBtnReturn;
 
+    private Music musicaMenu;
+
 
     private SpriteBatch batch;
 
@@ -44,6 +47,13 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         batch = new SpriteBatch();
 
         cargarTexturasSprites();
+        cargarAudio();
+    }
+
+    private void cargarAudio() {
+        musicaMenu = Gdx.audio.newMusic(Gdx.files.internal("MenuMus.mp3"));
+        musicaMenu.setLooping(true);
+        musicaMenu.play();
     }
 
     private void cargarTexturasSprites() {
@@ -109,11 +119,13 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
     @Override
     public void hide() {
-
+        if (musicaMenu.isPlaying()) {
+            musicaMenu.stop();
+        }
     }
 
     @Override
     public void dispose() {
-
+        musicaMenu.dispose();
     }
 }

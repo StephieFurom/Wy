@@ -39,6 +39,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     // Botón Ajustes
     private Texture texturaBtnAjustes;
     private Sprite spriteBtnAjustes;
+
     private Music musicaMenu;
 
 
