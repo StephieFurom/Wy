@@ -24,10 +24,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     private Sprite spriteFondo;
 
 
-    private Texture texturaBtnSonido;
-    private Sprite spriteBtnSonido;
-
-
     private Texture texturaBtnVolumen;
     private Sprite spriteBtnVolumen;
 
@@ -61,15 +57,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         texturaFondo = new Texture(Gdx.files.internal("PANTALLAfonbn.png"));
         spriteFondo = new Sprite(texturaFondo);
 
-        texturaBtnSonido = new Texture(Gdx.files.internal("SOUND.png"));
-        spriteBtnSonido = new Sprite(texturaBtnSonido);
-        spriteBtnSonido.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnSonido.getWidth() / 2,
-                (float) (Principal.ALTO_MUNDO / 1.65));
-
         texturaBtnVolumen = new Texture(Gdx.files.internal("VOLUME.png"));
         spriteBtnVolumen = new Sprite(texturaBtnVolumen);
         spriteBtnVolumen.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnVolumen.getWidth() / 2,
-                (float) (Principal.ALTO_MUNDO / 2.45));
+                (float) (Principal.ALTO_MUNDO / 2.1));
 
         texturaBtnReturn = new Texture(Gdx.files.internal("RETURN.png"));
         spriteBtnReturn = new Sprite(texturaBtnReturn);
@@ -88,7 +79,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
         batch.begin();
         spriteFondo.draw(batch);
-        spriteBtnSonido.draw(batch);
         spriteBtnVolumen.draw(batch);
         spriteBtnReturn.draw(batch);
 
@@ -127,12 +117,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
             camara.unproject(coordenadas);
             float touchX = coordenadas.x;
             float touchY = coordenadas.y;
-
-            if (touchX >= spriteBtnSonido.getX() &&
-                    touchX < spriteBtnSonido.getX() + spriteBtnSonido.getWidth()
-                    && touchY >= spriteBtnSonido.getY()
-                    && touchY <= spriteBtnSonido.getY() + spriteBtnSonido.getHeight())
-                principal.setScreen((Screen) new PantallaSonido(principal));
 
             if (touchX >= spriteBtnVolumen.getX() &&
                     touchX <= spriteBtnVolumen.getX() + spriteBtnVolumen.getWidth()

@@ -36,8 +36,8 @@ import java.util.Random;
     private Texture texturaFondoU;
     private Sprite spriteFondoU;
 
-    public int puntos;
-    public int vidas=3;
+    public static int puntos;
+    public static int vidas=3;
 
     private Texto texto;
 
@@ -161,7 +161,7 @@ import java.util.Random;
                 (float) (Principal.ALTO_MUNDO / 1.19));
 
         texturaFondoU = new Texture(Gdx.files.internal("PANTALLAfonbn.png"));
-        spriteFondoU = new Sprite(texturaFondo);
+        spriteFondoU = new Sprite(texturaFondoU);
 
         texturaBtnResume = new Texture(Gdx.files.internal("RESUME.png"));
         spriteBtnResume = new Sprite(texturaBtnResume);
@@ -209,12 +209,14 @@ import java.util.Random;
 
         batch.begin();
         switch(estadoJuego) {
+            case Gana:
+                break;
             case Jugando:
                 spriteFondo.draw(batch);
                 spriteBtnPause.draw(batch);
                 //Gdx.app.log("render","puntos = "+puntos);
 
-                if (puntos >= 5) {
+                if (puntos >= 20) {
                     principal.setScreen(new PantallaGana(principal));
                 }
 
@@ -241,10 +243,14 @@ import java.util.Random;
                 texto.mostrarMensaje(batch, "Paletas: " + puntos, (float) (Principal.ANCHO_MUNDO / 4), Principal.ALTO_MUNDO * 0.97f);
                 break;
             case Pausado:
-
+                spriteFondoU.draw(batch);
+                spriteBtnQuit.draw(batch);
+                spriteBtnResume.draw(batch);
                 break;
-            // Paletas recolectadas
-
+            case Perdio:
+                break;
+            case Caer:
+                break;
         }
         batch.end();
     }
@@ -253,7 +259,7 @@ import java.util.Random;
         Random randX = new Random();
         Rectangle a = paleta.getSprite().getBoundingRectangle();
         Rectangle b = Mael.getSprite().getBoundingRectangle();
-        if (b.contains(a)) {
+        if (b.overlaps(a)) {
             puntos++;
             efectoAtrapa.play();
             paleta.getSprite().setY(Principal.ALTO_MUNDO);
@@ -261,14 +267,14 @@ import java.util.Random;
         }
                 if(vidas<3){
             Rectangle c = helado.getSprite().getBoundingRectangle();
-            if (b.contains(c)) {
+            if (b.overlaps(c)) {
                 vidas=vidas+1;}
                 helado.getSprite().setY(Principal.ALTO_MUNDO);
                     helado.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
             }
 
                 Rectangle d = payaso.getSprite().getBoundingRectangle();
-                if (b.contains(d)) {
+                if (b.overlaps(d)) {
                     vidas=vidas-1;
                     payaso.getSprite().setY(Principal.ALTO_MUNDO);
                     payaso.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
