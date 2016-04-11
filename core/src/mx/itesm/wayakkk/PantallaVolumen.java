@@ -119,14 +119,16 @@ import com.badlogic.gdx.utils.viewport.Viewport;
                             touchX<spriteBtno.getX()+spriteBtno.getWidth()
                             && touchY>=spriteBtno.getY()
                             && touchY<=spriteBtno.getY()+spriteBtno.getHeight() ) {
-                        principal.setScreen(new PantallaVolumen(principal));
+                        Gdx.app.log("touchX", "SinMusica");
+                        //principal.setScreen(new PantallaVolumen(principal));
                     }
 
                     if ( touchX>=spriteBtni.getX() &&
                             touchX<=spriteBtni.getX()+spriteBtni.getWidth()
                             && touchY>=spriteBtni.getY()
                             && touchY<=spriteBtni.getY()+spriteBtni.getHeight() ) {
-                        principal.setScreen((Screen) new PantallaVolumen(principal));
+                        Gdx.app.log("touchX", "ConMusica");
+                        //principal.setScreen((Screen) new PantallaVolumen(principal));
 
                     }
                     if ( touchX>=spriteBtnReturn.getX() &&
