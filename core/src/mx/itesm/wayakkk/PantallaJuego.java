@@ -117,7 +117,7 @@ import java.util.Random;
         AssetManager assetManager = principal.getAssetManager();
         texturaMael = new Texture(Gdx.files.internal("SpriteCa.png"));
         Mael = new Personaje(texturaMael);
-        Mael.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO* 0.10f);
+        Mael.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO * 0.10f);
 
         texturaPaleta = new Texture(Gdx.files.internal("palsprite.png"));
         paleta = new Objetos(texturaPaleta);
@@ -191,12 +191,9 @@ import java.util.Random;
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1, 1, 1, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         if(estadoJuego==EstadosJuego.Jugando) {
             moverPersonaje();
-
             actualizarMael();
             actualizarCamara();
             probarChoque();
@@ -240,6 +237,7 @@ import java.util.Random;
                 helado.render(batch);
                 payaso.render(batch);
                 texto.mostrarMensaje(batch, "Paletas: " + puntos, (float) (Principal.ANCHO_MUNDO / 4), Principal.ALTO_MUNDO * 0.97f);
+                Gdx.app.log("Render","Jugando");
                 break;
 
             case Pausado:
@@ -267,21 +265,21 @@ import java.util.Random;
             paleta.getSprite().setY(Principal.ALTO_MUNDO);
             paleta.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
         }
-                if(vidas<3){
-            Rectangle c = helado.getSprite().getBoundingRectangle();
-            if (b.overlaps(c)) {
-                vidas=vidas+1;}
-                    //efectoAtrapa.play();
-                helado.getSprite().setY(Principal.ALTO_MUNDO);
-                    helado.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
-            }
+        Rectangle c = helado.getSprite().getBoundingRectangle();
+        if (b.overlaps(c)) {
+            if (vidas < 3)
+                vidas = vidas + 1;
+            //efectoAtrapa.play();
+            helado.getSprite().setY(Principal.ALTO_MUNDO);
+            helado.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
+        }
 
-                Rectangle d = payaso.getSprite().getBoundingRectangle();
-                if (b.overlaps(d)) {
-                    vidas=vidas-1;
-                    payaso.getSprite().setY(Principal.ALTO_MUNDO);
-                    payaso.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
-                }
+        Rectangle d = payaso.getSprite().getBoundingRectangle();
+        if (b.overlaps(d)) {
+            vidas = vidas - 1;
+            payaso.getSprite().setY(Principal.ALTO_MUNDO);
+            payaso.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
+        }
     }
 
     private void borrarPantalla() {
@@ -305,7 +303,6 @@ import java.util.Random;
     private void moverPersonaje(){
         switch (Mael.getEstadoMovimiento()) {
             case Inicia:
-
                 break;
             case MovDer:
             case MovIzq:
@@ -373,7 +370,7 @@ import java.util.Random;
                     touchX<spriteBtnResume.getX()+spriteBtnResume.getWidth()
                     && touchY>=spriteBtnResume.getY()
                     && touchY<=spriteBtnResume.getY()+spriteBtnResume.getHeight() ) {
-                principal.setScreen(new PantallaJuego(principal));
+                estadoJuego=EstadosJuego.Jugando;
 
             }
             if ( touchX>=spriteBtnQuit.getX() &&
@@ -384,7 +381,6 @@ import java.util.Random;
 
             }
         }
-
     }
     public class ProcesadorEntrada extends InputAdapter
     {

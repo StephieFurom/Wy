@@ -64,10 +64,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
             private void cargarAudio() {
                 musicaMenu = Gdx.audio.newMusic(Gdx.files.internal("MenuMus.mp3"));
                 musicaMenu.setLooping(true);
-                if (PantallaMenu.musica=true)
-                musicaMenu.play();
-                else
-                    musicaMenu.stop();
+                if (PantallaMenu.musica==true)
+                    musicaMenu.play();
             }
 
             private void cargarTexturasSprites() {
@@ -124,6 +122,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
                             && touchY<=spriteBtno.getY()+spriteBtno.getHeight() ) {
                         Gdx.app.log("touchX", "SinMusica");
                         PantallaMenu.musica=false;
+                        musicaMenu.stop();
                         //principal.setScreen(new PantallaVolumen(principal));
                     }
 
@@ -133,6 +132,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
                             && touchY<=spriteBtni.getY()+spriteBtni.getHeight() ) {
                         Gdx.app.log("touchX", "ConMusica");
                         PantallaMenu.musica=true;
+                        musicaMenu.play();
                         //principal.setScreen((Screen) new PantallaVolumen(principal));
 
                     }

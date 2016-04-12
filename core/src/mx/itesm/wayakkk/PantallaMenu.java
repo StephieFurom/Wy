@@ -23,7 +23,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     private OrthographicCamera camara;
     private Viewport vista;
 
-    public static boolean musica;
+    public static boolean musica=true;
 
     private SpriteBatch batch;
 
@@ -42,7 +42,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     private Texture texturaBtnAjustes;
     private Sprite spriteBtnAjustes;
 
-    private Music musicaMenu;
+    public static Music musicaMenu;
 
 
     public PantallaMenu(Principal principal) {
