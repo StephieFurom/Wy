@@ -123,7 +123,7 @@ import java.util.Random;
         paleta = new Objetos(texturaPaleta);
         paleta.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
-        texturaPayaso = new Texture(Gdx.files.internal("SpritesMiniPayasos.png"));
+        texturaPayaso = new Texture(Gdx.files.internal("PAYASOSPRITE.png"));
         payaso = new Villano(texturaPayaso);
         payaso.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
@@ -342,7 +342,7 @@ import java.util.Random;
         assetManager.unload("SpriteCa.png");
         assetManager.unload("palsprite.png");
         assetManager.unload("SPRITESHELADO.png");
-        assetManager.unload("SpritesMiniPayasos.png");
+        assetManager.unload("PAYASOSPRITE.png");
         assetManager.unload("vida.png");
         texturaFondo.dispose();
         texturaFondoU.dispose();
