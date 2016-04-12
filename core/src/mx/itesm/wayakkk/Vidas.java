@@ -1,5 +1,6 @@
 package mx.itesm.wayakkk;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -25,13 +26,12 @@ public class Vidas {
 
     public Vidas(Texture textura) {
         TextureRegion texturaCompleta = new TextureRegion(textura);
-        TextureRegion[][] texturaPersonaje = texturaCompleta.split(32,48);
+        TextureRegion[][] texturaPersonaje = texturaCompleta.split(32, 48);
         animacion = new Animation(0.25f, texturaPersonaje[0][2],
                 texturaPersonaje[0][1], texturaPersonaje[0][0] );
         animacion.setPlayMode(Animation.PlayMode.LOOP);
         tiempoAnimacion = 0;
         sprite = new Sprite(texturaPersonaje[0][0]);
-        estadoMov = EstadoMovimiento.Inicia;
         estadoMov = EstadoMovimiento.Caer;
     }
 
@@ -40,7 +40,10 @@ public class Vidas {
             case Inicia:
             case Caer:
                 actualizar();
-                sprite.draw(batch);
+
+                tiempoAnimacion += Gdx.graphics.getDeltaTime();
+                TextureRegion region = animacion.getKeyFrame(tiempoAnimacion);
+                batch.draw(region, sprite.getX(), sprite.getY());
                 break;
         }
     }

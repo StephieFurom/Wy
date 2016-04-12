@@ -56,7 +56,6 @@ public class Personaje {
                 sprite.draw(batch);
                 break;
         }
-
     }
     public void actualizar() {
         float nuevaX = sprite.getX();
