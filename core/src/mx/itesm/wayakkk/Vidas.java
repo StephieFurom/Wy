@@ -40,7 +40,6 @@ public class Vidas {
             case Inicia:
             case Caer:
                 actualizar();
-
                 tiempoAnimacion += Gdx.graphics.getDeltaTime();
                 TextureRegion region = animacion.getKeyFrame(tiempoAnimacion);
                 batch.draw(region, sprite.getX(), sprite.getY());

@@ -1,5 +1,6 @@
 package mx.itesm.wayakkk;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -39,7 +40,9 @@ public class Objetos {
             case Inicia:
             case Caer:
                 actualizar();
-                sprite.draw(batch);
+                tiempoAnimacion += Gdx.graphics.getDeltaTime();
+                TextureRegion region = animacion.getKeyFrame(tiempoAnimacion);
+                batch.draw(region, sprite.getX(), sprite.getY());
                 break;
         }
 
