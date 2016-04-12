@@ -74,7 +74,7 @@ import java.util.Random;
     private Object EstadoMovimiento;
     private EstadosJuego estadoJuego;
 
-    private Music efectoAtrapa;
+    //private Music efectoAtrapa;
     private Music musicaJuego;
 
 
@@ -102,9 +102,9 @@ import java.util.Random;
     }
 
     private void cargarAudio() {
-        efectoAtrapa = Gdx.audio.newMusic(Gdx.files.internal("PrimerNivelMus.mp3"));
-        efectoAtrapa.setLooping(true);
-        efectoAtrapa.play(); //
+        //efectoAtrapa = Gdx.audio.newMusic(Gdx.files.internal("PrimerNivelMus.mp3"));
+        //efectoAtrapa.setLooping(true);
+        //efectoAtrapa.play(); //
 
          musicaJuego = Gdx.audio.newMusic(Gdx.files.internal("PrimerNivelMus.mp3"));
          musicaJuego.setLooping(true);
@@ -263,7 +263,7 @@ import java.util.Random;
         Rectangle b = Mael.getSprite().getBoundingRectangle();
         if (b.overlaps(a)) {
             puntos++;
-            efectoAtrapa.play();
+            //efectoAtrapa.play();
             paleta.getSprite().setY(Principal.ALTO_MUNDO);
             paleta.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
         }
@@ -271,7 +271,7 @@ import java.util.Random;
             Rectangle c = helado.getSprite().getBoundingRectangle();
             if (b.overlaps(c)) {
                 vidas=vidas+1;}
-                    efectoAtrapa.play();
+                    //efectoAtrapa.play();
                 helado.getSprite().setY(Principal.ALTO_MUNDO);
                     helado.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
             }
@@ -350,7 +350,7 @@ import java.util.Random;
         texturaBtnQuit.dispose();
         texturaBtnResume.dispose();
         texturaMael.dispose();
-        efectoAtrapa.dispose();
+        //efectoAtrapa.dispose();
         musicaJuego.dispose();
     }
 
