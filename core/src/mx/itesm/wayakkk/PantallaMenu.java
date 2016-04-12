@@ -23,6 +23,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     private OrthographicCamera camara;
     private Viewport vista;
 
+    public static boolean musica;
+
     private SpriteBatch batch;
 
     private Texture texturaFondo;
