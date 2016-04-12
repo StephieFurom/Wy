@@ -108,7 +108,8 @@ import java.util.Random;
 
          musicaJuego = Gdx.audio.newMusic(Gdx.files.internal("PrimerNivelMus.mp3"));
          musicaJuego.setLooping(true);
-         musicaJuego.play();
+        if (PantallaMenu.musica==true)
+            musicaJuego.play();
     }
 
     private void crearObjetos() {

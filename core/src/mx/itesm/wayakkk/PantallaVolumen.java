@@ -1,6 +1,7 @@
 package mx.itesm.wayakkk;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
@@ -123,6 +124,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
                         Gdx.app.log("touchX", "SinMusica");
                         PantallaMenu.musica=false;
                         musicaMenu.stop();
+
+                        Preferences prefs = Gdx.app.getPreferences("Preferencias");
+                        prefs.putBoolean("SonidoNo", false);
+                        prefs.flush();
                         //principal.setScreen(new PantallaVolumen(principal));
                     }
 
@@ -133,6 +138,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
                         Gdx.app.log("touchX", "ConMusica");
                         PantallaMenu.musica=true;
                         musicaMenu.play();
+                        Preferences prefs = Gdx.app.getPreferences("My Preferences");
+                        prefs.putBoolean("SonidoNo", true);
+                        prefs.flush();
                         //principal.setScreen((Screen) new PantallaVolumen(principal));
 
                     }

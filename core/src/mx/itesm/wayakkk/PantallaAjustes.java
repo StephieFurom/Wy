@@ -58,7 +58,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     private void cargarAudio() {
         musicaMenu = Gdx.audio.newMusic(Gdx.files.internal("MenuMus.mp3"));
         musicaMenu.setLooping(true);
-        musicaMenu.play();
+        if (PantallaMenu.musica==true)
+            musicaMenu.play();
     }
 
     private void cargarTexturasSprites() {

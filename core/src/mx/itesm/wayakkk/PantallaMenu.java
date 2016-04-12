@@ -1,6 +1,7 @@
 package mx.itesm.wayakkk;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
@@ -62,13 +63,17 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
         cargarTexturasSprites();
         cargarAudio();
+
+        Preferences prefs = Gdx.app.getPreferences("Preferencias");
+        musica=prefs.getBoolean("SonidoNo", true);
     }
 
     private void cargarAudio() {
         //Musica del menú
         musicaMenu = Gdx.audio.newMusic(Gdx.files.internal("MenuMus.mp3"));
         musicaMenu.setLooping(true);
-        musicaMenu.play(); // Inicia
+        if (PantallaMenu.musica==true)
+            musicaMenu.play();
     }
 
     private void cargarTexturasSprites() {
