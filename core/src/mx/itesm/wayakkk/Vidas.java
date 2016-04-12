@@ -23,7 +23,6 @@ public class Vidas {
 
     private EstadoMovimiento estadoMov;
 
-
     public Vidas(Texture textura) {
         TextureRegion texturaCompleta = new TextureRegion(textura);
         TextureRegion[][] texturaPersonaje = texturaCompleta.split(32,48);
@@ -32,6 +31,7 @@ public class Vidas {
         animacion.setPlayMode(Animation.PlayMode.LOOP);
         tiempoAnimacion = 0;
         sprite = new Sprite(texturaPersonaje[0][0]);
+        estadoMov = EstadoMovimiento.Inicia;
         estadoMov = EstadoMovimiento.Caer;
     }
 
