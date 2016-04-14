@@ -5,10 +5,10 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.TextureArray;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -74,10 +74,9 @@ import java.util.Random;
     private Object EstadoMovimiento;
     private EstadosJuego estadoJuego;
 
-    //private Music efectoAtrapa;
     private Music musicaJuego;
 
-
+    private Sound sonidoAtrapa;
 
     public PantallaJuego(Principal principal) {
         this.principal = principal;
@@ -128,7 +127,7 @@ import java.util.Random;
         payaso = new Villano(texturaPayaso);
         payaso.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
-        texturaHelado = new Texture(Gdx.files.internal("SPRITESHELADO.png"));
+        texturaHelado = new Texture(Gdx.files.internal("heladosprite.png"));
         helado = new Vidas(texturaHelado);
         helado.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
@@ -143,6 +142,8 @@ import java.util.Random;
         texturaVida = new Texture(Gdx.files.internal("vida.png"));
         vidaTres = new Sprite(texturaVida);
         vidaTres.setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
+
+        sonidoAtrapa = assetManager.get("AgarrarCosas.wav");
     }
 
 
@@ -187,6 +188,7 @@ import java.util.Random;
         vidaTres = new Sprite(texturaVida);
         vidaTres.setPosition((float) (Principal.ANCHO_MUNDO / 2.1 - spriteBtnPause.getWidth() / 2),
                 (float) (Principal.ALTO_MUNDO / 1.19));
+
     }
 
 
@@ -262,7 +264,7 @@ import java.util.Random;
         Rectangle b = Mael.getSprite().getBoundingRectangle();
         if (b.overlaps(a)) {
             puntos++;
-            //efectoAtrapa.play();
+            sonidoAtrapa.play();
             paleta.getSprite().setY(Principal.ALTO_MUNDO);
             paleta.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
         }
@@ -270,7 +272,7 @@ import java.util.Random;
         if (b.overlaps(c)) {
             if (vidas < 3)
                 vidas = vidas + 1;
-            //efectoAtrapa.play();
+            sonidoAtrapa.play();
             helado.getSprite().setY(Principal.ALTO_MUNDO);
             helado.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
         }
@@ -339,7 +341,7 @@ import java.util.Random;
         AssetManager assetManager = principal.getAssetManager();
         assetManager.unload("SpriteCa.png");
         assetManager.unload("palsprite.png");
-        assetManager.unload("SPRITESHELADO.png");
+        assetManager.unload("heladosprite.png");
         assetManager.unload("SPRITEpayasobn.png");
         assetManager.unload("vida.png");
         texturaFondo.dispose();

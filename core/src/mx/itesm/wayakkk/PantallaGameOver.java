@@ -122,10 +122,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
                 float touchY = coordenadas.y;
 
                 if (touchX >= spriteBtnRetry.getX() &&
-                        touchX < spriteBtnRetry.getX() + spriteBtnRetry.getWidth()
+                        touchX <= spriteBtnRetry.getX() + spriteBtnRetry.getWidth()
                         && touchY >= spriteBtnRetry.getY()
                         && touchY <= spriteBtnRetry.getY() + spriteBtnRetry.getHeight()) {
-                    principal.setScreen(new PantallaJuego(principal));
+                    principal.setScreen((Screen) new PantallaJuego(principal));
                 }
 
                 if (touchX >= spriteBtnQuit.getX() &&
