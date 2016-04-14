@@ -24,9 +24,9 @@ public class Personaje {
     public Personaje(Texture textura) {
         TextureRegion texturaCompleta = new TextureRegion(textura);
         TextureRegion[][] texturaPersonaje = texturaCompleta.split(88,144);
-        animacion = new Animation(0.25f,texturaPersonaje[0][4],
-                texturaPersonaje[0][3], texturaPersonaje[0][2],
-                texturaPersonaje[0][1], texturaPersonaje[0][0] );
+        animacion = new Animation(0.10f,texturaPersonaje[0][0],
+                texturaPersonaje[0][1], texturaPersonaje[0][2],
+                texturaPersonaje[0][3], texturaPersonaje[0][4] );
         animacion.setPlayMode(Animation.PlayMode.LOOP);
         tiempoAnimacion = 0;
         sprite = new Sprite(texturaPersonaje[0][0]);

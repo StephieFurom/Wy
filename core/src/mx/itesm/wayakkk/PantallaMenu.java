@@ -55,21 +55,21 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     public void show() {
 
         camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
-        camara.position.set(Principal.ANCHO_MUNDO/2, Principal.ALTO_MUNDO/2, 0);
+        camara.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO / 2, 0);
         camara.update();
         vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO,camara);
 
         batch = new SpriteBatch();
 
         cargarTexturasSprites();
-        cargarAudio();
 
         Preferences prefs = Gdx.app.getPreferences("Preferencias");
         musica=prefs.getBoolean("SonidoNo", true);
+
+        cargarAudio();
     }
 
     private void cargarAudio() {
-        //Musica del menú
         musicaMenu = Gdx.audio.newMusic(Gdx.files.internal("MenuMus.mp3"));
         musicaMenu.setLooping(true);
         if (PantallaMenu.musica==true)

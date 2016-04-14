@@ -36,8 +36,8 @@ import java.util.Random;
     private Texture texturaFondoU;
     private Sprite spriteFondoU;
 
-    public static int puntos;
-    public static int vidas=3;
+    public int puntos;
+    public int vidas=3;
 
     private Texto texto;
 
@@ -77,6 +77,7 @@ import java.util.Random;
     private Music musicaJuego;
 
     //private Sound sonidoAtrapa;
+    //private Sound sonidoMalo;
 
     public PantallaJuego(Principal principal) {
         this.principal = principal;
@@ -101,10 +102,6 @@ import java.util.Random;
     }
 
     private void cargarAudio() {
-        //efectoAtrapa = Gdx.audio.newMusic(Gdx.files.internal("PrimerNivelMus.mp3"));
-        //efectoAtrapa.setLooping(true);
-        //efectoAtrapa.play(); //
-
          musicaJuego = Gdx.audio.newMusic(Gdx.files.internal("PrimerNivelMus.mp3"));
          musicaJuego.setLooping(true);
         if (PantallaMenu.musica==true)
@@ -123,7 +120,7 @@ import java.util.Random;
         paleta = new Objetos(texturaPaleta);
         paleta.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
-        texturaPayaso = new Texture(Gdx.files.internal("SPRITESpayasobn.png"));
+        texturaPayaso = new Texture(Gdx.files.internal("payasin.png"));
         payaso = new Villano(texturaPayaso);
         payaso.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
@@ -144,6 +141,7 @@ import java.util.Random;
         vidaTres.setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
         //sonidoAtrapa = assetManager.get("AgarrarCosas.wav");
+        //sonidoMalo = assetManager.get("CosasMalas2.wav");
     }
 
 
@@ -280,6 +278,7 @@ import java.util.Random;
         Rectangle d = payaso.getSprite().getBoundingRectangle();
         if (b.overlaps(d)) {
             vidas = vidas - 1;
+            //sonidoMalo.play();
             payaso.getSprite().setY(Principal.ALTO_MUNDO);
             payaso.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
         }
@@ -342,7 +341,7 @@ import java.util.Random;
         assetManager.unload("SpriteCa.png");
         assetManager.unload("palsprite.png");
         assetManager.unload("heladosprite.png");
-        assetManager.unload("SPRITEpayasobn.png");
+        assetManager.unload("payasin.png");
         assetManager.unload("vida.png");
         texturaFondo.dispose();
         texturaFondoU.dispose();
@@ -376,7 +375,7 @@ import java.util.Random;
                 estadoJuego=EstadosJuego.Jugando;
 
             }
-            if ( touchX>=spriteBtnQuit.getX() &&
+            if ( estadoJuego ==EstadosJuego.Pausado && touchX>=spriteBtnQuit.getX() &&
                     touchX<=spriteBtnQuit.getX()+spriteBtnQuit.getWidth()
                     && touchY>=spriteBtnQuit.getY()
                     && touchY<=spriteBtnQuit.getY()+spriteBtnQuit.getHeight() ) {
