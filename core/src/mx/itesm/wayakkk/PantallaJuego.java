@@ -76,7 +76,7 @@ import java.util.Random;
 
     private Music musicaJuego;
 
-    private Sound sonidoAtrapa;
+    //private Sound sonidoAtrapa;
 
     public PantallaJuego(Principal principal) {
         this.principal = principal;
@@ -143,7 +143,7 @@ import java.util.Random;
         vidaTres = new Sprite(texturaVida);
         vidaTres.setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
-        sonidoAtrapa = assetManager.get("AgarrarCosas.wav");
+        //sonidoAtrapa = assetManager.get("AgarrarCosas.wav");
     }
 
 
@@ -264,7 +264,7 @@ import java.util.Random;
         Rectangle b = Mael.getSprite().getBoundingRectangle();
         if (b.overlaps(a)) {
             puntos++;
-            sonidoAtrapa.play();
+            //sonidoAtrapa.play();
             paleta.getSprite().setY(Principal.ALTO_MUNDO);
             paleta.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
         }
@@ -272,7 +272,7 @@ import java.util.Random;
         if (b.overlaps(c)) {
             if (vidas < 3)
                 vidas = vidas + 1;
-            sonidoAtrapa.play();
+            //sonidoAtrapa.play();
             helado.getSprite().setY(Principal.ALTO_MUNDO);
             helado.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
         }
