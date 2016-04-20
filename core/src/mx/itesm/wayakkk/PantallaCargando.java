@@ -53,18 +53,9 @@ public class PantallaCargando implements Screen {
 
     private void cargarRecursos() {
         assetManager.load("SpriteCa.png", Texture.class);
-        // Texturas de los botones
-        //assetManager.load("der.png", Texture.class);
-        //assetManager.load("izq.png", Texture.class);
-        //assetManager.load("UP.png", Texture.class);
-        // Fin del juego
         assetManager.load("WINNERPANTALLA2png", Texture.class);
-        // Efecto al tomar dulces
-        //assetManager.load("atrapapaleta.wav", Sound.class);
-        //assetManager.load("atrapahelado.wav", Sound.class);
-
         assetManager.load("WINNERPANTALLA2.png", Texture.class);
-        //assetManager.finishLoading();
+        assetManager.load("AgarrarCosas_16.wav", Sound.class);
     }
 
     @Override
