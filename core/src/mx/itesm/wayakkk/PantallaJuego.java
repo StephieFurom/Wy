@@ -138,7 +138,7 @@ import java.util.Random;
         vidaTres = new Sprite(texturaVida);
         vidaTres.setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
-        sonidoAtrapa = assetManager.get("AgarrarCosas_16.wav");
+        sonidoAtrapa = Gdx.audio.newSound(Gdx.files.internal("AgarrarCosas_16.wav"));
     }
 
 
