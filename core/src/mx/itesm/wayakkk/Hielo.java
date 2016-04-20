@@ -10,12 +10,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import java.util.Random;
 
 /**
- * Created by Stephie Furom on 12/04/2016.
+ * Created by Stephie Furom on 19/04/2016.
  */
-public class Broccoli {
-    Random randC2 = new Random();
+public class Hielo {
+    Random randC3 = new Random();
     float[] arr = {-2f,-3f,-4f,-5f,-6f,-7f};
-    public final float VelY = arr[randC2.nextInt(5)] ;
+    public final float VelY = arr[randC3.nextInt(5)] ;
 
 
     private Sprite sprite;
@@ -26,9 +26,9 @@ public class Broccoli {
     private EstadoMovimiento estadoMov;
 
 
-    public Broccoli(Texture textura) {
+    public Hielo(Texture textura) {
         TextureRegion texturaCompleta = new TextureRegion(textura);
-        TextureRegion[][] texturaPersonaje = texturaCompleta.split(66,78);
+        TextureRegion[][] texturaPersonaje = texturaCompleta.split(46,72);
         animacion = new Animation(0.25f, texturaPersonaje[0][2],
                 texturaPersonaje[0][1], texturaPersonaje[0][0] );
         animacion.setPlayMode(Animation.PlayMode.LOOP);
@@ -55,6 +55,7 @@ public class Broccoli {
         switch (estadoMov) {
             case Caer:
                 nuevaY += VelY;
+                //if (nuevaY<=PantallaJuego.ANCHO_MUNDO-sprite.getWidth()) {
                 sprite.setY(nuevaY);
                 //}
                 if(sprite.getY()==0){
