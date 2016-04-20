@@ -75,7 +75,9 @@ import java.util.Random;
     private EstadosJuego estadoJuego;
 
     private Music musicaJuego;
+
     private Sound sonidoAtrapa;
+    private Sound sonidoMalo;
 
     public PantallaJuego(Principal principal) {
         this.principal = principal;
@@ -139,6 +141,7 @@ import java.util.Random;
         vidaTres.setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
         sonidoAtrapa = Gdx.audio.newSound(Gdx.files.internal("AgarrarCosas_16.wav"));
+        sonidoMalo = Gdx.audio.newSound(Gdx.files.internal(""));
     }
 
 
@@ -275,6 +278,7 @@ import java.util.Random;
         Rectangle d = payaso.getSprite().getBoundingRectangle();
         if (b.overlaps(d)) {
             vidas = vidas - 1;
+            sonidoMalo.play();
             payaso.getSprite().setY(Principal.ALTO_MUNDO);
             payaso.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
         }
@@ -346,6 +350,7 @@ import java.util.Random;
         texturaBtnResume.dispose();
         texturaMael.dispose();
         sonidoAtrapa.dispose();
+        sonidoMalo.dispose();
         musicaJuego.dispose();
     }
 
