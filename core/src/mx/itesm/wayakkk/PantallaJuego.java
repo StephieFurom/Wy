@@ -141,7 +141,7 @@ import java.util.Random;
         vidaTres.setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
         sonidoAtrapa = Gdx.audio.newSound(Gdx.files.internal("AgarrarCosas_16.wav"));
-        sonidoMalo = Gdx.audio.newSound(Gdx.files.internal(""));
+        sonidoMalo = Gdx.audio.newSound(Gdx.files.internal("CosasMalas2.wav"));
     }
 
 
