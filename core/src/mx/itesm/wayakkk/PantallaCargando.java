@@ -55,7 +55,7 @@ public class PantallaCargando implements Screen {
         assetManager.load("SpriteCa.png", Texture.class);
         assetManager.load("WINNERPANTALLA2png", Texture.class);
         assetManager.load("WINNERPANTALLA2.png", Texture.class);
-        assetManager.load("AgarrarCosas_16.wav", Sound.class);
+        //assetManager.load("AgarrarCosas_16.wav", Sound.class);
     }
 
     @Override
