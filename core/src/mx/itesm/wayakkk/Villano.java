@@ -24,6 +24,9 @@ public class Villano {
     private Animation animacion;
     private float tiempoAnimacion;
 
+    private Animation animacionGrande;
+    private float tiempoAnimacionGrande;
+
     private EstadoMovimiento estadoMov;
 
 
@@ -34,6 +37,15 @@ public class Villano {
                 texturaPersonaje[0][1], texturaPersonaje[0][0] );
         animacion.setPlayMode(Animation.PlayMode.LOOP);
         tiempoAnimacion = 0;
+        sprite = new Sprite(texturaPersonaje[0][0]);
+        estadoMov = EstadoMovimiento.Caer;
+
+        TextureRegion texturaCompleta = new TextureRegion(textura);
+        TextureRegion[][] texturaPersonaje = texturaCompleta.split(70,78);
+        animacionGrande = new Animation(0.25f, texturaPersonaje[0][2],
+                texturaPersonaje[0][1], texturaPersonaje[0][0] );
+        animacionGrande.setPlayMode(Animation.PlayMode.LOOP);
+        tiempoAnimacionGrande = 0;
         sprite = new Sprite(texturaPersonaje[0][0]);
         estadoMov = EstadoMovimiento.Caer;
     }
