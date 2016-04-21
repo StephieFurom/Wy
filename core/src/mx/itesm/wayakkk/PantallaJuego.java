@@ -212,7 +212,7 @@ import java.util.Random;
                 spriteFondo.draw(batch);
                 spriteBtnPause.draw(batch);
 
-                if (puntos >= 20) {
+                if (puntos >= 10) {
                     principal.setScreen(new PantallaGana(principal));
                 }
 
