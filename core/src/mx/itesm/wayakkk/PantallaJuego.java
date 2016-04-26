@@ -86,7 +86,6 @@ import java.util.Random;
     }
 
 
-
     @Override
     public void show() {
         camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
