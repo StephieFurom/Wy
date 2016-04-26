@@ -54,7 +54,6 @@ import java.util.Random;
     private Villano payaso;
 
     private Texture texturaPayasote;
-    private Villano payasote;
 
     private Texture texturaHelado;
     private Vidas helado;
@@ -124,12 +123,9 @@ import java.util.Random;
         paleta.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
         texturaPayaso = new Texture(Gdx.files.internal("payasin.png"));
-        payaso = new Villano(texturaPayaso);
-        payaso.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
-
         texturaPayasote = new Texture(Gdx.files.internal("payasote.png"));
-        payasote = new Villano(texturaPayasote);
-        payasote.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
+        payaso = new Villano(texturaPayaso, texturaPayasote);
+        payaso.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
         texturaHelado = new Texture(Gdx.files.internal("heladosprite.png"));
         helado = new Vidas(texturaHelado);
@@ -244,7 +240,6 @@ import java.util.Random;
                 paleta.render(batch);
                 helado.render(batch);
                 payaso.render(batch);
-                payasote.render(batch);
                 texto.mostrarMensaje(batch, "Paletas: " + puntos, (float) (Principal.ANCHO_MUNDO / 4), Principal.ALTO_MUNDO * 0.97f);
                 Gdx.app.log("Render","Jugando");
                 break;
@@ -283,12 +278,19 @@ import java.util.Random;
             helado.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
         }
 
-        Rectangle d = payaso.getSprite().getBoundingRectangle();
-        if (b.overlaps(d)) {
+        //Rectangle d = payaso.getSprite().getBoundingRectangle();
+        Rectangle rp = payaso.getSpriteGrande().getBoundingRectangle();
+        float offset = rp.getWidth()*.20f;
+        rp.setX(rp.getX()+offset);
+        rp.setWidth(rp.getWidth()-2*offset);
+        if (b.overlaps(rp)) {
             vidas = vidas - 1;
             sonidoMalo.play();
+            int nuevaX = randX.nextInt((int) principal.ANCHO_MUNDO);
             payaso.getSprite().setY(Principal.ALTO_MUNDO);
-            payaso.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
+            payaso.getSprite().setX(nuevaX);
+            payaso.getSpriteGrande().setY(Principal.ALTO_MUNDO);
+            payaso.getSpriteGrande().setX(nuevaX);
         }
     }
 
