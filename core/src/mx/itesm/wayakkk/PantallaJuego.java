@@ -53,6 +53,9 @@ import java.util.Random;
     private Texture texturaPayaso;
     private Villano payaso;
 
+    private Texture texturaPayasote;
+    private Villano payasote;
+
     private Texture texturaHelado;
     private Vidas helado;
 
@@ -123,6 +126,10 @@ import java.util.Random;
         texturaPayaso = new Texture(Gdx.files.internal("payasin.png"));
         payaso = new Villano(texturaPayaso);
         payaso.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
+
+        texturaPayasote = new Texture(Gdx.files.internal("payasote.png"));
+        payasote = new Villano(texturaPayasote);
+        payasote.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
         texturaHelado = new Texture(Gdx.files.internal("heladosprite.png"));
         helado = new Vidas(texturaHelado);
@@ -237,6 +244,7 @@ import java.util.Random;
                 paleta.render(batch);
                 helado.render(batch);
                 payaso.render(batch);
+                payasote.render(batch);
                 texto.mostrarMensaje(batch, "Paletas: " + puntos, (float) (Principal.ANCHO_MUNDO / 4), Principal.ALTO_MUNDO * 0.97f);
                 Gdx.app.log("Render","Jugando");
                 break;
@@ -343,6 +351,7 @@ import java.util.Random;
         assetManager.unload("heladosprite.png");
         assetManager.unload("payasin.png");
         assetManager.unload("vidabn.png");
+        assetManager.unload("payasote.png");
         texturaFondo.dispose();
         texturaFondoU.dispose();
         texturaBtnPause.dispose();

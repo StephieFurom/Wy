@@ -30,7 +30,7 @@ public class Villano {
     private EstadoMovimiento estadoMov;
 
 
-    public Villano(Texture textura, Texture texuraGrande) {
+    public Villano(Texture textura) {
         TextureRegion texturaCompleta = new TextureRegion(textura);
         TextureRegion[][] texturaPersonaje = texturaCompleta.split(70,78);
         animacion = new Animation(0.25f, texturaPersonaje[0][2],
@@ -41,7 +41,7 @@ public class Villano {
         estadoMov = EstadoMovimiento.Caer;
 
         TextureRegion texturaCompleta1 = new TextureRegion(textura);
-        TextureRegion[][] texturaPersonaje1 = texturaCompleta.split(70,78);
+        TextureRegion[][] texturaPersonaje1 = texturaCompleta.split(583,650);
         animacionGrande = new Animation(0.25f, texturaPersonaje[0][2],
                 texturaPersonaje[0][1], texturaPersonaje[0][0] );
         animacionGrande.setPlayMode(Animation.PlayMode.LOOP);
