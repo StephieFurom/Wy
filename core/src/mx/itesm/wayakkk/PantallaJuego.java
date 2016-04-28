@@ -62,6 +62,9 @@ import java.util.Random;
     private Texture texturaHelado;
     private Vidas helado;
 
+    private Texture texturaPato;
+    private Pato patito;
+
     private Texture texturaGanaste;
     private Sprite spriteGanaste;
 
@@ -222,7 +225,7 @@ import java.util.Random;
                     principal.setScreen(new PantallaGana(principal));
                 }
 
-                if (puntos >= 3){
+                if (puntos >= 7){
                     payaso.finalizar();
                 }
 
@@ -287,17 +290,19 @@ import java.util.Random;
 
         //Rectangle d = payaso.getSprite().getBoundingRectangle();
         Rectangle rp = payaso.getSpriteGrande().getBoundingRectangle();
-        float offset = rp.getWidth()*.20f;
-        rp.setX(rp.getX()+offset);
-        rp.setWidth(rp.getWidth()-2*offset);
-        if (b.overlaps(rp)) {
-            vidas = vidas - 1;
-            sonidoMalo.play();
-            int nuevaX = randX.nextInt((int) principal.ANCHO_MUNDO);
-            payaso.getSprite().setY(Principal.ALTO_MUNDO);
-            payaso.getSprite().setX(nuevaX);
-            payaso.getSpriteGrande().setY(Principal.ALTO_MUNDO);
-            payaso.getSpriteGrande().setX(nuevaX);
+        if (puntos >=7) {
+            float offset = rp.getWidth() * .20f;
+            rp.setX(rp.getX() + offset);
+            rp.setWidth(rp.getWidth() - 2 * offset);
+            if (b.overlaps(rp)) {
+                vidas = vidas - 1;
+                sonidoMalo.play();
+                int nuevaX = randX.nextInt((int) principal.ANCHO_MUNDO);
+                payaso.getSprite().setY(Principal.ALTO_MUNDO);
+                payaso.getSprite().setX(nuevaX);
+                payaso.getSpriteGrande().setY(Principal.ALTO_MUNDO);
+                payaso.getSpriteGrande().setX(nuevaX);
+            }
         }
     }
 

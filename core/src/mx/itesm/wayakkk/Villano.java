@@ -39,7 +39,6 @@ public class Villano {
         animacion.setPlayMode(Animation.PlayMode.LOOP);
         tiempoAnimacion = 0;
         sprite = new Sprite(texturaPersonaje[0][0]);
-        estadoMov = EstadoMovimiento.Caer;
 
         TextureRegion texturaCompleta1 = new TextureRegion(texturaPayasote);
         TextureRegion[][] texturaPersonaje1 = texturaCompleta1.split(583,650);
@@ -48,7 +47,7 @@ public class Villano {
         animacionGrande.setPlayMode(Animation.PlayMode.LOOP);
         tiempoAnimacionGrande = 0;
         spriteGrande = new Sprite(texturaPersonaje1[0][0]);
-        estadoMov = EstadoMovimiento.Finalizando;
+        estadoMov = EstadoMovimiento.Caer;
     }
 
     public void finalizar() {
@@ -81,6 +80,7 @@ public class Villano {
         }
         switch (estadoMov) {
             case Caer:
+            case Finalizando:
                 nuevaY += VelY;
                 //if (nuevaY<=PantallaJuego.ANCHO_MUNDO-sprite.getWidth()) {
                 sprite.setY(nuevaY);
