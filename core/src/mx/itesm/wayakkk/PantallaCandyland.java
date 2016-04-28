@@ -144,7 +144,7 @@ public class PantallaCandyland implements Screen {
 
     private void cargarTexturasSprites() {
 
-        texturaFondo = new Texture(Gdx.files.internal("candylan.jpg"));
+        texturaFondo = new Texture(Gdx.files.internal("candy.jpg"));
         spriteFondo = new Sprite(texturaFondo);
 
         texturaBtnPause = new Texture(Gdx.files.internal("PAUSACHIQUITO.png"));

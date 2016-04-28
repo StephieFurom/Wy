@@ -40,6 +40,9 @@ import java.util.Random;
     private Texture texturaFondoU;
     private Sprite spriteFondoU;
 
+    private Texture texturaFondoC;
+    private Sprite spriteFondoC;
+
     public int puntos;
     public int vidas=3;
 
@@ -159,6 +162,9 @@ import java.util.Random;
         texturaFondo = new Texture(Gdx.files.internal("fondoferia.jpg"));
         spriteFondo = new Sprite(texturaFondo);
 
+        texturaFondoC = new Texture(Gdx.files.internal("candy.jpg"));
+        spriteFondoC = new Sprite(texturaFondoC);
+
         texturaBtnPause = new Texture(Gdx.files.internal("PAUSACHIQUITO.png"));
         spriteBtnPause = new Sprite(texturaBtnPause);
         spriteBtnPause.setPosition((float) (Principal.ANCHO_MUNDO / 1.06 - spriteBtnPause.getWidth() / 2),
@@ -222,7 +228,7 @@ import java.util.Random;
                 spriteBtnPause.draw(batch);
 
                 if (puntos >= 10) {
-                    principal.setScreen(new PantallaGana(principal));
+                    principal.setScreen(new PantallaCandyland(principal));
                 }
 
                 if (puntos >= 7){
