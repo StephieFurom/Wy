@@ -447,7 +447,6 @@ import java.util.Random;
         }
     }
 
-
     public enum EstadosJuego {
         Gana,
         Jugando,
