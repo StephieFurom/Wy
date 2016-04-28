@@ -24,6 +24,10 @@ import java.util.Random;
 
     public class PantallaJuego implements Screen {
 
+    //Acelerómetro
+    float accelX = Gdx.input.getAccelerometerX();
+    float accelY = Gdx.input.getAccelerometerY();
+    float accelZ = Gdx.input.getAccelerometerZ();
 
     public static final float ANCHO_MUNDO = 1280;
     private final Principal principal;

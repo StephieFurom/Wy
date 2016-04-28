@@ -61,7 +61,11 @@ public class Villano {
                 batch.draw(region, sprite.getX(), sprite.getY());
                 break;
             case Finalizando:
-                //////////////////////////////////////////////
+                actualizar();
+                tiempoAnimacion += Gdx.graphics.getDeltaTime();
+                region = animacion.getKeyFrame(tiempoAnimacion);
+                batch.draw(region, sprite.getX(), sprite.getY());
+                break;
         }
     }
     public void actualizar() {
