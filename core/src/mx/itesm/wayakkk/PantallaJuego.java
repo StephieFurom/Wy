@@ -222,6 +222,10 @@ import java.util.Random;
                     principal.setScreen(new PantallaGana(principal));
                 }
 
+                if (puntos >= 3){
+                    payaso.finalizar();
+                }
+
                 switch (vidas) {
                     case 3:
                         vidaUno.draw(batch);

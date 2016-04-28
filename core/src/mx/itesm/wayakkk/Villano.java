@@ -48,7 +48,11 @@ public class Villano {
         animacionGrande.setPlayMode(Animation.PlayMode.LOOP);
         tiempoAnimacionGrande = 0;
         spriteGrande = new Sprite(texturaPersonaje1[0][0]);
-        estadoMov = EstadoMovimiento.Caer;
+        estadoMov = EstadoMovimiento.Finalizando;
+    }
+
+    public void finalizar() {
+        estadoMov = EstadoMovimiento.Finalizando;
     }
 
     public void render(SpriteBatch batch) {
@@ -57,20 +61,24 @@ public class Villano {
             case Caer:
                 actualizar();
                 tiempoAnimacion += Gdx.graphics.getDeltaTime();
-                TextureRegion region = animacionGrande.getKeyFrame(tiempoAnimacion);
+                TextureRegion region = animacion.getKeyFrame(tiempoAnimacion);
                 batch.draw(region, sprite.getX(), sprite.getY());
                 break;
             case Finalizando:
                 actualizar();
                 tiempoAnimacion += Gdx.graphics.getDeltaTime();
-                region = animacion.getKeyFrame(tiempoAnimacion);
-                batch.draw(region, sprite.getX(), sprite.getY());
+                region = animacionGrande.getKeyFrame(tiempoAnimacion);
+                batch.draw(region, spriteGrande.getX(), spriteGrande.getY());
+                Gdx.app.log("Render","Finalizando");
                 break;
         }
     }
     public void actualizar() {
         Random rand = new Random();
-        float nuevaY = sprite.getY();
+        float nuevaY = spriteGrande.getY();
+        if (estadoMov==EstadoMovimiento.Caer){
+            nuevaY = sprite.getY();
+        }
         switch (estadoMov) {
             case Caer:
                 nuevaY += VelY;
@@ -78,7 +86,7 @@ public class Villano {
                 sprite.setY(nuevaY);
                 spriteGrande.setY(nuevaY);
                 //}
-                if(sprite.getY()<=0){
+                if (sprite.getY()<=0|| spriteGrande.getY()<=0){
                     int nuevaX = rand.nextInt((int) Principal.ANCHO_MUNDO);
                     sprite.setY(Principal.ALTO_MUNDO);
                     sprite.setX(nuevaX);
