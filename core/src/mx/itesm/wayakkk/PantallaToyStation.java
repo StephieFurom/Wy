@@ -144,7 +144,7 @@ public class PantallaToyStation implements Screen {
 
     private void cargarTexturasSprites() {
 
-        texturaFondo = new Texture(Gdx.files.internal("toyland2.jpg"));
+        texturaFondo = new Texture(Gdx.files.internal("toyland2.png"));
         spriteFondo = new Sprite(texturaFondo);
 
         texturaBtnPause = new Texture(Gdx.files.internal("PAUSACHIQUITO.png"));
@@ -207,7 +207,7 @@ public class PantallaToyStation implements Screen {
                 spriteFondo.draw(batch);
                 spriteBtnPause.draw(batch);
 
-                if (puntos >= 10) {
+                if (puntos >= 20) {
                     principal.setScreen(new PantallaGana(principal));
                 }
 
