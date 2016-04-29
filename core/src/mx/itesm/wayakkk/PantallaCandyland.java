@@ -259,7 +259,10 @@ public class PantallaCandyland implements Screen {
         Rectangle a = paletaHielo.getSprite().getBoundingRectangle();
         Rectangle b = Mael.getSprite().getBoundingRectangle();
         if (b.overlaps(a)) {
-            float offset = a.getWidth() * .15f;
+            float offset = b.getWidth() * .15f;
+            b.setX(b.getX() + offset);
+            b.setWidth((float) (b.getWidth() - 1.5 * offset));
+            offset = a.getWidth() * .15f;
             a.setX(a.getX() + offset);
             a.setWidth((float) (a.getWidth() - 1.5 * offset));
             puntos++;
@@ -281,9 +284,12 @@ public class PantallaCandyland implements Screen {
 
         Rectangle d = brocco.getSprite().getBoundingRectangle();
         if (b.overlaps(d)) {
-            float offset = d.getWidth() * .15f;
+            float offset = d.getWidth() * .20f;
             d.setX(d.getX() + offset);
-            d.setWidth((float) (d.getWidth() - 1.5 * offset));
+            d.setWidth((float) (d.getWidth() - 2.0 * offset));
+            offset = d.getHeight() * 30f;
+            d.setY(d.getY() + offset);
+            d.setHeight((float) (d.getHeight() - 3.0 * offset));
             vidas = vidas - 1;
             sonidoMalo.play();
             brocco.getSprite().setY(Principal.ALTO_MUNDO);
