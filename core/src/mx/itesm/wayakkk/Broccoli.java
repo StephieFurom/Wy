@@ -15,7 +15,7 @@ import java.util.Random;
 
 public class Broccoli {
     Random randC2 = new Random();
-    float[] arr = {-2f, -3f, -4f, -5f, -6f, -7f};
+    float[] arr = {-1f, -2f, -3f,};
     public final float VelY = arr[randC2.nextInt(5)];
 
 
@@ -29,7 +29,7 @@ public class Broccoli {
 
     public Broccoli(Texture textura) {
         TextureRegion texturaCompleta = new TextureRegion(textura);
-        TextureRegion[][] texturaPersonaje = texturaCompleta.split(350, 365);
+        TextureRegion[][] texturaPersonaje = texturaCompleta.split(272, 286);
         animacion = new Animation(0.25f, texturaPersonaje[0][2],
                 texturaPersonaje[0][1], texturaPersonaje[0][0]);
         animacion.setPlayMode(Animation.PlayMode.LOOP);

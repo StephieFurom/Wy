@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class Objetos {
     Random randC3 = new Random();
-    float[] arr = {-2f, -3f, -4f, -5f, -6f, -7f};
+    float[] arr = {-3f, -4f, -5f, -6f, -7f, -8f};
     public final float VelY = arr[randC3.nextInt(5)];
 
 
