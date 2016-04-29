@@ -18,13 +18,13 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * Created by Stephie Furom on 17/02/2016.
  */
 
-    public class PantallaMenu implements Screen {
+public class PantallaMenu implements Screen {
     private final Principal principal;
 
     private OrthographicCamera camara;
     private Viewport vista;
 
-    public static boolean musica=true;
+    public static boolean musica = true;
 
     private SpriteBatch batch;
 
@@ -57,14 +57,14 @@ import com.badlogic.gdx.utils.viewport.Viewport;
         camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
         camara.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO / 2, 0);
         camara.update();
-        vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO,camara);
+        vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO, camara);
 
         batch = new SpriteBatch();
 
         cargarTexturasSprites();
 
         Preferences prefs = Gdx.app.getPreferences("Preferencias");
-        musica=prefs.getBoolean("SonidoNo", true);
+        musica = prefs.getBoolean("SonidoNo", true);
 
         cargarAudio();
     }
@@ -72,7 +72,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     private void cargarAudio() {
         musicaMenu = Gdx.audio.newMusic(Gdx.files.internal("MenuMus.mp3"));
         musicaMenu.setLooping(true);
-        if (PantallaMenu.musica==true)
+        if (PantallaMenu.musica == true)
             musicaMenu.play();
     }
 
@@ -118,39 +118,39 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     }
 
     private void leerEntrada() {
-        if (Gdx.input.justTouched()==true)  {
-            Gdx.app.log("leer entrada","procesando");
+        if (Gdx.input.justTouched() == true) {
+            Gdx.app.log("leer entrada", "procesando");
             Vector3 coordenadas = new Vector3();
             coordenadas.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             camara.unproject(coordenadas);
             float touchX = coordenadas.x;
             float touchY = coordenadas.y;
 
-            if ( touchX>=spriteBtnAcercaDe.getX() &&
-                    touchX<spriteBtnAcercaDe.getX()+spriteBtnAcercaDe.getWidth()
-                    && touchY>=spriteBtnAcercaDe.getY()
-                    && touchY<=spriteBtnAcercaDe.getY()+spriteBtnAcercaDe.getHeight() ) {
-                    principal.setScreen(new PantallaAcercaDe(principal));
+            if (touchX >= spriteBtnAcercaDe.getX() &&
+                    touchX < spriteBtnAcercaDe.getX() + spriteBtnAcercaDe.getWidth()
+                    && touchY >= spriteBtnAcercaDe.getY()
+                    && touchY <= spriteBtnAcercaDe.getY() + spriteBtnAcercaDe.getHeight()) {
+                principal.setScreen(new PantallaAcercaDe(principal));
 
             }
-            if ( touchX>=spriteBtnJugar.getX() &&
-                    touchX<=spriteBtnJugar.getX()+spriteBtnJugar.getWidth()
-                    && touchY>=spriteBtnJugar.getY()
-                    && touchY<=spriteBtnJugar.getY()+spriteBtnJugar.getHeight() ) {
+            if (touchX >= spriteBtnJugar.getX() &&
+                    touchX <= spriteBtnJugar.getX() + spriteBtnJugar.getWidth()
+                    && touchY >= spriteBtnJugar.getY()
+                    && touchY <= spriteBtnJugar.getY() + spriteBtnJugar.getHeight()) {
                 principal.setScreen(new PantallaJuego(principal));
 
             }
-                if ( touchX>=spriteBtnAjustes.getX() &&
-                        touchX<=spriteBtnAjustes.getX()+spriteBtnAjustes.getWidth()
-                        && touchY>=spriteBtnAjustes.getY()
-                        && touchY<=spriteBtnAjustes.getY()+spriteBtnAjustes.getHeight() )
-                    principal.setScreen((Screen) new PantallaAjustes(principal));
+            if (touchX >= spriteBtnAjustes.getX() &&
+                    touchX <= spriteBtnAjustes.getX() + spriteBtnAjustes.getWidth()
+                    && touchY >= spriteBtnAjustes.getY()
+                    && touchY <= spriteBtnAjustes.getY() + spriteBtnAjustes.getHeight())
+                principal.setScreen((Screen) new PantallaAjustes(principal));
         }
     }
 
     @Override
     public void resize(int width, int height) {
-        vista.update(width,height);
+        vista.update(width, height);
     }
 
     @Override
@@ -172,10 +172,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
     @Override
     public void dispose() {
-            texturaFondo.dispose();
-            texturaBtnAjustes.dispose();
-            texturaBtnAcercaDe.dispose();
-            texturaBtnJugar.dispose();
-            musicaMenu.dispose();
+        texturaFondo.dispose();
+        texturaBtnAjustes.dispose();
+        texturaBtnAcercaDe.dispose();
+        texturaBtnJugar.dispose();
+        musicaMenu.dispose();
     }
 }

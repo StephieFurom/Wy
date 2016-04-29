@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 /**
  * Created by Stephie Furom on 20/03/2016.
  */
+
 public class Personaje {
 
     public static final float VelX = 9;
@@ -23,10 +24,10 @@ public class Personaje {
 
     public Personaje(Texture textura) {
         TextureRegion texturaCompleta = new TextureRegion(textura);
-        TextureRegion[][] texturaPersonaje = texturaCompleta.split(88,144);
-        animacion = new Animation(0.10f,texturaPersonaje[0][0],
+        TextureRegion[][] texturaPersonaje = texturaCompleta.split(88, 144);
+        animacion = new Animation(0.10f, texturaPersonaje[0][0],
                 texturaPersonaje[0][1], texturaPersonaje[0][2],
-                texturaPersonaje[0][3], texturaPersonaje[0][4] );
+                texturaPersonaje[0][3], texturaPersonaje[0][4]);
         animacion.setPlayMode(Animation.PlayMode.LOOP);
         tiempoAnimacion = 0;
         sprite = new Sprite(texturaPersonaje[0][0]);
@@ -40,13 +41,13 @@ public class Personaje {
                 actualizar();
                 tiempoAnimacion += Gdx.graphics.getDeltaTime();
                 TextureRegion region = animacion.getKeyFrame(tiempoAnimacion);
-                if (estadoMov==EstadoMovimiento.MovIzq) {
+                if (estadoMov == EstadoMovimiento.MovIzq) {
                     if (!region.isFlipX()) {
-                        region.flip(true,false);
+                        region.flip(true, false);
                     }
                 } else {
                     if (region.isFlipX()) {
-                        region.flip(true,false);
+                        region.flip(true, false);
                     }
                 }
                 batch.draw(region, sprite.getX(), sprite.getY());
@@ -57,6 +58,7 @@ public class Personaje {
                 break;
         }
     }
+
     public void actualizar() {
         float nuevaX = sprite.getX();
         switch (estadoMov) {

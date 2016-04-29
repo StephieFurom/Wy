@@ -21,6 +21,7 @@ import java.util.Random;
 /**
  * Created by Stephie Furom on 21/04/2016.
  */
+
 public class PantallaToyStation implements Screen {
     public static final float ANCHO_MUNDO = 1280;
     private final Principal principal;
@@ -34,7 +35,7 @@ public class PantallaToyStation implements Screen {
     private Sprite spriteFondoU;
 
     public int puntos;
-    public int vidas=3;
+    public int vidas = 3;
 
     private Texto texto;
 
@@ -81,7 +82,6 @@ public class PantallaToyStation implements Screen {
     }
 
 
-
     @Override
     public void show() {
         camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
@@ -94,14 +94,14 @@ public class PantallaToyStation implements Screen {
         crearObjetos();
         cargarTexturasSprites();
         cargarAudio();
-        estadoJuego=EstadosJuego.Jugando;
+        estadoJuego = EstadosJuego.Jugando;
         Gdx.input.setInputProcessor(new ProcesadorEntrada());
     }
 
     private void cargarAudio() {
         musicaJuego = Gdx.audio.newMusic(Gdx.files.internal("PrimerNivelMus.mp3"));
         musicaJuego.setLooping(true);
-        if (PantallaMenu.musica==true)
+        if (PantallaMenu.musica == true)
             musicaJuego.play();
     }
 
@@ -188,7 +188,7 @@ public class PantallaToyStation implements Screen {
     @Override
     public void render(float delta) {
 
-        if(estadoJuego==EstadosJuego.Jugando) {
+        if (estadoJuego == EstadosJuego.Jugando) {
             moverPersonaje();
             actualizarMael();
             actualizarCamara();
@@ -200,7 +200,7 @@ public class PantallaToyStation implements Screen {
         leerEntrada();
 
         batch.begin();
-        switch(estadoJuego) {
+        switch (estadoJuego) {
             case Gana:
                 break;
             case Jugando:
@@ -233,7 +233,7 @@ public class PantallaToyStation implements Screen {
                 helado.render(batch);
                 brocco.render(batch);
                 texto.mostrarMensaje(batch, "Paletas: " + puntos, (float) (Principal.ANCHO_MUNDO / 4), Principal.ALTO_MUNDO * 0.97f);
-                Gdx.app.log("Render","Jugando");
+                Gdx.app.log("Render", "Jugando");
                 break;
 
             case Pausado:
@@ -251,7 +251,7 @@ public class PantallaToyStation implements Screen {
         batch.end();
     }
 
-    public void probarChoque(){
+    public void probarChoque() {
         Random randX = new Random();
         Rectangle a = paletaHielo.getSprite().getBoundingRectangle();
         Rectangle b = Mael.getSprite().getBoundingRectangle();
@@ -289,15 +289,15 @@ public class PantallaToyStation implements Screen {
 
     private void actualizarCamara() {
         float posX = Mael.getX();
-        if (posX>=Principal.ANCHO_MUNDO/2 && posX<=ANCHO_MUNDO-Principal.ANCHO_MUNDO/2) {
-            camara.position.set((int)posX, camara.position.y, 0);
-        } else if (posX>ANCHO_MUNDO-Principal.ANCHO_MUNDO/2) {
-            camara.position.set(ANCHO_MUNDO-Principal.ANCHO_MUNDO/2, camara.position.y, 0);
+        if (posX >= Principal.ANCHO_MUNDO / 2 && posX <= ANCHO_MUNDO - Principal.ANCHO_MUNDO / 2) {
+            camara.position.set((int) posX, camara.position.y, 0);
+        } else if (posX > ANCHO_MUNDO - Principal.ANCHO_MUNDO / 2) {
+            camara.position.set(ANCHO_MUNDO - Principal.ANCHO_MUNDO / 2, camara.position.y, 0);
         }
         camara.update();
     }
 
-    private void moverPersonaje(){
+    private void moverPersonaje() {
         switch (Mael.getEstadoMovimiento()) {
             case Inicia:
                 break;
@@ -325,7 +325,7 @@ public class PantallaToyStation implements Screen {
 
     @Override
     public void hide() {
-        if ( musicaJuego.isPlaying() ) {
+        if (musicaJuego.isPlaying()) {
             musicaJuego.stop();
         }
     }
@@ -362,26 +362,26 @@ public class PantallaToyStation implements Screen {
                     touchX < spriteBtnPause.getX() + spriteBtnPause.getWidth()
                     && touchY >= spriteBtnPause.getY()
                     && touchY <= spriteBtnPause.getY() + spriteBtnPause.getHeight())
-                estadoJuego=EstadosJuego.Pausado;
+                estadoJuego = EstadosJuego.Pausado;
 
-            if ( touchX>=spriteBtnResume.getX() &&
-                    touchX<spriteBtnResume.getX()+spriteBtnResume.getWidth()
-                    && touchY>=spriteBtnResume.getY()
-                    && touchY<=spriteBtnResume.getY()+spriteBtnResume.getHeight() ) {
-                estadoJuego=EstadosJuego.Jugando;
+            if (touchX >= spriteBtnResume.getX() &&
+                    touchX < spriteBtnResume.getX() + spriteBtnResume.getWidth()
+                    && touchY >= spriteBtnResume.getY()
+                    && touchY <= spriteBtnResume.getY() + spriteBtnResume.getHeight()) {
+                estadoJuego = EstadosJuego.Jugando;
 
             }
-            if ( estadoJuego ==EstadosJuego.Pausado && touchX>=spriteBtnQuit.getX() &&
-                    touchX<=spriteBtnQuit.getX()+spriteBtnQuit.getWidth()
-                    && touchY>=spriteBtnQuit.getY()
-                    && touchY<=spriteBtnQuit.getY()+spriteBtnQuit.getHeight() ) {
+            if (estadoJuego == EstadosJuego.Pausado && touchX >= spriteBtnQuit.getX() &&
+                    touchX <= spriteBtnQuit.getX() + spriteBtnQuit.getWidth()
+                    && touchY >= spriteBtnQuit.getY()
+                    && touchY <= spriteBtnQuit.getY() + spriteBtnQuit.getHeight()) {
                 principal.setScreen(new mx.itesm.wayakkk.PantallaMenu(principal));
 
             }
         }
     }
-    public class ProcesadorEntrada extends InputAdapter
-    {
+
+    public class ProcesadorEntrada extends InputAdapter {
         private Vector3 coordenadas = new Vector3();
         private float x, y;
 

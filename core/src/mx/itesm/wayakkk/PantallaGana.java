@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**
  * Created by Stephie Furom on 05/04/2016.
  */
+
 public class PantallaGana implements Screen {
 
     private final Principal principal;

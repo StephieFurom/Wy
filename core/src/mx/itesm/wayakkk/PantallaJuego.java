@@ -22,12 +22,7 @@ import java.util.Random;
  */
 //p
 
-    public class PantallaJuego implements Screen {
-
-    //Acelerómetro
-    float accelX = Gdx.input.getAccelerometerX();
-    float accelY = Gdx.input.getAccelerometerY();
-    float accelZ = Gdx.input.getAccelerometerZ();
+public class PantallaJuego implements Screen {
 
     public static final float ANCHO_MUNDO = 1280;
     private final Principal principal;
@@ -44,7 +39,7 @@ import java.util.Random;
     private Sprite spriteFondoC;
 
     public int puntos;
-    public int vidas=3;
+    public int vidas = 3;
 
     private Texto texto;
 
@@ -108,14 +103,14 @@ import java.util.Random;
         crearObjetos();
         cargarTexturasSprites();
         cargarAudio();
-        estadoJuego=EstadosJuego.Jugando;
+        estadoJuego = EstadosJuego.Jugando;
         Gdx.input.setInputProcessor(new ProcesadorEntrada());
     }
 
     private void cargarAudio() {
-         musicaJuego = Gdx.audio.newMusic(Gdx.files.internal("PrimerNivelMus.mp3"));
-         musicaJuego.setLooping(true);
-        if (PantallaMenu.musica==true)
+        musicaJuego = Gdx.audio.newMusic(Gdx.files.internal("PrimerNivelMus.mp3"));
+        musicaJuego.setLooping(true);
+        if (PantallaMenu.musica == true)
             musicaJuego.play();
     }
 
@@ -192,7 +187,7 @@ import java.util.Random;
 
         vidaUno = new Sprite(texturaVida);
         vidaUno.setPosition((float) (Principal.ANCHO_MUNDO / 1.217 - spriteBtnPause.getWidth() / 2),
-               (float) (Principal.ALTO_MUNDO / 1.13));
+                (float) (Principal.ALTO_MUNDO / 1.13));
 
         vidaDos = new Sprite(texturaVida);
         vidaDos.setPosition((float) (Principal.ANCHO_MUNDO / 1.3 - spriteBtnPause.getWidth() / 2),
@@ -208,11 +203,12 @@ import java.util.Random;
     @Override
     public void render(float delta) {
 
-        if(estadoJuego==EstadosJuego.Jugando) {
+        if (estadoJuego == EstadosJuego.Jugando) {
             moverPersonaje();
             actualizarMael();
             actualizarCamara();
             probarChoque();
+            probarAcelerometro();
         }
         borrarPantalla();
         batch.setProjectionMatrix(camara.combined);
@@ -220,7 +216,7 @@ import java.util.Random;
         leerEntrada();
 
         batch.begin();
-        switch(estadoJuego) {
+        switch (estadoJuego) {
             case Gana:
                 break;
             case Jugando:
@@ -231,7 +227,7 @@ import java.util.Random;
                     principal.setScreen(new PantallaCandyland(principal));
                 }
 
-                if (puntos >= 7){
+                if (puntos >= 7) {
                     payaso.finalizar();
                 }
 
@@ -257,7 +253,6 @@ import java.util.Random;
                 helado.render(batch);
                 payaso.render(batch);
                 texto.mostrarMensaje(batch, "Paletas: " + puntos, (float) (Principal.ANCHO_MUNDO / 4), Principal.ALTO_MUNDO * 0.97f);
-                Gdx.app.log("Render","Jugando");
                 break;
 
             case Pausado:
@@ -275,7 +270,7 @@ import java.util.Random;
         batch.end();
     }
 
-    public void probarChoque(){
+    public void probarChoque() {
         Random randX = new Random();
         Rectangle a = paleta.getSprite().getBoundingRectangle();
         Rectangle b = Mael.getSprite().getBoundingRectangle();
@@ -296,7 +291,7 @@ import java.util.Random;
 
         //Rectangle d = payaso.getSprite().getBoundingRectangle();
         Rectangle rp = payaso.getSpriteGrande().getBoundingRectangle();
-        if (puntos >=7) {
+        if (puntos >= 7) {
             float offset = rp.getWidth() * .20f;
             rp.setX(rp.getX() + offset);
             rp.setWidth(rp.getWidth() - 2 * offset);
@@ -320,23 +315,34 @@ import java.util.Random;
     private void actualizarMael() {
     }
 
+    private void probarAcelerometro() {
+        float accelY = Gdx.input.getAccelerometerY();
+        if ((accelY >= 1)) {
+            Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovDer);
+        } else if ((accelY <= -1)) {
+            Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovIzq);
+        } else {
+            Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.Reposo);
+        }
+    }
+
     private void actualizarCamara() {
         float posX = Mael.getX();
-        if (posX>=Principal.ANCHO_MUNDO/2 && posX<=ANCHO_MUNDO-Principal.ANCHO_MUNDO/2) {
-            camara.position.set((int)posX, camara.position.y, 0);
-        } else if (posX>ANCHO_MUNDO-Principal.ANCHO_MUNDO/2) {
-            camara.position.set(ANCHO_MUNDO-Principal.ANCHO_MUNDO/2, camara.position.y, 0);
+        if (posX >= Principal.ANCHO_MUNDO / 2 && posX <= ANCHO_MUNDO - Principal.ANCHO_MUNDO / 2) {
+            camara.position.set((int) posX, camara.position.y, 0);
+        } else if (posX > ANCHO_MUNDO - Principal.ANCHO_MUNDO / 2) {
+            camara.position.set(ANCHO_MUNDO - Principal.ANCHO_MUNDO / 2, camara.position.y, 0);
         }
         camara.update();
     }
 
-    private void moverPersonaje(){
+    private void moverPersonaje() {
         switch (Mael.getEstadoMovimiento()) {
             case Inicia:
                 break;
             case MovDer:
             case MovIzq:
-            break;
+                break;
         }
     }
 
@@ -358,9 +364,9 @@ import java.util.Random;
 
     @Override
     public void hide() {
-       if ( musicaJuego.isPlaying() ) {
-           musicaJuego.stop();
-       }
+        if (musicaJuego.isPlaying()) {
+            musicaJuego.stop();
+        }
     }
 
     @Override
@@ -396,40 +402,41 @@ import java.util.Random;
                     touchX < spriteBtnPause.getX() + spriteBtnPause.getWidth()
                     && touchY >= spriteBtnPause.getY()
                     && touchY <= spriteBtnPause.getY() + spriteBtnPause.getHeight())
-                estadoJuego=EstadosJuego.Pausado;
+                estadoJuego = EstadosJuego.Pausado;
 
-            if ( touchX>=spriteBtnResume.getX() &&
-                    touchX<spriteBtnResume.getX()+spriteBtnResume.getWidth()
-                    && touchY>=spriteBtnResume.getY()
-                    && touchY<=spriteBtnResume.getY()+spriteBtnResume.getHeight() ) {
-                estadoJuego=EstadosJuego.Jugando;
+            if (touchX >= spriteBtnResume.getX() &&
+                    touchX < spriteBtnResume.getX() + spriteBtnResume.getWidth()
+                    && touchY >= spriteBtnResume.getY()
+                    && touchY <= spriteBtnResume.getY() + spriteBtnResume.getHeight()) {
+                estadoJuego = EstadosJuego.Jugando;
 
             }
-            if ( estadoJuego ==EstadosJuego.Pausado && touchX>=spriteBtnQuit.getX() &&
-                    touchX<=spriteBtnQuit.getX()+spriteBtnQuit.getWidth()
-                    && touchY>=spriteBtnQuit.getY()
-                    && touchY<=spriteBtnQuit.getY()+spriteBtnQuit.getHeight() ) {
+            if (estadoJuego == EstadosJuego.Pausado && touchX >= spriteBtnQuit.getX() &&
+                    touchX <= spriteBtnQuit.getX() + spriteBtnQuit.getWidth()
+                    && touchY >= spriteBtnQuit.getY()
+                    && touchY <= spriteBtnQuit.getY() + spriteBtnQuit.getHeight()) {
                 principal.setScreen(new mx.itesm.wayakkk.PantallaMenu(principal));
 
             }
         }
     }
-    public class ProcesadorEntrada extends InputAdapter
-    {
+
+    public class ProcesadorEntrada extends InputAdapter {
         private Vector3 coordenadas = new Vector3();
         private float x, y;
 
 
-        @Override
-        public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+       // @Override
+        /**public boolean touchDown(int screenX, int screenY, int pointer, int button) {
             transformarCoordenadas(screenX, screenY);
-                if ((x >= 640)) {
-                    Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovDer);
-                    //Gdx.app.log("touchDown", "CaminaDerecha");
-                } else {
-                    Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovIzq);
-                    Mael.actualizar();
-                }
+
+            if ((x >= 640)) {
+                Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovDer);
+                //Gdx.app.log("touchDown", "CaminaDerecha");
+            } else {
+                Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovIzq);
+                Mael.actualizar();
+            }
             return true;
         }
 
@@ -442,7 +449,7 @@ import java.util.Random;
         @Override
         public boolean touchDragged(int screenX, int screenY, int pointer) {
             return true;
-        }
+        }*/
 
 
         private void transformarCoordenadas(int screenX, int screenY) {

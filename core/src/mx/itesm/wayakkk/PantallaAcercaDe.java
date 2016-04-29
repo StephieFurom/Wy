@@ -15,17 +15,18 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**p
  * Created by Stephie Furom on 17/02/2016.
  */
-    public class PantallaAcercaDe implements Screen {
 
-     private final Principal principal;
-     private OrthographicCamera camara;
-     private Viewport vista;
+public class PantallaAcercaDe implements Screen {
 
-     private Texture texturaFondo;
-        private Sprite spriteFondo;
+    private final Principal principal;
+    private OrthographicCamera camara;
+    private Viewport vista;
 
-        private Texture texturaBtnReturn;
-        private Sprite spriteBtnReturn;
+    private Texture texturaFondo;
+    private Sprite spriteFondo;
+
+    private Texture texturaBtnReturn;
+    private Sprite spriteBtnReturn;
 
     private Music musicaMenu;
 
@@ -40,9 +41,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     public void show() {
 
         camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
-        camara.position.set(Principal.ANCHO_MUNDO/2, Principal.ALTO_MUNDO/2, 0);
+        camara.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO / 2, 0);
         camara.update();
-        vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO,camara);
+        vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO, camara);
 
         batch = new SpriteBatch();
 
@@ -53,7 +54,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     private void cargarAudio() {
         musicaMenu = Gdx.audio.newMusic(Gdx.files.internal("MenuMus.mp3"));
         musicaMenu.setLooping(true);
-        if (PantallaMenu.musica==true)
+        if (PantallaMenu.musica == true)
             musicaMenu.play();
     }
 
@@ -88,17 +89,17 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     }
 
     private void leerEntrada() {
-        if (Gdx.input.justTouched()==true) {
+        if (Gdx.input.justTouched() == true) {
             Vector3 coordenadas = new Vector3();
             coordenadas.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             camara.unproject(coordenadas);
             float touchX = coordenadas.x;
             float touchY = coordenadas.y;
 
-            if ( touchX>=spriteBtnReturn.getX() &&
-                    touchX<spriteBtnReturn.getX()+spriteBtnReturn.getWidth()
-                    && touchY>=spriteBtnReturn.getY()
-                    && touchY<=spriteBtnReturn.getY()+spriteBtnReturn.getHeight() )
+            if (touchX >= spriteBtnReturn.getX() &&
+                    touchX < spriteBtnReturn.getX() + spriteBtnReturn.getWidth()
+                    && touchY >= spriteBtnReturn.getY()
+                    && touchY <= spriteBtnReturn.getY() + spriteBtnReturn.getHeight())
                 principal.setScreen(new PantallaMenu(principal));
         }
     }

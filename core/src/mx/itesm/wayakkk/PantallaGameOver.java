@@ -14,128 +14,128 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**
  * Created by Stephie Furom on 14/03/2016.*/
 
-    public class PantallaGameOver implements Screen {
+public class PantallaGameOver implements Screen {
 
-        private final Principal principal;
-        private OrthographicCamera camara;
-        private Viewport vista;
-
-
-        private Texture texturaFondo;
-        private Sprite spriteFondo;
+    private final Principal principal;
+    private OrthographicCamera camara;
+    private Viewport vista;
 
 
-        private Texture texturaBtnRetry;
-        private Sprite spriteBtnRetry;
+    private Texture texturaFondo;
+    private Sprite spriteFondo;
 
 
-        private Texture texturaBtnQuit;
-        private Sprite spriteBtnQuit;
+    private Texture texturaBtnRetry;
+    private Sprite spriteBtnRetry;
 
 
-        private SpriteBatch batch;
-
-        public PantallaGameOver(Principal principal) {
-            this.principal = principal;
-        }
+    private Texture texturaBtnQuit;
+    private Sprite spriteBtnQuit;
 
 
-        @Override
-        public void show() {
+    private SpriteBatch batch;
 
-            camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
-            camara.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO / 2, 0);
-            camara.update();
-            vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO, camara);
-
-            batch = new SpriteBatch();
-
-            cargarTexturasSprites();
-        }
-
-        private void cargarTexturasSprites() {
-
-            texturaFondo = new Texture(Gdx.files.internal("GAMEPANTALLA2.png"));
-            spriteFondo = new Sprite(texturaFondo);
+    public PantallaGameOver(Principal principal) {
+        this.principal = principal;
+    }
 
 
-            texturaBtnRetry = new Texture(Gdx.files.internal("RETRY.png"));
-            spriteBtnRetry = new Sprite(texturaBtnRetry);
-            spriteBtnRetry.setPosition(Principal.ANCHO_MUNDO / 3 - spriteBtnRetry.getWidth() / 2,
-                    (float) (Principal.ALTO_MUNDO / 5.5));
+    @Override
+    public void show() {
 
-            texturaBtnQuit = new Texture(Gdx.files.internal("QUIT.png"));
-            spriteBtnQuit = new Sprite(texturaBtnQuit);
-            spriteBtnQuit.setPosition((float) (Principal.ANCHO_MUNDO / 1.5 - spriteBtnQuit.getWidth() / 2),
-                    (float) (Principal.ALTO_MUNDO / 5.5));
+        camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
+        camara.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO / 2, 0);
+        camara.update();
+        vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO, camara);
 
-        }
+        batch = new SpriteBatch();
 
-        @Override
-        public void render(float delta) {
-            Gdx.gl.glClearColor(1, 1, 1, 1);
-            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        cargarTexturasSprites();
+    }
 
-            batch.setProjectionMatrix(camara.combined);
+    private void cargarTexturasSprites() {
 
-            leerEntrada();
-
-            batch.begin();
-            spriteFondo.draw(batch);
-            spriteBtnRetry.draw(batch);
-            spriteBtnQuit.draw(batch);
-
-            batch.end();
-        }
-
-        @Override
-        public void resize(int width, int height) {
-
-        }
-
-        @Override
-        public void pause() {
-
-        }
-
-        @Override
-        public void resume() {
-
-        }
-
-        @Override
-        public void hide() {
-
-        }
-
-        @Override
-        public void dispose() {
-
-        }
-
-        private void leerEntrada() {
-            if (Gdx.input.justTouched() == true) {
-                Vector3 coordenadas = new Vector3();
-                coordenadas.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-                camara.unproject(coordenadas);
-                float touchX = coordenadas.x;
-                float touchY = coordenadas.y;
-
-                if (touchX >= spriteBtnRetry.getX() &&
-                        touchX <= spriteBtnRetry.getX() + spriteBtnRetry.getWidth()
-                        && touchY >= spriteBtnRetry.getY()
-                        && touchY <= spriteBtnRetry.getY() + spriteBtnRetry.getHeight()) {
-                    principal.setScreen((Screen) new PantallaJuego(principal));
-                }
-
-                if (touchX >= spriteBtnQuit.getX() &&
-                        touchX <= spriteBtnQuit.getX() + spriteBtnQuit.getWidth()
-                        && touchY >= spriteBtnQuit.getY()
-                        && touchY <= spriteBtnQuit.getY() + spriteBtnQuit.getHeight()) {
-                    principal.setScreen((Screen) new PantallaMenu(principal));
+        texturaFondo = new Texture(Gdx.files.internal("GAMEPANTALLA2.png"));
+        spriteFondo = new Sprite(texturaFondo);
 
 
-                }
+        texturaBtnRetry = new Texture(Gdx.files.internal("RETRY.png"));
+        spriteBtnRetry = new Sprite(texturaBtnRetry);
+        spriteBtnRetry.setPosition(Principal.ANCHO_MUNDO / 3 - spriteBtnRetry.getWidth() / 2,
+                (float) (Principal.ALTO_MUNDO / 5.5));
+
+        texturaBtnQuit = new Texture(Gdx.files.internal("QUIT.png"));
+        spriteBtnQuit = new Sprite(texturaBtnQuit);
+        spriteBtnQuit.setPosition((float) (Principal.ANCHO_MUNDO / 1.5 - spriteBtnQuit.getWidth() / 2),
+                (float) (Principal.ALTO_MUNDO / 5.5));
+
+    }
+
+    @Override
+    public void render(float delta) {
+        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        batch.setProjectionMatrix(camara.combined);
+
+        leerEntrada();
+
+        batch.begin();
+        spriteFondo.draw(batch);
+        spriteBtnRetry.draw(batch);
+        spriteBtnQuit.draw(batch);
+
+        batch.end();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
+    public void dispose() {
+
+    }
+
+    private void leerEntrada() {
+        if (Gdx.input.justTouched() == true) {
+            Vector3 coordenadas = new Vector3();
+            coordenadas.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+            camara.unproject(coordenadas);
+            float touchX = coordenadas.x;
+            float touchY = coordenadas.y;
+
+            if (touchX >= spriteBtnRetry.getX() &&
+                    touchX <= spriteBtnRetry.getX() + spriteBtnRetry.getWidth()
+                    && touchY >= spriteBtnRetry.getY()
+                    && touchY <= spriteBtnRetry.getY() + spriteBtnRetry.getHeight()) {
+                principal.setScreen((Screen) new PantallaJuego(principal));
+            }
+
+            if (touchX >= spriteBtnQuit.getX() &&
+                    touchX <= spriteBtnQuit.getX() + spriteBtnQuit.getWidth()
+                    && touchY >= spriteBtnQuit.getY()
+                    && touchY <= spriteBtnQuit.getY() + spriteBtnQuit.getHeight()) {
+                principal.setScreen((Screen) new PantallaMenu(principal));
+
+
             }
         }
     }
+}

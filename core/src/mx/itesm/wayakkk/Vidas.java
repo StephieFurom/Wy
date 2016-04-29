@@ -12,10 +12,11 @@ import java.util.Random;
 /**
  * Created by Stephie Furom on 29/03/2016.
  */
+
 public class Vidas {
     Random randC1 = new Random();
-    float[] arr = {-2f,-3f,-4f,-5f,-6f,-7f};
-    public final float VelY = arr[randC1.nextInt(2)] ;
+    float[] arr = {-2f, -3f, -4f, -5f, -6f, -7f};
+    public final float VelY = arr[randC1.nextInt(2)];
 
     public Sprite sprite;
 
@@ -28,7 +29,7 @@ public class Vidas {
         TextureRegion texturaCompleta = new TextureRegion(textura);
         TextureRegion[][] texturaPersonaje = texturaCompleta.split(37, 72);
         animacion = new Animation(0.25f, texturaPersonaje[0][2],
-                texturaPersonaje[0][1], texturaPersonaje[0][0] );
+                texturaPersonaje[0][1], texturaPersonaje[0][0]);
         animacion.setPlayMode(Animation.PlayMode.LOOP);
         tiempoAnimacion = 0;
         sprite = new Sprite(texturaPersonaje[0][0]);
@@ -46,6 +47,7 @@ public class Vidas {
                 break;
         }
     }
+
     public void actualizar() {
         Random rand = new Random();
         float nuevaY = sprite.getY();
@@ -55,7 +57,7 @@ public class Vidas {
                 //if (nuevaY<=PantallaJuego.ANCHO_MUNDO-sprite.getWidth()) {
                 sprite.setY(nuevaY);
                 //}
-                if(sprite.getY()==0){
+                if (sprite.getY() == 0) {
                     sprite.setY(Principal.ALTO_MUNDO);
                     sprite.setX(rand.nextInt((int) Principal.ANCHO_MUNDO));
                 }

@@ -15,124 +15,123 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * Created by Stephie Furom on 14/03/2016.
  */
 
-    public class PantallaPausa implements Screen
-    {
-        private final Principal principal;
-        private OrthographicCamera camara;
-        private Viewport vista;
+public class PantallaPausa implements Screen {
+    private final Principal principal;
+    private OrthographicCamera camara;
+    private Viewport vista;
 
 
-        private Texture texturaFondo;
-        private Sprite spriteFondo;
+    private Texture texturaFondo;
+    private Sprite spriteFondo;
 
-        // Botón Resume
-        private Texture texturaBtnResume;
-        private Sprite spriteBtnResume;
+    // Botón Resume
+    private Texture texturaBtnResume;
+    private Sprite spriteBtnResume;
 
-        // Botón Quit
-        private Texture texturaBtnQuit;
-        private Sprite spriteBtnQuit;
-
-
-        private SpriteBatch batch;
-
-        public PantallaPausa(Principal principal) {
-            this.principal = principal;
-        }
+    // Botón Quit
+    private Texture texturaBtnQuit;
+    private Sprite spriteBtnQuit;
 
 
-        @Override
-        public void show() {
+    private SpriteBatch batch;
 
-            camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
-            camara.position.set(Principal.ANCHO_MUNDO/2, Principal.ALTO_MUNDO/2, 0);
-            camara.update();
-            vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO,camara);
+    public PantallaPausa(Principal principal) {
+        this.principal = principal;
+    }
 
-            batch = new SpriteBatch();
 
-            cargarTexturasSprites();
-        }
+    @Override
+    public void show() {
 
-        private void cargarTexturasSprites() {
+        camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
+        camara.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO / 2, 0);
+        camara.update();
+        vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO, camara);
 
-            texturaFondo = new Texture(Gdx.files.internal("PANTALLAfonbn.png"));
-            spriteFondo = new Sprite(texturaFondo);
+        batch = new SpriteBatch();
 
-            texturaBtnResume = new Texture(Gdx.files.internal("RESUME.png"));
-            spriteBtnResume = new Sprite(texturaBtnResume);
-            spriteBtnResume.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnResume.getWidth() / 2,
-                    (float) (Principal.ALTO_MUNDO / 1.8));
+        cargarTexturasSprites();
+    }
 
-            texturaBtnQuit = new Texture(Gdx.files.internal("QUIT.png"));
-            spriteBtnQuit = new Sprite(texturaBtnQuit);
-            spriteBtnQuit.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnQuit.getWidth() / 2,
-                    (float) (Principal.ALTO_MUNDO / 3.4));
-        }
+    private void cargarTexturasSprites() {
 
-        @Override
-        public void render(float delta) {
+        texturaFondo = new Texture(Gdx.files.internal("PANTALLAfonbn.png"));
+        spriteFondo = new Sprite(texturaFondo);
 
-            Gdx.gl.glClearColor(1, 1, 1, 1);
-            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        texturaBtnResume = new Texture(Gdx.files.internal("RESUME.png"));
+        spriteBtnResume = new Sprite(texturaBtnResume);
+        spriteBtnResume.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnResume.getWidth() / 2,
+                (float) (Principal.ALTO_MUNDO / 1.8));
 
-            batch.setProjectionMatrix(camara.combined);
+        texturaBtnQuit = new Texture(Gdx.files.internal("QUIT.png"));
+        spriteBtnQuit = new Sprite(texturaBtnQuit);
+        spriteBtnQuit.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnQuit.getWidth() / 2,
+                (float) (Principal.ALTO_MUNDO / 3.4));
+    }
 
-            leerEntrada();
+    @Override
+    public void render(float delta) {
 
-            batch.begin();
-            spriteFondo.draw(batch);
-            spriteBtnResume.draw(batch);
-            spriteBtnQuit.draw(batch);
+        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-            batch.end();
-        }
+        batch.setProjectionMatrix(camara.combined);
 
-        private void leerEntrada() {
-            if (Gdx.input.justTouched()==true) {
-                Vector3 coordenadas = new Vector3();
-                coordenadas.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-                camara.unproject(coordenadas);
-                float touchX = coordenadas.x;
-                float touchY = coordenadas.y;
+        leerEntrada();
 
-                if ( touchX>=spriteBtnResume.getX() &&
-                        touchX<spriteBtnResume.getX()+spriteBtnResume.getWidth()
-                        && touchY>=spriteBtnResume.getY()
-                        && touchY<=spriteBtnResume.getY()+spriteBtnResume.getHeight() ) {
-                    principal.setScreen(new PantallaJuego(principal));
+        batch.begin();
+        spriteFondo.draw(batch);
+        spriteBtnResume.draw(batch);
+        spriteBtnQuit.draw(batch);
 
-                }
-                if ( touchX>=spriteBtnQuit.getX() &&
-                        touchX<=spriteBtnQuit.getX()+spriteBtnQuit.getWidth()
-                        && touchY>=spriteBtnQuit.getY()
-                        && touchY<=spriteBtnQuit.getY()+spriteBtnQuit.getHeight() ) {
-                    principal.setScreen(new mx.itesm.wayakkk.PantallaMenu(principal));
+        batch.end();
+    }
 
-                }
+    private void leerEntrada() {
+        if (Gdx.input.justTouched() == true) {
+            Vector3 coordenadas = new Vector3();
+            coordenadas.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+            camara.unproject(coordenadas);
+            float touchX = coordenadas.x;
+            float touchY = coordenadas.y;
+
+            if (touchX >= spriteBtnResume.getX() &&
+                    touchX < spriteBtnResume.getX() + spriteBtnResume.getWidth()
+                    && touchY >= spriteBtnResume.getY()
+                    && touchY <= spriteBtnResume.getY() + spriteBtnResume.getHeight()) {
+                principal.setScreen(new PantallaJuego(principal));
+
+            }
+            if (touchX >= spriteBtnQuit.getX() &&
+                    touchX <= spriteBtnQuit.getX() + spriteBtnQuit.getWidth()
+                    && touchY >= spriteBtnQuit.getY()
+                    && touchY <= spriteBtnQuit.getY() + spriteBtnQuit.getHeight()) {
+                principal.setScreen(new mx.itesm.wayakkk.PantallaMenu(principal));
+
             }
         }
-
-        @Override
-        public void resize(int width, int height) {
-        }
-
-        @Override
-        public void pause() {
-
-        }
-
-        @Override
-        public void resume() {
-
-        }
-
-        @Override
-        public void hide() {
-
-        }
-
-        @Override
-        public void dispose() {
-        }
     }
+
+    @Override
+    public void resize(int width, int height) {
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
+    public void dispose() {
+    }
+}

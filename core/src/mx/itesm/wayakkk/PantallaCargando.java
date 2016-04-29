@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**
  * Created by Stephie Furom on 22/03/2016.
  */
+
 public class PantallaCargando implements Screen {
     private Principal principal;
 
@@ -76,8 +77,8 @@ public class PantallaCargando implements Screen {
         if (assetManager.update()) {
             principal.setScreen(new PantallaJuego(principal));
         } else {
-            float avance = assetManager.getProgress()*100;
-            Gdx.app.log("Loading",avance+"%");
+            float avance = assetManager.getProgress() * 100;
+            Gdx.app.log("Loading", avance + "%");
         }
     }
 
@@ -88,7 +89,7 @@ public class PantallaCargando implements Screen {
 
     @Override
     public void resize(int width, int height) {
-        vista.update(width,height);
+        vista.update(width, height);
 
     }
 

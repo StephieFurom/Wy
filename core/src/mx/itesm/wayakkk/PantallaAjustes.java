@@ -15,7 +15,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**p
  * Created by Stephie Furom on 17/02/2016.
  */
-    public class PantallaAjustes implements Screen {
+
+public class PantallaAjustes implements Screen {
     private final Principal principal;
     private OrthographicCamera camara;
     private Viewport vista;
@@ -58,7 +59,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
     private void cargarAudio() {
         musicaMenu = Gdx.audio.newMusic(Gdx.files.internal("MenuMus.mp3"));
         musicaMenu.setLooping(true);
-        if (PantallaMenu.musica==true)
+        if (PantallaMenu.musica == true)
             musicaMenu.play();
     }
 

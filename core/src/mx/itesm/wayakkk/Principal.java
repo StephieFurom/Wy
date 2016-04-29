@@ -7,8 +7,8 @@ import com.badlogic.gdx.assets.AssetManager;
  * Created by Stephie Furom on 17/02/2016.
  */
 //p
-public class Principal extends Game
-{
+
+public class Principal extends Game {
     public static final float ANCHO_MUNDO = 1280;
     public static final float ALTO_MUNDO = 720;
 
