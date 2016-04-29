@@ -209,8 +209,8 @@ public class PantallaCandyland implements Screen {
                 spriteFondo.draw(batch);
                 spriteBtnPause.draw(batch);
 
-                if (puntos >= 20) {
-                    principal.setScreen(new PantallaGana(principal));
+                if (puntos >= 15) {
+                    principal.setScreen(new PantallaToyStation(principal));
                 }
 
                 switch (vidas) {
