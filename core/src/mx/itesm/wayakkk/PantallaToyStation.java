@@ -193,6 +193,7 @@ public class PantallaToyStation implements Screen {
             actualizarMael();
             actualizarCamara();
             probarChoque();
+            probarAcelerometro();
         }
         borrarPantalla();
         batch.setProjectionMatrix(camara.combined);
@@ -285,6 +286,17 @@ public class PantallaToyStation implements Screen {
     }
 
     private void actualizarMael() {
+    }
+
+    private void probarAcelerometro() {
+        float accelY = Gdx.input.getAccelerometerY();
+        if ((accelY >= 1)) {
+            Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovDer);
+        } else if ((accelY <= -1)) {
+            Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovIzq);
+        } else {
+            Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.Reposo);
+        }
     }
 
     private void actualizarCamara() {
@@ -384,31 +396,6 @@ public class PantallaToyStation implements Screen {
     public class ProcesadorEntrada extends InputAdapter {
         private Vector3 coordenadas = new Vector3();
         private float x, y;
-
-
-        @Override
-        public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-            transformarCoordenadas(screenX, screenY);
-            if ((x >= 640)) {
-                Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovDer);
-                //Gdx.app.log("touchDown", "CaminaDerecha");
-            } else {
-                Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovIzq);
-                Mael.actualizar();
-            }
-            return true;
-        }
-
-        @Override
-        public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-            Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.Reposo);
-            return true;
-        }
-
-        @Override
-        public boolean touchDragged(int screenX, int screenY, int pointer) {
-            return true;
-        }
 
 
         private void transformarCoordenadas(int screenX, int screenY) {
