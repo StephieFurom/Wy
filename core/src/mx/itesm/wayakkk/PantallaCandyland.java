@@ -236,7 +236,7 @@ public class PantallaCandyland implements Screen {
                 helado.render(batch);
                 brocco.render(batch);
                 texto.mostrarMensaje(batch, "Paletas: " + puntos, (float) (Principal.ANCHO_MUNDO / 4), Principal.ALTO_MUNDO * 0.97f);
-                Gdx.app.log("Render","Jugando");
+                //Gdx.app.log("Render","Jugando");
                 break;
 
             case Pausado:
@@ -259,6 +259,9 @@ public class PantallaCandyland implements Screen {
         Rectangle a = paletaHielo.getSprite().getBoundingRectangle();
         Rectangle b = Mael.getSprite().getBoundingRectangle();
         if (b.overlaps(a)) {
+            float offset = a.getWidth() * .15f;
+            a.setX(a.getX() + offset);
+            a.setWidth((float) (a.getWidth() - 1.5 * offset));
             puntos++;
             sonidoAtrapa.play();
             paletaHielo.getSprite().setY(Principal.ALTO_MUNDO);
@@ -266,6 +269,9 @@ public class PantallaCandyland implements Screen {
         }
         Rectangle c = helado.getSprite().getBoundingRectangle();
         if (b.overlaps(c)) {
+            float offset = c.getWidth() * .15f;
+            c.setX(c.getX() + offset);
+            c.setWidth((float) (c.getWidth() - 1.5 * offset));
             if (vidas < 3)
                 vidas = vidas + 1;
             sonidoAtrapa.play();
@@ -275,6 +281,9 @@ public class PantallaCandyland implements Screen {
 
         Rectangle d = brocco.getSprite().getBoundingRectangle();
         if (b.overlaps(d)) {
+            float offset = d.getWidth() * .15f;
+            d.setX(d.getX() + offset);
+            d.setWidth((float) (d.getWidth() - 1.5 * offset));
             vidas = vidas - 1;
             sonidoMalo.play();
             brocco.getSprite().setY(Principal.ALTO_MUNDO);

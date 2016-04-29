@@ -45,11 +45,11 @@ public class PantallaToyStation implements Screen {
     private Texture texturaMael;
     private Personaje Mael;
 
-    private Texture texturaHielo;
-    private Hielo paletaHielo;
+    private Texture texturaPato;
+    private Pato patito;
 
-    private Texture texturaBroccoli;
-    private Broccoli brocco;
+    private Texture texturaMono;
+    private Mono monito;
 
     private Texture texturaHelado;
     private Vidas helado;
@@ -113,13 +113,13 @@ public class PantallaToyStation implements Screen {
         Mael = new Personaje(texturaMael);
         Mael.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO * 0.10f);
 
-        texturaHielo = new Texture(Gdx.files.internal("SPRITES2.png"));
-        paletaHielo = new Hielo(texturaHielo);
-        paletaHielo.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
+        texturaPato = new Texture(Gdx.files.internal("SPRITES2.png"));
+        patito = new Pato(texturaPato);
+        patito.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
-        texturaBroccoli = new Texture(Gdx.files.internal("SPRITEBROCO.png"));
-        brocco = new Broccoli(texturaBroccoli);
-        brocco.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
+        texturaMono = new Texture(Gdx.files.internal("malomono.png"));
+        monito = new Mono(texturaMono);
+        monito.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
         texturaHelado = new Texture(Gdx.files.internal("heladosprite.png"));
         helado = new Vidas(texturaHelado);
@@ -230,11 +230,11 @@ public class PantallaToyStation implements Screen {
                 }
 
                 Mael.render(batch);
-                paletaHielo.render(batch);
+                patito.render(batch);
                 helado.render(batch);
-                brocco.render(batch);
-                texto.mostrarMensaje(batch, "Paletas: " + puntos, (float) (Principal.ANCHO_MUNDO / 4), Principal.ALTO_MUNDO * 0.97f);
-                Gdx.app.log("Render", "Jugando");
+                monito.render(batch);
+                texto.mostrarMensaje(batch, "Patitos: " + puntos, (float) (Principal.ANCHO_MUNDO / 4), Principal.ALTO_MUNDO * 0.97f);
+                //Gdx.app.log("Render", "Jugando");
                 break;
 
             case Pausado:
@@ -254,16 +254,22 @@ public class PantallaToyStation implements Screen {
 
     public void probarChoque() {
         Random randX = new Random();
-        Rectangle a = paletaHielo.getSprite().getBoundingRectangle();
+        Rectangle a = patito.getSprite().getBoundingRectangle();
         Rectangle b = Mael.getSprite().getBoundingRectangle();
         if (b.overlaps(a)) {
+            float offset = a.getWidth() * .15f;
+            a.setX(a.getX() + offset);
+            a.setWidth((float) (a.getWidth() - 1.5 * offset));
             puntos++;
             sonidoAtrapa.play();
-            paletaHielo.getSprite().setY(Principal.ALTO_MUNDO);
-            paletaHielo.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
+            patito.getSprite().setY(Principal.ALTO_MUNDO);
+            patito.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
         }
         Rectangle c = helado.getSprite().getBoundingRectangle();
         if (b.overlaps(c)) {
+            float offset = c.getWidth() * .15f;
+            c.setX(c.getX() + offset);
+            c.setWidth((float) (c.getWidth() - 1.5 * offset));
             if (vidas < 3)
                 vidas = vidas + 1;
             sonidoAtrapa.play();
@@ -271,12 +277,15 @@ public class PantallaToyStation implements Screen {
             helado.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
         }
 
-        Rectangle d = brocco.getSprite().getBoundingRectangle();
+        Rectangle d = monito.getSprite().getBoundingRectangle();
         if (b.overlaps(d)) {
+            float offset = d.getWidth() * .15f;
+            d.setX(d.getX() + offset);
+            d.setWidth((float) (d.getWidth() - 1.5 * offset));
             vidas = vidas - 1;
             sonidoMalo.play();
-            brocco.getSprite().setY(Principal.ALTO_MUNDO);
-            brocco.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
+            monito.getSprite().setY(Principal.ALTO_MUNDO);
+            monito.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
         }
     }
 
@@ -346,9 +355,9 @@ public class PantallaToyStation implements Screen {
     public void dispose() {
         AssetManager assetManager = principal.getAssetManager();
         assetManager.unload("SpriteCa.png");
-        assetManager.unload("SPRITES2.png");
+        assetManager.unload(".png");
         assetManager.unload("heladosprite.png");
-        assetManager.unload("SPRITEBROCO.png");
+        assetManager.unload("malomono.png");
         assetManager.unload("vidabn.png");
         texturaFondo.dispose();
         texturaFondoU.dispose();

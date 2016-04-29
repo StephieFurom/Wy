@@ -275,6 +275,9 @@ public class PantallaJuego implements Screen {
         Rectangle a = paleta.getSprite().getBoundingRectangle();
         Rectangle b = Mael.getSprite().getBoundingRectangle();
         if (b.overlaps(a)) {
+            float offset = a.getWidth() * .15f;
+            a.setX(a.getX() + offset);
+            a.setWidth((float) (a.getWidth() - 1.5 * offset));
             puntos++;
             sonidoAtrapa.play();
             paleta.getSprite().setY(Principal.ALTO_MUNDO);
@@ -282,6 +285,9 @@ public class PantallaJuego implements Screen {
         }
         Rectangle c = helado.getSprite().getBoundingRectangle();
         if (b.overlaps(c)) {
+            float offset = c.getWidth() * .15f;
+            c.setX(c.getX() + offset);
+            c.setWidth((float) (c.getWidth() - 1.5 * offset));
             if (vidas < 3)
                 vidas = vidas + 1;
             sonidoAtrapa.play();
@@ -292,9 +298,9 @@ public class PantallaJuego implements Screen {
         //Rectangle d = payaso.getSprite().getBoundingRectangle();
         Rectangle rp = payaso.getSpriteGrande().getBoundingRectangle();
         if (puntos >= 7) {
-            float offset = rp.getWidth() * .20f;
+            float offset = rp.getWidth() * .15f;
             rp.setX(rp.getX() + offset);
-            rp.setWidth(rp.getWidth() - 2 * offset);
+            rp.setWidth((float) (rp.getWidth() - 1.5 * offset));
             if (b.overlaps(rp)) {
                 vidas = vidas - 1;
                 sonidoMalo.play();
