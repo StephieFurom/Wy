@@ -29,7 +29,7 @@ public class Broccoli {
 
     public Broccoli(Texture textura) {
         TextureRegion texturaCompleta = new TextureRegion(textura);
-        TextureRegion[][] texturaPersonaje = texturaCompleta.split(400, 400);
+        TextureRegion[][] texturaPersonaje = texturaCompleta.split(350, 365);
         animacion = new Animation(0.25f, texturaPersonaje[0][2],
                 texturaPersonaje[0][1], texturaPersonaje[0][0]);
         animacion.setPlayMode(Animation.PlayMode.LOOP);

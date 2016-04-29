@@ -117,7 +117,7 @@ public class PantallaCandyland implements Screen {
         paletaHielo = new Hielo(texturaHielo);
         paletaHielo.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
-        texturaBroccoli = new Texture(Gdx.files.internal("malobrocop3.png"));
+        texturaBroccoli = new Texture(Gdx.files.internal("malobrocop1nuevo.png"));
         brocco = new Broccoli(texturaBroccoli);
         brocco.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
@@ -359,7 +359,7 @@ public class PantallaCandyland implements Screen {
         assetManager.unload("SpriteCa.png");
         assetManager.unload("SPRITES2.png");
         assetManager.unload("heladosprite.png");
-        assetManager.unload("malobrocop3.png");
+        assetManager.unload("malobrocop1nuevo.png");
         assetManager.unload("vidabn.png");
         texturaFondo.dispose();
         texturaFondoU.dispose();
