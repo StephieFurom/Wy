@@ -20,7 +20,7 @@ public class Broccoli {
 
 
     private Sprite sprite;
-
+    private float velX;
     private Animation animacion;
     private float tiempoAnimacion;
 
@@ -29,13 +29,14 @@ public class Broccoli {
 
     public Broccoli(Texture textura) {
         TextureRegion texturaCompleta = new TextureRegion(textura);
-        TextureRegion[][] texturaPersonaje = texturaCompleta.split(66, 78);
+        TextureRegion[][] texturaPersonaje = texturaCompleta.split(400, 400);
         animacion = new Animation(0.25f, texturaPersonaje[0][2],
                 texturaPersonaje[0][1], texturaPersonaje[0][0]);
         animacion.setPlayMode(Animation.PlayMode.LOOP);
         tiempoAnimacion = 0;
         sprite = new Sprite(texturaPersonaje[0][0]);
         estadoMov = EstadoMovimiento.Caer;
+        velX=15;
     }
 
     public void render(SpriteBatch batch) {
@@ -54,6 +55,14 @@ public class Broccoli {
     public void actualizar() {
         Random rand = new Random();
         float nuevaY = sprite.getY();
+        float newX=sprite.getX()+velX;
+        sprite.setX(newX);
+        if (sprite.getX()>=1280 || sprite.getX()<=0){
+
+            velX=velX*-1;
+        }
+        Gdx.app.log("x","x="+sprite.getX());
+
         switch (estadoMov) {
             case Caer:
                 nuevaY += VelY;
