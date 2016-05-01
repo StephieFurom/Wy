@@ -113,7 +113,7 @@ public class PantallaToyStation implements Screen {
         Mael = new Personaje(texturaMael);
         Mael.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO * 0.10f);
 
-        texturaPato = new Texture(Gdx.files.internal("SPRITES2.png"));
+        texturaPato = new Texture(Gdx.files.internal("patitossprites.png"));
         patito = new Pato(texturaPato);
         patito.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
@@ -144,7 +144,7 @@ public class PantallaToyStation implements Screen {
 
     private void cargarTexturasSprites() {
 
-        texturaFondo = new Texture(Gdx.files.internal("toyland2.png"));
+        texturaFondo = new Texture(Gdx.files.internal("toylandfinal1.png"));
         spriteFondo = new Sprite(texturaFondo);
 
         texturaBtnPause = new Texture(Gdx.files.internal("PAUSACHIQUITO.png"));

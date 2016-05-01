@@ -154,7 +154,7 @@ public class PantallaJuego implements Screen {
 
     private void cargarTexturasSprites() {
 
-        texturaFondo = new Texture(Gdx.files.internal("fondoferia.jpg"));
+        texturaFondo = new Texture(Gdx.files.internal("feriabonita1.png"));
         spriteFondo = new Sprite(texturaFondo);
 
         texturaFondoC = new Texture(Gdx.files.internal("candy.jpg"));

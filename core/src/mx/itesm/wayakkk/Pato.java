@@ -29,7 +29,7 @@ public class Pato {
 
     public Pato(Texture textura) {
         TextureRegion texturaCompleta = new TextureRegion(textura);
-        TextureRegion[][] texturaPersonaje = texturaCompleta.split(46, 72);
+        TextureRegion[][] texturaPersonaje = texturaCompleta.split(85, 78);
         animacion = new Animation(0.25f, texturaPersonaje[0][2],
                 texturaPersonaje[0][1], texturaPersonaje[0][0]);
         animacion.setPlayMode(Animation.PlayMode.LOOP);
