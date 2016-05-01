@@ -29,7 +29,7 @@ public class Mono {
 
     public Mono(Texture textura) {
         TextureRegion texturaCompleta = new TextureRegion(textura);
-        TextureRegion[][] texturaPersonaje = texturaCompleta.split(66, 78);
+        TextureRegion[][] texturaPersonaje = texturaCompleta.split(100, 100);
         animacion = new Animation(0.25f, texturaPersonaje[0][2],
                 texturaPersonaje[0][1], texturaPersonaje[0][0]);
         animacion.setPlayMode(Animation.PlayMode.LOOP);

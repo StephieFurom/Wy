@@ -117,7 +117,7 @@ public class PantallaToyStation implements Screen {
         patito = new Pato(texturaPato);
         patito.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
-        texturaMono = new Texture(Gdx.files.internal("malomono.png"));
+        texturaMono = new Texture(Gdx.files.internal("pelotamala1.png"));
         monito = new Mono(texturaMono);
         monito.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
