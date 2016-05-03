@@ -18,7 +18,6 @@ public class Mono {
     float[] arr = {-2f, -3f, -4f, -5f, -6f, -7f};
     public final float VelY = arr[randC2.nextInt(5)];
 
-
     private Sprite sprite;
 
     private float velX;
@@ -51,7 +50,6 @@ public class Mono {
                 batch.draw(region, sprite.getX(), sprite.getY());
                 break;
         }
-
     }
 
     public void actualizar() {

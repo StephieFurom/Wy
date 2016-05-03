@@ -56,13 +56,12 @@ public class Broccoli {
     public void actualizar() {
         Random rand = new Random();
         float nuevaY = sprite.getY();
-
-        float newX = sprite.getX() + velX;
+        float newX=sprite.getX()+velX;
         sprite.setX(newX);
-        if (sprite.getX() >= 1280 || sprite.getX() <= 0) {
-            velX = velX * -1;
+        if (sprite.getX()>=1280 || sprite.getX()<=0){
+            velX=velX*-1;
         }
-        Gdx.app.log("x", "x=" + sprite.getX());
+        Gdx.app.log("x","x="+sprite.getX());
 
         switch (estadoMov) {
             case Caer:
