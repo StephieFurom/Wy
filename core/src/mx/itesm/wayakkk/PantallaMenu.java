@@ -47,6 +47,7 @@ public class PantallaMenu implements Screen {
     private Texture texturaBtnInstrucciones;
     private Sprite spriteBtnInstrucciones;
 
+
     public static Music musicaMenu;
 
 
@@ -148,7 +149,7 @@ public class PantallaMenu implements Screen {
                     touchX <= spriteBtnJugar.getX() + spriteBtnJugar.getWidth()
                     && touchY >= spriteBtnJugar.getY()
                     && touchY <= spriteBtnJugar.getY() + spriteBtnJugar.getHeight()) {
-                principal.setScreen(new PantallaCandyland(principal));
+                principal.setScreen(new PantallaJuego(principal));
 
             }
             if (touchX >= spriteBtnAjustes.getX() &&

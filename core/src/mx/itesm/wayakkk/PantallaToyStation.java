@@ -51,6 +51,9 @@ public class PantallaToyStation implements Screen {
     private Texture texturaMono;
     private Mono monito;
 
+    private Texture texturaRobot;
+    private Robot robotcito;
+
     private Texture texturaHelado;
     private Vidas helado;
 

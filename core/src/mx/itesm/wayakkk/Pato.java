@@ -82,6 +82,6 @@ public class Pato {
 
     public enum EstadoMovimiento {
         Inicia,
-        Caer
+        EstadoMovimiento, Caer
     }
 }

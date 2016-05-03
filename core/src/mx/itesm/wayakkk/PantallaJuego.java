@@ -61,6 +61,7 @@ public class PantallaJuego implements Screen {
     private Vidas helado;
 
     private Texture texturaRueda;
+    private Sprite spriteRuedita;
 
     private Texture texturaGanaste;
     private Sprite spriteGanaste;
@@ -125,6 +126,10 @@ public class PantallaJuego implements Screen {
         texturaPaleta = new Texture(Gdx.files.internal("SPRITESNUEVOS.png"));
         paleta = new Objetos(texturaPaleta);
         paleta.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
+
+        texturaRueda = new Texture(Gdx.files.internal("ruedaalta.png"));
+        spriteRuedita = new Sprite(texturaRueda);
+        spriteRuedita.setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
         texturaPayaso = new Texture(Gdx.files.internal("payasin.png"));
         texturaPayasote = new Texture(Gdx.files.internal("payasote.png"));
@@ -195,6 +200,11 @@ public class PantallaJuego implements Screen {
 
         vidaTres = new Sprite(texturaVida);
         vidaTres.setPosition((float) (Principal.ANCHO_MUNDO / 1.4 - spriteBtnPause.getWidth() / 2),
+                (float) (Principal.ALTO_MUNDO / 1.13));
+
+        texturaRueda = new Texture(Gdx.files.internal("ruedaalta.png"));
+        spriteRuedita = new Sprite(texturaRueda);
+        spriteRuedita.setPosition((float) (Principal.ANCHO_MUNDO / 5 - spriteBtnPause.getWidth() / 2),
                 (float) (Principal.ALTO_MUNDO / 1.13));
 
     }
@@ -388,6 +398,7 @@ public class PantallaJuego implements Screen {
         assetManager.unload("payasin.png");
         assetManager.unload("vidabn.png");
         assetManager.unload("payasote.png");
+        assetManager.unload("ruedaalta.png");
         texturaFondo.dispose();
         texturaFondoU.dispose();
         texturaBtnPause.dispose();
