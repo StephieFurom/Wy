@@ -104,6 +104,7 @@ public class PantallaJuego implements Screen {
         cargarAudio();
         estadoJuego = EstadosJuego.Jugando;
         Gdx.input.setInputProcessor(new ProcesadorEntrada());
+        Gdx.input.setCatchBackKey(true);
     }
 
     private void cargarAudio() {

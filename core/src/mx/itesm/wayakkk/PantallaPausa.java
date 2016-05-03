@@ -51,6 +51,7 @@ public class PantallaPausa implements Screen {
         batch = new SpriteBatch();
 
         cargarTexturasSprites();
+        Gdx.input.setCatchBackKey(true);
     }
 
     private void cargarTexturasSprites() {

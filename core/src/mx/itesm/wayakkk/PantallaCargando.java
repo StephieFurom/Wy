@@ -50,6 +50,7 @@ public class PantallaCargando implements Screen {
                 Principal.ALTO_MUNDO / 2 - spriteCargando.getHeight() / 2);
 
         cargarRecursos();
+        Gdx.input.setCatchBackKey(true);
     }
 
     private void cargarRecursos() {

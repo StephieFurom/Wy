@@ -46,6 +46,7 @@ public class PantallaInstrucciones implements Screen {
 
         cargarTexturasSprites();
         cargarAudio();
+        Gdx.input.setCatchBackKey(true);
     }
 
     private void cargarAudio() {

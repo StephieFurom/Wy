@@ -39,6 +39,7 @@ public class PantallaLogo implements Screen {
         vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO,camara);
         batch = new SpriteBatch();
         cargarTeturasSprites();
+        Gdx.input.setCatchBackKey(true);
     }
 
     private void cargarTeturasSprites() {
