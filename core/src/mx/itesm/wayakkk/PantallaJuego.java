@@ -60,9 +60,6 @@ public class PantallaJuego implements Screen {
     private Texture texturaHelado;
     private Vidas helado;
 
-    private Texture texturaRueda;
-    private Sprite spriteRuedita;
-
     private Texture texturaGanaste;
     private Sprite spriteGanaste;
 
@@ -78,6 +75,7 @@ public class PantallaJuego implements Screen {
     private Sprite vidaTres;
 
     private SpriteBatch batch;
+
     private Object EstadoMovimiento;
     private EstadosJuego estadoJuego;
 
@@ -105,7 +103,12 @@ public class PantallaJuego implements Screen {
         cargarAudio();
         estadoJuego = EstadosJuego.Jugando;
         Gdx.input.setInputProcessor(new ProcesadorEntrada());
+        cargarRecursos();
         Gdx.input.setCatchBackKey(true);
+    }
+
+
+    private void cargarRecursos() {
     }
 
     private void cargarAudio() {
@@ -126,10 +129,6 @@ public class PantallaJuego implements Screen {
         texturaPaleta = new Texture(Gdx.files.internal("SPRITESNUEVOS.png"));
         paleta = new Objetos(texturaPaleta);
         paleta.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
-
-        texturaRueda = new Texture(Gdx.files.internal("ruedaalta.png"));
-        spriteRuedita = new Sprite(texturaRueda);
-        spriteRuedita.setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
         texturaPayaso = new Texture(Gdx.files.internal("payasin.png"));
         texturaPayasote = new Texture(Gdx.files.internal("payasote.png"));
@@ -202,16 +201,15 @@ public class PantallaJuego implements Screen {
         vidaTres.setPosition((float) (Principal.ANCHO_MUNDO / 1.4 - spriteBtnPause.getWidth() / 2),
                 (float) (Principal.ALTO_MUNDO / 1.13));
 
-        texturaRueda = new Texture(Gdx.files.internal("ruedaalta.png"));
-        spriteRuedita = new Sprite(texturaRueda);
-        spriteRuedita.setPosition((float) (Principal.ANCHO_MUNDO / 5 - spriteBtnPause.getWidth() / 2),
-                (float) (Principal.ALTO_MUNDO / 1.13));
-
     }
 
 
     @Override
     public void render(float delta) {
+        borrarPantalla();
+
+        batch.setProjectionMatrix(camara.combined);
+
 
         if (estadoJuego == EstadosJuego.Jugando) {
             moverPersonaje();
@@ -398,7 +396,6 @@ public class PantallaJuego implements Screen {
         assetManager.unload("payasin.png");
         assetManager.unload("vidabn.png");
         assetManager.unload("payasote.png");
-        assetManager.unload("ruedaalta.png");
         texturaFondo.dispose();
         texturaFondoU.dispose();
         texturaBtnPause.dispose();
@@ -445,32 +442,6 @@ public class PantallaJuego implements Screen {
     public class ProcesadorEntrada extends InputAdapter {
         private Vector3 coordenadas = new Vector3();
         private float x, y;
-
-
-        // @Override
-
-        /**
-         * public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-         * transformarCoordenadas(screenX, screenY);
-         * <p/>
-         * if ((x >= 640)) {
-         * Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovDer);
-         * //Gdx.app.log("touchDown", "CaminaDerecha");
-         * } else {
-         * Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovIzq);
-         * Mael.actualizar();
-         * }
-         * return true;
-         * }
-         *
-         * @Override public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-         * Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.Reposo);
-         * return true;
-         * }
-         * @Override public boolean touchDragged(int screenX, int screenY, int pointer) {
-         * return true;
-         * }
-         */
 
 
         private void transformarCoordenadas(int screenX, int screenY) {
