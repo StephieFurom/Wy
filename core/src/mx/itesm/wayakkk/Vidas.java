@@ -16,7 +16,7 @@ import java.util.Random;
 public class Vidas {
     Random randC1 = new Random();
     float[] arr = {-4f, -5f, -6f, -7f, -8f};
-    public final float VelY = arr[randC1.nextInt(2)];
+    public float VelY = arr[randC1.nextInt(4)];
 
     public Sprite sprite;
 
@@ -24,6 +24,7 @@ public class Vidas {
     private float tiempoAnimacion;
 
     private EstadoMovimiento estadoMov;
+    private int velY;
 
     public Vidas(Texture textura) {
         TextureRegion texturaCompleta = new TextureRegion(textura);
@@ -65,6 +66,7 @@ public class Vidas {
         }
     }
 
+
     public Sprite getSprite() {
         return sprite;
     }
@@ -75,6 +77,10 @@ public class Vidas {
 
     public float getY() {
         return sprite.getY();
+    }
+
+    public void setVelY(int velY) {
+        this.velY = velY;
     }
 
     public enum EstadoMovimiento {

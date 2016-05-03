@@ -50,7 +50,7 @@ public class PantallaLogo implements Screen {
     @Override
     public void render(float delta) {
         tiempo = Gdx.graphics.getRawDeltaTime() + tiempo;
-        if(tiempo > 2){
+        if(tiempo > 1){
             principal.setScreen(new PantallaMenu(principal));
         }
         Gdx.gl.glClearColor(1, 1, 1, 1);

@@ -13,8 +13,8 @@ import java.util.Random;
 
 public class Objetos {
     Random randC3 = new Random();
-    float[] arr = {-3f, -4f, -5f, -6f, -7f, -8f};
-    public final float VelY = arr[randC3.nextInt(5)];
+    float[] arr = {-1f, -2f, -3f, -4f, -5f, -6f};
+    public float VelY = arr[randC3.nextInt(5)];
 
 
     private Sprite sprite;
@@ -64,6 +64,10 @@ public class Objetos {
                 }
                 break;
         }
+    }
+
+    public void setVelY(int nuevoVel){
+        VelY = nuevoVel;
     }
 
     public Sprite getSprite() {

@@ -60,8 +60,7 @@ public class PantallaJuego implements Screen {
     private Texture texturaHelado;
     private Vidas helado;
 
-    private Texture texturaPato;
-    private Pato patito;
+    private Texture texturaRueda;
 
     private Texture texturaGanaste;
     private Sprite spriteGanaste;

@@ -98,6 +98,8 @@ public class PantallaCandyland implements Screen {
         cargarAudio();
         estadoJuego=EstadosJuego.Jugando;
         Gdx.input.setInputProcessor(new ProcesadorEntrada());
+
+        //helado.setVelY((int) .5);
     }
 
     private void cargarAudio() {

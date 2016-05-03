@@ -17,7 +17,7 @@ public class Broccoli {
 
     Random randC2 = new Random();
     float[] arr = {-1f, -2f, -2.5f,};
-    public final float VelY = arr[randC2.nextInt(5)];
+    public final float VelY = arr[randC2.nextInt(2)];
 
     private Sprite sprite;
 
@@ -38,7 +38,7 @@ public class Broccoli {
         tiempoAnimacion = 0;
         sprite = new Sprite(texturaPersonaje[0][0]);
         estadoMov = EstadoMovimiento.Caer;
-        velX = 10;
+        velX = 17;
     }
 
     public void render(SpriteBatch batch) {

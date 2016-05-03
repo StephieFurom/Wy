@@ -96,6 +96,7 @@ public class PantallaToyStation implements Screen {
         cargarAudio();
         estadoJuego = EstadosJuego.Jugando;
         Gdx.input.setInputProcessor(new ProcesadorEntrada());
+        helado.setVelY(2);
     }
 
     private void cargarAudio() {

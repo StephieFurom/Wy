@@ -88,22 +88,22 @@ public class PantallaMenu implements Screen {
         texturaBtnJugar = new Texture(Gdx.files.internal("PLAY.png"));
         spriteBtnJugar = new Sprite(texturaBtnJugar);
         spriteBtnJugar.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnJugar.getWidth() / 2,
-                Principal.ALTO_MUNDO / 2);
+                (float) (Principal.ALTO_MUNDO / 1.9));
 
         texturaBtnAcercaDe = new Texture(Gdx.files.internal("ABOUT.png"));
         spriteBtnAcercaDe = new Sprite(texturaBtnAcercaDe);
         spriteBtnAcercaDe.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnAcercaDe.getWidth() / 2,
-                Principal.ALTO_MUNDO / 3);
+                (float) (Principal.ALTO_MUNDO / 2.65));
 
         texturaBtnAjustes = new Texture(Gdx.files.internal("SETTINGS.png"));
         spriteBtnAjustes = new Sprite(texturaBtnAjustes);
         spriteBtnAjustes.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnAjustes.getWidth() / 2,
-                Principal.ALTO_MUNDO / 6);
+                (float) (Principal.ALTO_MUNDO / 4.8));
 
         texturaBtnInstrucciones = new Texture(Gdx.files.internal("SETTINGS.png"));
         spriteBtnInstrucciones = new Sprite(texturaBtnInstrucciones);
         spriteBtnInstrucciones.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInstrucciones.getWidth() / 2,
-                Principal.ALTO_MUNDO / 60);
+                (float) (Principal.ALTO_MUNDO / 23));
     }
 
     @Override
@@ -147,7 +147,7 @@ public class PantallaMenu implements Screen {
                     touchX <= spriteBtnJugar.getX() + spriteBtnJugar.getWidth()
                     && touchY >= spriteBtnJugar.getY()
                     && touchY <= spriteBtnJugar.getY() + spriteBtnJugar.getHeight()) {
-                principal.setScreen(new PantallaJuego(principal));
+                principal.setScreen(new PantallaCandyland(principal));
 
             }
             if (touchX >= spriteBtnAjustes.getX() &&
