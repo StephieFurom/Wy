@@ -304,7 +304,7 @@ public class PantallaJuego implements Screen {
                 float offset = rp.getWidth() * .15f;
                 rp.setX(rp.getX() + offset);
                 rp.setWidth((float) (rp.getWidth() - 1.5 * offset));
-
+            }
                 if (b.overlaps(rp)){
                 vidas = vidas - 1;
                 if (PantallaMenu.musica == true)
@@ -315,7 +315,6 @@ public class PantallaJuego implements Screen {
                 payaso.getSpriteGrande().setY(Principal.ALTO_MUNDO);
                 payaso.getSpriteGrande().setX(nuevaX);
             }
-        }
     }
 
     private void borrarPantalla() {
