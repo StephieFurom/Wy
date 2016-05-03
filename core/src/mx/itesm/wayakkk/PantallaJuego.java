@@ -224,7 +224,7 @@ public class PantallaJuego implements Screen {
                 spriteBtnPause.draw(batch);
 
                 if (puntos >= 10) {
-                    principal.setScreen(new PantallaCandyland(principal));
+                    principal.setScreen(new PrimerNivelCompletado(principal));
                 }
 
                 if (puntos >= 7) {
