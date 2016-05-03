@@ -2,7 +2,6 @@ package mx.itesm.wayakkk;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -25,8 +24,6 @@ public class PantallaLogo implements Screen {
     private Texture texturaFondo;
     private Sprite spriteFondo;
 
-    private Music musicaMenu;
-
     private SpriteBatch batch;
 
     public PantallaLogo(Principal principal) {
@@ -42,14 +39,6 @@ public class PantallaLogo implements Screen {
         vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO,camara);
         batch = new SpriteBatch();
         cargarTeturasSprites();
-        cargarAudio();
-    }
-
-    private void cargarAudio() {
-        musicaMenu = Gdx.audio.newMusic(Gdx.files.internal("MenuMus.mp3"));
-        musicaMenu.setLooping(true);
-        if (PantallaMenu.musica == true)
-            musicaMenu.play();
     }
 
     private void cargarTeturasSprites() {
