@@ -299,6 +299,7 @@ public class PantallaJuego implements Screen {
 
         //Rectangle d = payaso.getSprite().getBoundingRectangle();
         Rectangle rp = payaso.getSpriteGrande().getBoundingRectangle();
+        if (b.overlaps(rp)) {
         if (puntos >= 7) {
             float offset = rp.getWidth() * .15f;
             rp.setX(rp.getX() + offset);
@@ -314,6 +315,7 @@ public class PantallaJuego implements Screen {
                 payaso.getSpriteGrande().setX(nuevaX);
             }
         }
+    }
     }
 
     private void borrarPantalla() {
