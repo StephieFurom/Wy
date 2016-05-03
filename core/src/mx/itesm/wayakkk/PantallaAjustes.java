@@ -1,6 +1,7 @@
 package mx.itesm.wayakkk;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
@@ -25,10 +26,14 @@ public class PantallaAjustes implements Screen {
     private Texture texturaFondo;
     private Sprite spriteFondo;
 
+    private Texture texturaBtni;
+    private Sprite spriteBtni;
+
+    private Texture texturaBtno;
+    private Sprite spriteBtno;
 
     private Texture texturaBtnVolumen;
     private Sprite spriteBtnVolumen;
-
 
     private Texture texturaBtnReturn;
     private Sprite spriteBtnReturn;
@@ -71,11 +76,21 @@ public class PantallaAjustes implements Screen {
         texturaBtnVolumen = new Texture(Gdx.files.internal("SOUND.png"));
         spriteBtnVolumen = new Sprite(texturaBtnVolumen);
         spriteBtnVolumen.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnVolumen.getWidth() / 2,
-                (float) (Principal.ALTO_MUNDO / 2.1));
+                (float) (Principal.ALTO_MUNDO / 1.7));
+
+        texturaBtno = new Texture(Gdx.files.internal("sonno.png"));
+        spriteBtno = new Sprite(texturaBtno);
+        spriteBtno.setPosition((float) (Principal.ANCHO_MUNDO / 1.75 - spriteBtno.getWidth() / 2),
+                (float) (Principal.ALTO_MUNDO / 2.75));
+
+        texturaBtni = new Texture(Gdx.files.internal("sonsi.png"));
+        spriteBtni = new Sprite(texturaBtni);
+        spriteBtni.setPosition((float) (Principal.ANCHO_MUNDO / 2.4 - spriteBtni.getWidth() / 2),
+                (float) (Principal.ALTO_MUNDO / 2.75));
 
         texturaBtnReturn = new Texture(Gdx.files.internal("RETURN.png"));
         spriteBtnReturn = new Sprite(texturaBtnReturn);
-        spriteBtnReturn.setPosition((float) (Principal.ANCHO_MUNDO / 1.35 - spriteBtnReturn.getWidth() / 2),
+        spriteBtnReturn.setPosition((float) (Principal.ANCHO_MUNDO / 1.2 - spriteBtnReturn.getWidth() / 2),
                 Principal.ALTO_MUNDO / 7);
     }
 
@@ -91,6 +106,8 @@ public class PantallaAjustes implements Screen {
         batch.begin();
         spriteFondo.draw(batch);
         spriteBtnVolumen.draw(batch);
+        spriteBtno.draw(batch);
+        spriteBtni.draw(batch);
         spriteBtnReturn.draw(batch);
 
         batch.end();
@@ -132,19 +149,39 @@ public class PantallaAjustes implements Screen {
             float touchX = coordenadas.x;
             float touchY = coordenadas.y;
 
-            if (touchX >= spriteBtnVolumen.getX() &&
-                    touchX <= spriteBtnVolumen.getX() + spriteBtnVolumen.getWidth()
-                    && touchY >= spriteBtnVolumen.getY()
-                    && touchY <= spriteBtnVolumen.getY() + spriteBtnVolumen.getHeight()) {
-                principal.setScreen((Screen) new PantallaVolumen(principal));
+            if (touchX >= spriteBtno.getX() &&
+                    touchX < spriteBtno.getX() + spriteBtno.getWidth()
+                    && touchY >= spriteBtno.getY()
+                    && touchY <= spriteBtno.getY() + spriteBtno.getHeight()) {
+                Gdx.app.log("touchX", "SinMusica");
+                PantallaMenu.musica = false;
+                musicaMenu.stop();
 
+                Preferences prefs = Gdx.app.getPreferences("Preferencias");
+                prefs.putBoolean("SonidoNo", false);
+                prefs.flush();
+                //principal.setScreen(new PantallaVolumen(principal));
             }
-            if (touchX >= spriteBtnReturn.getX() &&
-                    touchX <= spriteBtnReturn.getX() + spriteBtnReturn.getWidth()
-                    && touchY >= spriteBtnReturn.getY()
-                    && touchY <= spriteBtnReturn.getY() + spriteBtnReturn.getHeight()) {
-                principal.setScreen((Screen) new PantallaMenu(principal));
+
+            if (touchX >= spriteBtni.getX() &&
+                    touchX <= spriteBtni.getX() + spriteBtni.getWidth()
+                    && touchY >= spriteBtni.getY()
+                    && touchY <= spriteBtni.getY() + spriteBtni.getHeight()) {
+                Gdx.app.log("touchX", "ConMusica");
+                PantallaMenu.musica = true;
+                musicaMenu.play();
+                Preferences prefs = Gdx.app.getPreferences("My Preferences");
+                prefs.putBoolean("SonidoNo", true);
+                prefs.flush();
+                //principal.setScreen((Screen) new PantallaVolumen(principal));
+            }
+
+                    if (touchX >= spriteBtnReturn.getX() &&
+                            touchX <= spriteBtnReturn.getX() + spriteBtnReturn.getWidth()
+                            && touchY >= spriteBtnReturn.getY()
+                            && touchY <= spriteBtnReturn.getY() + spriteBtnReturn.getHeight()) {
+                        principal.setScreen((Screen) new PantallaMenu(principal));
+                    }
+                }
             }
         }
-    }
-}

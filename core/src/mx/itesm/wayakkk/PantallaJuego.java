@@ -154,7 +154,7 @@ public class PantallaJuego implements Screen {
 
     private void cargarTexturasSprites() {
 
-        texturaFondo = new Texture(Gdx.files.internal("feriabonita1.png"));
+        texturaFondo = new Texture(Gdx.files.internal("fondoferia.jpg"));
         spriteFondo = new Sprite(texturaFondo);
 
         texturaFondoC = new Texture(Gdx.files.internal("candy.jpg"));
@@ -223,7 +223,7 @@ public class PantallaJuego implements Screen {
                 spriteFondo.draw(batch);
                 spriteBtnPause.draw(batch);
 
-                if (puntos >= 10) {
+                if (puntos >= 20) {
                     principal.setScreen(new PantallaCandyland(principal));
                 }
 

@@ -43,6 +43,10 @@ public class PantallaMenu implements Screen {
     private Texture texturaBtnAjustes;
     private Sprite spriteBtnAjustes;
 
+    // Botón Instrucciones
+    private Texture texturaBtnInstrucciones;
+    private Sprite spriteBtnInstrucciones;
+
     public static Music musicaMenu;
 
 
@@ -95,6 +99,11 @@ public class PantallaMenu implements Screen {
         spriteBtnAjustes = new Sprite(texturaBtnAjustes);
         spriteBtnAjustes.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnAjustes.getWidth() / 2,
                 Principal.ALTO_MUNDO / 6);
+
+        texturaBtnInstrucciones = new Texture(Gdx.files.internal("SETTINGS.png"));
+        spriteBtnInstrucciones = new Sprite(texturaBtnInstrucciones);
+        spriteBtnInstrucciones.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInstrucciones.getWidth() / 2,
+                Principal.ALTO_MUNDO / 60);
     }
 
     @Override
@@ -109,6 +118,7 @@ public class PantallaMenu implements Screen {
         spriteBtnJugar.draw(batch);
         spriteBtnAcercaDe.draw(batch);
         spriteBtnAjustes.draw(batch);
+        spriteBtnInstrucciones.draw(batch);
         batch.end();
     }
 
@@ -137,7 +147,7 @@ public class PantallaMenu implements Screen {
                     touchX <= spriteBtnJugar.getX() + spriteBtnJugar.getWidth()
                     && touchY >= spriteBtnJugar.getY()
                     && touchY <= spriteBtnJugar.getY() + spriteBtnJugar.getHeight()) {
-                principal.setScreen(new PantallaToyStation(principal));
+                principal.setScreen(new PantallaJuego(principal));
 
             }
             if (touchX >= spriteBtnAjustes.getX() &&
@@ -145,8 +155,14 @@ public class PantallaMenu implements Screen {
                     && touchY >= spriteBtnAjustes.getY()
                     && touchY <= spriteBtnAjustes.getY() + spriteBtnAjustes.getHeight())
                 principal.setScreen((Screen) new PantallaAjustes(principal));
+
+            if (touchX >= spriteBtnInstrucciones.getX() &&
+                    touchX <= spriteBtnInstrucciones.getX() + spriteBtnInstrucciones.getWidth()
+                    && touchY >= spriteBtnInstrucciones.getY()
+                    && touchY <= spriteBtnInstrucciones.getY() + spriteBtnInstrucciones.getHeight())
+                principal.setScreen((Screen) new PantallaInstrucciones(principal));
         }
-    }
+        }
 
     @Override
     public void resize(int width, int height) {
@@ -176,6 +192,7 @@ public class PantallaMenu implements Screen {
         texturaBtnAjustes.dispose();
         texturaBtnAcercaDe.dispose();
         texturaBtnJugar.dispose();
+        texturaBtnInstrucciones.dispose();
         musicaMenu.dispose();
     }
 }
