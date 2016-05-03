@@ -22,7 +22,6 @@ public class Broccoli {
     private Sprite sprite;
 
     private float velX;
-    private float velY;
 
     private Animation animacion;
     private float tiempoAnimacion;
@@ -56,29 +55,25 @@ public class Broccoli {
 
     public void actualizar() {
         Random rand = new Random();
-        float nuevaY = sprite.getY() + velY;
-        sprite.setY(nuevaY);
-        if (sprite.getY() >= 1280 || sprite.getY() <= 0) {
-            velY = velY * -1;
+        float nuevaY = sprite.getY();
 
-            float newX = sprite.getX() + velX;
-            sprite.setX(newX);
-            if (sprite.getX() >= 1280 || sprite.getX() <= 0) {
-                velX = velX * -1;
-            }
-            Gdx.app.log("x", "x=" + sprite.getX());
+        float newX = sprite.getX() + velX;
+        sprite.setX(newX);
+        if (sprite.getX() >= 1280 || sprite.getX() <= 0) {
+            velX = velX * -1;
+        }
+        Gdx.app.log("x", "x=" + sprite.getX());
 
-            switch (estadoMov) {
-                case Caer:
-                    nuevaY += VelY;
-                    sprite.setY(nuevaY);
-                    //}
-                    if (sprite.getY() == 0) {
-                        sprite.setY(Principal.ALTO_MUNDO);
-                        sprite.setX(rand.nextInt((int) Principal.ANCHO_MUNDO));
-                    }
-                    break;
-            }
+        switch (estadoMov) {
+            case Caer:
+                nuevaY += VelY;
+                sprite.setY(nuevaY);
+                //}
+                if (sprite.getY() == 0) {
+                    sprite.setY(Principal.ALTO_MUNDO);
+                    sprite.setX(rand.nextInt((int) Principal.ANCHO_MUNDO));
+                }
+                break;
         }
     }
 
