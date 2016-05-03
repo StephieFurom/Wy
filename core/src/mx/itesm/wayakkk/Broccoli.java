@@ -14,14 +14,15 @@ import java.util.Random;
  */
 
 public class Broccoli {
+
     Random randC2 = new Random();
     float[] arr = {-1f, -2f, -2.5f,};
     public final float VelY = arr[randC2.nextInt(5)];
 
-
     private Sprite sprite;
 
     private float velX;
+    private float velY;
 
     private Animation animacion;
     private float tiempoAnimacion;
@@ -31,7 +32,7 @@ public class Broccoli {
 
     public Broccoli(Texture textura) {
         TextureRegion texturaCompleta = new TextureRegion(textura);
-        TextureRegion[][] texturaPersonaje = texturaCompleta.split(216,228);
+        TextureRegion[][] texturaPersonaje = texturaCompleta.split(216, 228);
         animacion = new Animation(0.25f, texturaPersonaje[0][2],
                 texturaPersonaje[0][1], texturaPersonaje[0][0]);
         animacion.setPlayMode(Animation.PlayMode.LOOP);
@@ -55,24 +56,29 @@ public class Broccoli {
 
     public void actualizar() {
         Random rand = new Random();
-        float nuevaY = sprite.getY();
-        float newX=sprite.getX()+velX;
-        sprite.setX(newX);
-        if (sprite.getX()>=1280 || sprite.getX()<=0){
-            velX=velX*-1;
-        }
-        Gdx.app.log("x","x="+sprite.getX());
+        float nuevaY = sprite.getY() + velY;
+        sprite.setY(nuevaY);
+        if (sprite.getY() >= 1280 || sprite.getY() <= 0) {
+            velY = velY * -1;
 
-        switch (estadoMov) {
-            case Caer:
-                nuevaY += VelY;
-                sprite.setY(nuevaY);
-                //}
-                if (sprite.getY() == 0) {
-                    sprite.setY(Principal.ALTO_MUNDO);
-                    sprite.setX(rand.nextInt((int) Principal.ANCHO_MUNDO));
-                }
-                break;
+            float newX = sprite.getX() + velX;
+            sprite.setX(newX);
+            if (sprite.getX() >= 1280 || sprite.getX() <= 0) {
+                velX = velX * -1;
+            }
+            Gdx.app.log("x", "x=" + sprite.getX());
+
+            switch (estadoMov) {
+                case Caer:
+                    nuevaY += VelY;
+                    sprite.setY(nuevaY);
+                    //}
+                    if (sprite.getY() == 0) {
+                        sprite.setY(Principal.ALTO_MUNDO);
+                        sprite.setX(rand.nextInt((int) Principal.ANCHO_MUNDO));
+                    }
+                    break;
+            }
         }
     }
 

@@ -22,8 +22,11 @@ import java.util.Random;
  * Created by Stephie Furom on 21/04/2016.
  */
 public class PantallaCandyland implements Screen {
+
     public static final float ANCHO_MUNDO = 1280;
+
     private final Principal principal;
+
     private OrthographicCamera camara;
     private Viewport vista;
 
