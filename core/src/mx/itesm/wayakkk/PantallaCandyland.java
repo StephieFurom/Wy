@@ -265,7 +265,8 @@ public class PantallaCandyland implements Screen {
             a.setX(a.getX() + offset);
             a.setWidth((float) (a.getWidth() - 1.5 * offset));
             puntos++;
-            sonidoAtrapa.play();
+            if (PantallaMenu.musica == true)
+                sonidoAtrapa.play();
             paletaHielo.getSprite().setY(Principal.ALTO_MUNDO);
             paletaHielo.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
         }
@@ -276,7 +277,8 @@ public class PantallaCandyland implements Screen {
             c.setWidth((float) (c.getWidth() - 1.5 * offset));
             if (vidas < 3)
                 vidas = vidas + 1;
-            sonidoAtrapa.play();
+            if (PantallaMenu.musica == true)
+                sonidoAtrapa.play();
             helado.getSprite().setY(Principal.ALTO_MUNDO);
             helado.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
         }
@@ -290,7 +292,8 @@ public class PantallaCandyland implements Screen {
             d.setY(d.getY() + offset);
             d.setHeight((float) (d.getHeight() - 3.0 * offset));
             vidas = vidas - 1;
-            sonidoMalo.play();
+            if (PantallaMenu.musica == true)
+                sonidoMalo.play();
             brocco.getSprite().setY(Principal.ALTO_MUNDO);
             brocco.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
         }

@@ -261,7 +261,8 @@ public class PantallaToyStation implements Screen {
             a.setX(a.getX() + offset);
             a.setWidth((float) (a.getWidth() - 1.5 * offset));
             puntos++;
-            sonidoAtrapa.play();
+            if (PantallaMenu.musica == true)
+                sonidoAtrapa.play();
             patito.getSprite().setY(Principal.ALTO_MUNDO);
             patito.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
         }
@@ -272,7 +273,8 @@ public class PantallaToyStation implements Screen {
             c.setWidth((float) (c.getWidth() - 1.5 * offset));
             if (vidas < 3)
                 vidas = vidas + 1;
-            sonidoAtrapa.play();
+            if (PantallaMenu.musica == true)
+                sonidoAtrapa.play();
             helado.getSprite().setY(Principal.ALTO_MUNDO);
             helado.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
         }
@@ -283,7 +285,8 @@ public class PantallaToyStation implements Screen {
             d.setX(d.getX() + offset);
             d.setWidth((float) (d.getWidth() - 1.5 * offset));
             vidas = vidas - 1;
-            sonidoMalo.play();
+            if (PantallaMenu.musica == true)
+                sonidoMalo.play();
             monito.getSprite().setY(Principal.ALTO_MUNDO);
             monito.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
         }

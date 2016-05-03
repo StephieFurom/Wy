@@ -279,7 +279,8 @@ public class PantallaJuego implements Screen {
             a.setX(a.getX() + offset);
             a.setWidth((float) (a.getWidth() - 1.5 * offset));
             puntos++;
-            sonidoAtrapa.play();
+            if (PantallaMenu.musica == true)
+                sonidoAtrapa.play();
             paleta.getSprite().setY(Principal.ALTO_MUNDO);
             paleta.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
         }
@@ -290,7 +291,8 @@ public class PantallaJuego implements Screen {
             c.setWidth((float) (c.getWidth() - 1.5 * offset));
             if (vidas < 3)
                 vidas = vidas + 1;
-            sonidoAtrapa.play();
+            if (PantallaMenu.musica == true)
+                sonidoAtrapa.play();
             helado.getSprite().setY(Principal.ALTO_MUNDO);
             helado.getSprite().setX(randX.nextInt((int) principal.ANCHO_MUNDO));
         }
@@ -303,7 +305,8 @@ public class PantallaJuego implements Screen {
             rp.setWidth((float) (rp.getWidth() - 1.5 * offset));
             if (b.overlaps(rp)) {
                 vidas = vidas - 1;
-                sonidoMalo.play();
+                if (PantallaMenu.musica == true)
+                    sonidoMalo.play();
                 int nuevaX = randX.nextInt((int) principal.ANCHO_MUNDO);
                 payaso.getSprite().setY(Principal.ALTO_MUNDO);
                 payaso.getSprite().setX(nuevaX);
