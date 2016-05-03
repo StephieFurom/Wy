@@ -299,12 +299,13 @@ public class PantallaJuego implements Screen {
 
         //Rectangle d = payaso.getSprite().getBoundingRectangle();
         Rectangle rp = payaso.getSprite().getBoundingRectangle();
-        if (b.overlaps(rp)) {
             if (puntos >= 7) {
                 rp = payaso.getSpriteGrande().getBoundingRectangle();
                 float offset = rp.getWidth() * .15f;
                 rp.setX(rp.getX() + offset);
                 rp.setWidth((float) (rp.getWidth() - 1.5 * offset));
+
+                if (b.overlaps(rp)){
                 vidas = vidas - 1;
                 if (PantallaMenu.musica == true)
                     sonidoMalo.play();
