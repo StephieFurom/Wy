@@ -20,7 +20,9 @@ public class Broccoli {
 
 
     private Sprite sprite;
+
     private float velX;
+
     private Animation animacion;
     private float tiempoAnimacion;
 
@@ -49,7 +51,6 @@ public class Broccoli {
                 batch.draw(region, sprite.getX(), sprite.getY());
                 break;
         }
-
     }
 
     public void actualizar() {
@@ -58,7 +59,6 @@ public class Broccoli {
         float newX=sprite.getX()+velX;
         sprite.setX(newX);
         if (sprite.getX()>=1280 || sprite.getX()<=0){
-
             velX=velX*-1;
         }
         Gdx.app.log("x","x="+sprite.getX());

@@ -21,6 +21,8 @@ public class Mono {
 
     private Sprite sprite;
 
+    private float velX;
+
     private Animation animacion;
     private float tiempoAnimacion;
 
@@ -36,6 +38,7 @@ public class Mono {
         tiempoAnimacion = 0;
         sprite = new Sprite(texturaPersonaje[0][0]);
         estadoMov = EstadoMovimiento.Caer;
+        velX=15;
     }
 
     public void render(SpriteBatch batch) {
@@ -54,6 +57,13 @@ public class Mono {
     public void actualizar() {
         Random rand = new Random();
         float nuevaY = sprite.getY();
+        float newX=sprite.getX()+velX;
+        sprite.setX(newX);
+        if (sprite.getX()>=1280 || sprite.getX()<=0){
+            velX=velX*-1;
+        }
+        Gdx.app.log("x","x="+sprite.getX());
+
         switch (estadoMov) {
             case Caer:
                 nuevaY += VelY;

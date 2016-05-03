@@ -208,7 +208,7 @@ public class PantallaToyStation implements Screen {
                 spriteFondo.draw(batch);
                 spriteBtnPause.draw(batch);
 
-                if (puntos >= 30) {
+                if (puntos >= 40) {
                     principal.setScreen(new PantallaGana(principal));
                 }
 
@@ -336,7 +336,6 @@ public class PantallaToyStation implements Screen {
 
     @Override
     public void pause() {
-
     }
 
     @Override

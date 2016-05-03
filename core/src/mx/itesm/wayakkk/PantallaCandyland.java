@@ -81,7 +81,6 @@ public class PantallaCandyland implements Screen {
     }
 
 
-
     @Override
     public void show() {
         camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
@@ -210,7 +209,7 @@ public class PantallaCandyland implements Screen {
                 spriteFondo.draw(batch);
                 spriteBtnPause.draw(batch);
 
-                if (puntos >= 20) {
+                if (puntos >= 30) {
                     principal.setScreen(new PantallaToyStation(principal));
                 }
 
@@ -344,12 +343,10 @@ public class PantallaCandyland implements Screen {
 
     @Override
     public void pause() {
-
     }
 
     @Override
     public void resume() {
-
     }
 
     @Override
