@@ -300,11 +300,11 @@ public class PantallaJuego implements Screen {
         //Rectangle d = payaso.getSprite().getBoundingRectangle();
         Rectangle rp = payaso.getSprite().getBoundingRectangle();
         if (b.overlaps(rp)) {
-        if (puntos >= 7) {
-            rp = payaso.getSpriteGrande().getBoundingRectangle();
-            float offset = rp.getWidth() * .15f;
-            rp.setX(rp.getX() + offset);
-            rp.setWidth((float) (rp.getWidth() - 1.5 * offset));
+            if (puntos >= 7) {
+                rp = payaso.getSpriteGrande().getBoundingRectangle();
+                float offset = rp.getWidth() * .15f;
+                rp.setX(rp.getX() + offset);
+                rp.setWidth((float) (rp.getWidth() - 1.5 * offset));
                 vidas = vidas - 1;
                 if (PantallaMenu.musica == true)
                     sonidoMalo.play();
@@ -430,37 +430,36 @@ public class PantallaJuego implements Screen {
             }
         }
     }
-}
 
     public class ProcesadorEntrada extends InputAdapter {
         private Vector3 coordenadas = new Vector3();
         private float x, y;
 
 
-       // @Override
-        /**public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-            transformarCoordenadas(screenX, screenY);
+        // @Override
 
-            if ((x >= 640)) {
-                Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovDer);
-                //Gdx.app.log("touchDown", "CaminaDerecha");
-            } else {
-                Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovIzq);
-                Mael.actualizar();
-            }
-            return true;
-        }
-
-        @Override
-        public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-            Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.Reposo);
-            return true;
-        }
-
-        @Override
-        public boolean touchDragged(int screenX, int screenY, int pointer) {
-            return true;
-        }*/
+        /**
+         * public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+         * transformarCoordenadas(screenX, screenY);
+         * <p/>
+         * if ((x >= 640)) {
+         * Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovDer);
+         * //Gdx.app.log("touchDown", "CaminaDerecha");
+         * } else {
+         * Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.MovIzq);
+         * Mael.actualizar();
+         * }
+         * return true;
+         * }
+         *
+         * @Override public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+         * Mael.setEstadoMovimiento(Personaje.EstadoMovimiento.Reposo);
+         * return true;
+         * }
+         * @Override public boolean touchDragged(int screenX, int screenY, int pointer) {
+         * return true;
+         * }
+         */
 
 
         private void transformarCoordenadas(int screenX, int screenY) {
@@ -472,11 +471,12 @@ public class PantallaJuego implements Screen {
     }
 
 
-public enum EstadosJuego {
-    Gana,
-    Jugando,
-    Pausado,
-    Perdio,
-    Caer
+    public enum EstadosJuego {
+        Gana,
+        Jugando,
+        Pausado,
+        Perdio,
+        Caer
+    }
 }
 
