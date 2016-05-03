@@ -223,7 +223,7 @@ public class PantallaJuego implements Screen {
                 spriteFondo.draw(batch);
                 spriteBtnPause.draw(batch);
 
-                if (puntos >= 20) {
+                if (puntos >= 10) {
                     principal.setScreen(new PantallaCandyland(principal));
                 }
 
@@ -298,13 +298,13 @@ public class PantallaJuego implements Screen {
         }
 
         //Rectangle d = payaso.getSprite().getBoundingRectangle();
-        Rectangle rp = payaso.getSpriteGrande().getBoundingRectangle();
+        Rectangle rp = payaso.getSprite().getBoundingRectangle();
         if (b.overlaps(rp)) {
         if (puntos >= 7) {
+            rp = payaso.getSpriteGrande().getBoundingRectangle();
             float offset = rp.getWidth() * .15f;
             rp.setX(rp.getX() + offset);
             rp.setWidth((float) (rp.getWidth() - 1.5 * offset));
-            if (b.overlaps(rp)) {
                 vidas = vidas - 1;
                 if (PantallaMenu.musica == true)
                     sonidoMalo.play();
@@ -315,7 +315,6 @@ public class PantallaJuego implements Screen {
                 payaso.getSpriteGrande().setX(nuevaX);
             }
         }
-    }
     }
 
     private void borrarPantalla() {
@@ -431,6 +430,7 @@ public class PantallaJuego implements Screen {
             }
         }
     }
+}
 
     public class ProcesadorEntrada extends InputAdapter {
         private Vector3 coordenadas = new Vector3();
@@ -471,11 +471,12 @@ public class PantallaJuego implements Screen {
         }
     }
 
-    public enum EstadosJuego {
-        Gana,
-        Jugando,
-        Pausado,
-        Perdio,
-        Caer
-    }
+
+public enum EstadosJuego {
+    Gana,
+    Jugando,
+    Pausado,
+    Perdio,
+    Caer
 }
+
