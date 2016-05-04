@@ -168,7 +168,7 @@ public class PantallaJuego implements Screen {
         texturaFondo = new Texture(Gdx.files.internal("fondoferia.jpg"));
         spriteFondo = new Sprite(texturaFondo);
 
-        texturaFondoC = new Texture(Gdx.files.internal("candy.jpg"));
+        texturaFondoC = new Texture(Gdx.files.internal("candylanfinal .png"));
         spriteFondoC = new Sprite(texturaFondoC);
 
         texturaBtnPause = new Texture(Gdx.files.internal("PAUSACHIQUITO.png"));
@@ -242,11 +242,11 @@ public class PantallaJuego implements Screen {
                 spriteFondo.draw(batch);
                 spriteBtnPause.draw(batch);
 
-                if (puntos >= 10) {
+                if (puntos >= 20) {
                     principal.setScreen(new PrimerNivelCompletado(principal));
                 }
 
-                if (puntos >= 7) {
+                if (puntos >= 15) {
                     payaso.finalizar();
                 }
 
@@ -318,7 +318,7 @@ public class PantallaJuego implements Screen {
 
         //Rectangle d = payaso.getSprite().getBoundingRectangle();
         Rectangle rp = payaso.getSprite().getBoundingRectangle();
-            if (puntos >= 7) {
+            if (puntos >= 15) {
                 rp = payaso.getSpriteGrande().getBoundingRectangle();
                 float offset = rp.getWidth() * .15f;
                 rp.setX(rp.getX() + offset);
