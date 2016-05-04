@@ -65,7 +65,7 @@ public class SegundoNivelCompletado implements Screen {
 
     private void cargarTexturasSprites() {
 
-        texturaFondo = new Texture(Gdx.files.internal("PANTALLAfonbn.png"));
+        texturaFondo = new Texture(Gdx.files.internal("congratulations.png"));
         spriteFondo = new Sprite(texturaFondo);
 
         texturaBtnQuit = new Texture(Gdx.files.internal("QUIT.png"));
