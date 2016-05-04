@@ -76,6 +76,9 @@ public class PantallaJuego implements Screen {
 
     private SpriteBatch batch;
 
+    private Texture texturaRueda;
+    private Sprite spriteRuedita;
+
     private Object EstadoMovimiento;
     private EstadosJuego estadoJuego;
 
@@ -139,6 +142,10 @@ public class PantallaJuego implements Screen {
         helado = new Vidas(texturaHelado);
         helado.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
+        texturaRueda = new Texture(Gdx.files.internal("ruedaalta.png"));
+        spriteRuedita = new Sprite(texturaRueda);
+        spriteRuedita.setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
+
         texturaVida = new Texture(Gdx.files.internal("vidabn.png"));
         vidaUno = new Sprite(texturaVida);
         vidaUno.setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
@@ -187,6 +194,11 @@ public class PantallaJuego implements Screen {
         spriteBtnQuit.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnQuit.getWidth() / 2,
                 (float) (Principal.ALTO_MUNDO / 3.4));
 
+        texturaRueda = new Texture(Gdx.files.internal("ruedaalta.png"));
+        spriteRuedita = new Sprite(texturaRueda);
+        spriteRuedita.setPosition(Principal.ANCHO_MUNDO / 2 - spriteRuedita.getWidth() / 2,
+                (float) (Principal.ALTO_MUNDO / 2));
+
         texturaVida = new Texture(Gdx.files.internal("vidabn.png"));
 
         vidaUno = new Sprite(texturaVida);
@@ -209,7 +221,6 @@ public class PantallaJuego implements Screen {
         borrarPantalla();
 
         batch.setProjectionMatrix(camara.combined);
-
 
         if (estadoJuego == EstadosJuego.Jugando) {
             moverPersonaje();
@@ -396,12 +407,14 @@ public class PantallaJuego implements Screen {
         assetManager.unload("payasin.png");
         assetManager.unload("vidabn.png");
         assetManager.unload("payasote.png");
+        assetManager.unload("ruedaalta.png");
         texturaFondo.dispose();
         texturaFondoU.dispose();
         texturaBtnPause.dispose();
         texturaBtnQuit.dispose();
         texturaBtnResume.dispose();
         texturaMael.dispose();
+        texturaRueda.dispose();
         sonidoAtrapa.dispose();
         sonidoMalo.dispose();
         musicaJuego.dispose();
@@ -429,6 +442,15 @@ public class PantallaJuego implements Screen {
                 estadoJuego = EstadosJuego.Jugando;
 
             }
+
+            if (touchX >= spriteRuedita.getX() &&
+                    touchX < spriteRuedita.getX() + spriteRuedita.getWidth()
+                    && touchY >= spriteRuedita.getY()
+                    && touchY <= spriteRuedita.getY() + spriteRuedita.getHeight()) {
+                estadoJuego = EstadosJuego.Jugando;
+
+            }
+
             if (estadoJuego == EstadosJuego.Pausado && touchX >= spriteBtnQuit.getX() &&
                     touchX <= spriteBtnQuit.getX() + spriteBtnQuit.getWidth()
                     && touchY >= spriteBtnQuit.getY()
