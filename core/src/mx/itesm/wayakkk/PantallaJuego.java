@@ -22,6 +22,7 @@ import java.util.Random;
  */
 //p
 
+
 public class PantallaJuego implements Screen {
 
     public static final float ANCHO_MUNDO = 1280;
