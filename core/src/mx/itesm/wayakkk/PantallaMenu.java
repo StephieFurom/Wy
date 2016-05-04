@@ -72,7 +72,7 @@ public class PantallaMenu implements Screen {
         musica = prefs.getBoolean("SonidoNo", true);
 
         cargarAudio();
-        Gdx.input.setCatchBackKey(true);
+        Gdx.input.setCatchBackKey(false);
     }
 
     private void cargarAudio() {
