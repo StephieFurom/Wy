@@ -26,10 +26,6 @@ public class PantallaGana implements Screen {
     private Texture texturaFondo;
     private Sprite spriteFondo;
 
-
-    private Texture texturaBtnRetry;
-    private Sprite spriteBtnRetry;
-
     private Texture texturaBtnQuit;
     private Sprite spriteBtnQuit;
 
@@ -70,11 +66,6 @@ public class PantallaGana implements Screen {
         spriteFondo = new Sprite(texturaFondo);
 
 
-        texturaBtnRetry = new Texture(Gdx.files.internal("RETRY.png"));
-        spriteBtnRetry = new Sprite(texturaBtnRetry);
-        spriteBtnRetry.setPosition(Principal.ANCHO_MUNDO / 3 - spriteBtnRetry.getWidth() / 2,
-                (float) (Principal.ALTO_MUNDO / 5.5));
-
         texturaBtnQuit = new Texture(Gdx.files.internal("QUIT.png"));
         spriteBtnQuit = new Sprite(texturaBtnQuit);
         spriteBtnQuit.setPosition((float) (Principal.ANCHO_MUNDO / 1.5 - spriteBtnQuit.getWidth() / 2),
@@ -93,7 +84,6 @@ public class PantallaGana implements Screen {
 
         batch.begin();
         spriteFondo.draw(batch);
-        spriteBtnRetry.draw(batch);
         spriteBtnQuit.draw(batch);
 
         batch.end();
@@ -126,7 +116,6 @@ public class PantallaGana implements Screen {
     public void dispose() {
         texturaFondo.dispose();
         texturaBtnQuit.dispose();
-        texturaBtnRetry.dispose();
         musicaMenu.dispose();
     }
 
@@ -138,12 +127,6 @@ public class PantallaGana implements Screen {
             float touchX = coordenadas.x;
             float touchY = coordenadas.y;
 
-            if (touchX >= spriteBtnRetry.getX() &&
-                    touchX < spriteBtnRetry.getX() + spriteBtnRetry.getWidth()
-                    && touchY >= spriteBtnRetry.getY()
-                    && touchY <= spriteBtnRetry.getY() + spriteBtnRetry.getHeight()) {
-                principal.setScreen(new PantallaJuego(principal));
-            }
 
             if (touchX >= spriteBtnQuit.getX() &&
                     touchX <= spriteBtnQuit.getX() + spriteBtnQuit.getWidth()
