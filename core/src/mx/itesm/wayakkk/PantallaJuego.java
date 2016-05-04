@@ -201,9 +201,7 @@ public class PantallaJuego implements Screen {
         vidaTres = new Sprite(texturaVida);
         vidaTres.setPosition((float) (Principal.ANCHO_MUNDO / 1.4 - spriteBtnPause.getWidth() / 2),
                 (float) (Principal.ALTO_MUNDO / 1.13));
-
     }
-
 
     @Override
     public void render(float delta) {
@@ -372,12 +370,10 @@ public class PantallaJuego implements Screen {
 
     @Override
     public void pause() {
-
     }
 
     @Override
     public void resume() {
-
     }
 
     @Override

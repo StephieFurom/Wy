@@ -101,6 +101,7 @@ public class PantallaCandyland implements Screen {
     }
 
     private void cargarRecursos() {
+
     }
 
     private void cargarAudio() {
@@ -195,6 +196,9 @@ public class PantallaCandyland implements Screen {
 
     @Override
     public void render(float delta) {
+        borrarPantalla();
+
+        batch.setProjectionMatrix(camara.combined);
 
         if(estadoJuego==EstadosJuego.Jugando) {
             moverPersonaje();
@@ -203,6 +207,7 @@ public class PantallaCandyland implements Screen {
             probarChoque();
             probarAcelerometro();
         }
+
         borrarPantalla();
         batch.setProjectionMatrix(camara.combined);
 
@@ -416,11 +421,9 @@ public class PantallaCandyland implements Screen {
             }
         }
     }
-    public class ProcesadorEntrada extends InputAdapter
-    {
+    public class ProcesadorEntrada extends InputAdapter {
         private Vector3 coordenadas = new Vector3();
         private float x, y;
-
 
 
         private void transformarCoordenadas(int screenX, int screenY) {
