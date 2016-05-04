@@ -131,6 +131,7 @@ public class PantallaJuego implements Screen {
 
         texturaPaleta = new Texture(Gdx.files.internal("SPRITESNUEVOS.png"));
         paleta = new Objetos(texturaPaleta);
+        paleta.setVelY(-3);
         paleta.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
         texturaPayaso = new Texture(Gdx.files.internal("payasin.png"));
