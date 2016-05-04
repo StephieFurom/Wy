@@ -144,10 +144,6 @@ public class PantallaJuego implements Screen {
         helado.setVelY(-2);
         helado.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
-        texturaRueda = new Texture(Gdx.files.internal("ruedaalta.png"));
-        spriteRuedita = new Sprite(texturaRueda);
-        spriteRuedita.setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
-
         texturaVida = new Texture(Gdx.files.internal("vidabn.png"));
         vidaUno = new Sprite(texturaVida);
         vidaUno.setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
@@ -195,11 +191,6 @@ public class PantallaJuego implements Screen {
         spriteBtnQuit = new Sprite(texturaBtnQuit);
         spriteBtnQuit.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnQuit.getWidth() / 2,
                 (float) (Principal.ALTO_MUNDO / 3.4));
-
-        texturaRueda = new Texture(Gdx.files.internal("ruedaalta.png"));
-        spriteRuedita = new Sprite(texturaRueda);
-        spriteRuedita.setPosition(Principal.ANCHO_MUNDO / 2 - spriteRuedita.getWidth() / 2,
-                (float) (Principal.ALTO_MUNDO / 2));
 
         texturaVida = new Texture(Gdx.files.internal("vidabn.png"));
 
@@ -398,27 +389,25 @@ public class PantallaJuego implements Screen {
         if (musicaJuego.isPlaying()) {
             musicaJuego.stop();
         }
+        dispose();
     }
 
     @Override
     public void dispose() {
-        AssetManager assetManager = principal.getAssetManager();
-        assetManager.unload("SpriteCa.png");
-        assetManager.unload("SPRITESNUEVOS.png");
-        assetManager.unload("heladosprite.png");
-        assetManager.unload("payasin.png");
-        assetManager.unload("vidabn.png");
-        assetManager.unload("payasote.png");
-        assetManager.unload("ruedaalta.png");
-        texturaFondo.dispose();
-        texturaFondoU.dispose();
-        texturaBtnPause.dispose();
-        texturaBtnQuit.dispose();
-        texturaBtnResume.dispose();
         texturaMael.dispose();
-        texturaRueda.dispose();
+        texturaPaleta.dispose();
+        texturaPayaso.dispose();
+        texturaHelado.dispose();
+        texturaVida.dispose();
         sonidoAtrapa.dispose();
         sonidoMalo.dispose();
+        texturaFondo.dispose();
+        texturaFondoC.dispose();
+        texturaBtnPause.dispose();
+        texturaGanaste.dispose();
+        texturaFondoU.dispose();
+        texturaBtnQuit.dispose();
+        texturaBtnResume.dispose();
         musicaJuego.dispose();
     }
 

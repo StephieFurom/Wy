@@ -363,24 +363,24 @@ public class PantallaCandyland implements Screen {
         if ( musicaJuego.isPlaying() ) {
             musicaJuego.stop();
         }
+        dispose();
     }
 
     @Override
     public void dispose() {
-        AssetManager assetManager = principal.getAssetManager();
-        assetManager.unload("SpriteCa.png");
-        assetManager.unload("SPRITES2.png");
-        assetManager.unload("heladosprite.png");
-        assetManager.unload("malobrocop3.png");
-        assetManager.unload("vidabn.png");
-        texturaFondo.dispose();
-        texturaFondoU.dispose();
-        texturaBtnPause.dispose();
-        texturaBtnQuit.dispose();
-        texturaBtnResume.dispose();
         texturaMael.dispose();
+        texturaHielo.dispose();
+        texturaBroccoli.dispose();
+        texturaHelado.dispose();
+        texturaVida.dispose();
         sonidoAtrapa.dispose();
         sonidoMalo.dispose();
+        texturaFondo.dispose();
+        texturaBtnPause.dispose();
+        texturaGanaste.dispose();
+        texturaFondoU.dispose();
+        texturaBtnResume.dispose();
+        texturaBtnQuit.dispose();
         musicaJuego.dispose();
     }
 

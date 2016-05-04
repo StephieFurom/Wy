@@ -116,11 +116,16 @@ public class SegundoNivelCompletado implements Screen {
         if (musicaMenu.isPlaying()) {
             musicaMenu.stop();
         }
+        dispose();
     }
 
     @Override
     public void dispose() {
         musicaMenu.dispose();
+        texturaBtnContinue.dispose();
+        texturaBtnQuit.dispose();
+        texturaBtnReturn.dispose();
+        texturaFondo.dispose();
 
     }
 

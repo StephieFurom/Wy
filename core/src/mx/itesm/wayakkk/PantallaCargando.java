@@ -106,12 +106,11 @@ public class PantallaCargando implements Screen {
 
     @Override
     public void hide() {
-
+        dispose();
     }
 
     @Override
     public void dispose() {
         texturaCargando.dispose();
-
     }
 }

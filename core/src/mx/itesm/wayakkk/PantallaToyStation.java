@@ -360,20 +360,19 @@ public class PantallaToyStation implements Screen {
 
     @Override
     public void dispose() {
-        AssetManager assetManager = principal.getAssetManager();
-        assetManager.unload("SpriteCa.png");
-        assetManager.unload("toyland2.png");
-        assetManager.unload("heladosprite.png");
-        assetManager.unload("malomono.png");
-        assetManager.unload("vidabn.png");
+
+        texturaMael.dispose();
+        texturaPato.dispose();
+        texturaMono.dispose();
+        texturaHelado.dispose();
+        texturaVida.dispose();
+        sonidoAtrapa.dispose();
+        sonidoMalo.dispose();
         texturaFondo.dispose();
         texturaFondoU.dispose();
         texturaBtnPause.dispose();
         texturaBtnQuit.dispose();
         texturaBtnResume.dispose();
-        texturaMael.dispose();
-        sonidoAtrapa.dispose();
-        sonidoMalo.dispose();
         musicaJuego.dispose();
     }
 

@@ -133,10 +133,16 @@ public class PantallaAjustes implements Screen {
         if (musicaMenu.isPlaying()) {
             musicaMenu.stop();
         }
+        dispose();
     }
 
     @Override
     public void dispose() {
+        texturaFondo.dispose();
+        texturaBtnVolumen.dispose();
+        texturaBtni.dispose();
+        texturaBtno.dispose();
+        texturaBtnReturn.dispose();
         musicaMenu.dispose();
 
     }

@@ -2,6 +2,7 @@ package mx.itesm.wayakkk;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -32,6 +33,7 @@ public class PantallaPausa implements Screen {
     private Texture texturaBtnQuit;
     private Sprite spriteBtnQuit;
 
+    private Music musicaMenu;
 
     private SpriteBatch batch;
 
@@ -51,7 +53,15 @@ public class PantallaPausa implements Screen {
         batch = new SpriteBatch();
 
         cargarTexturasSprites();
+        cargarAudio();
         Gdx.input.setCatchBackKey(true);
+    }
+
+    private void cargarAudio() {
+        musicaMenu = Gdx.audio.newMusic(Gdx.files.internal("MenuMus.mp3"));
+        musicaMenu.setLooping(true);
+        if (PantallaMenu.musica == true)
+            musicaMenu.play();
     }
 
     private void cargarTexturasSprites() {
@@ -129,10 +139,17 @@ public class PantallaPausa implements Screen {
 
     @Override
     public void hide() {
-
+        if (musicaMenu.isPlaying()) {
+            musicaMenu.stop();
+        }
+        dispose();
     }
 
     @Override
     public void dispose() {
+        texturaFondo.dispose();
+        texturaBtnResume.dispose();
+        texturaBtnQuit.dispose();
+        musicaMenu.dispose();
     }
 }

@@ -186,6 +186,7 @@ public class PantallaMenu implements Screen {
         if (musicaMenu.isPlaying()) {
             musicaMenu.stop();
         }
+        dispose();
     }
 
     @Override

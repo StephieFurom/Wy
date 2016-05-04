@@ -124,10 +124,13 @@ public class PantallaAcercaDe implements Screen {
         if (musicaMenu.isPlaying()) {
             musicaMenu.stop();
         }
+        dispose();
     }
 
     @Override
     public void dispose() {
         musicaMenu.dispose();
+        texturaBtnReturn.dispose();
+        texturaFondo.dispose();
     }
 }
