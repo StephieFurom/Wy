@@ -141,7 +141,7 @@ public class PantallaJuego implements Screen {
 
         texturaHelado = new Texture(Gdx.files.internal("heladosprite.png"));
         helado = new Vidas(texturaHelado);
-        helado.setVelY(-3);
+        helado.setVelY(-2);
         helado.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
         texturaRueda = new Texture(Gdx.files.internal("ruedaalta.png"));
