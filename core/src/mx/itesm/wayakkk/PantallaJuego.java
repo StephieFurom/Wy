@@ -434,14 +434,6 @@ public class PantallaJuego implements Screen {
 
             }
 
-            if (touchX >= spriteRuedita.getX() &&
-                    touchX < spriteRuedita.getX() + spriteRuedita.getWidth()
-                    && touchY >= spriteRuedita.getY()
-                    && touchY <= spriteRuedita.getY() + spriteRuedita.getHeight()) {
-                estadoJuego = EstadosJuego.Jugando;
-
-            }
-
             if (estadoJuego == EstadosJuego.Pausado && touchX >= spriteBtnQuit.getX() &&
                     touchX <= spriteBtnQuit.getX() + spriteBtnQuit.getWidth()
                     && touchY >= spriteBtnQuit.getY()
