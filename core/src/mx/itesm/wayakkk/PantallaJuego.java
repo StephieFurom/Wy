@@ -243,11 +243,11 @@ public class PantallaJuego implements Screen {
                 spriteFondo.draw(batch);
                 spriteBtnPause.draw(batch);
 
-                if (puntos >= 20) {
+                if (puntos >= 10) {
                     principal.setScreen(new PrimerNivelCompletado(principal));
                 }
 
-                if (puntos >= 15) {
+                if (puntos >= 7) {
                     payaso.finalizar();
                 }
 
@@ -319,7 +319,7 @@ public class PantallaJuego implements Screen {
 
         //Rectangle d = payaso.getSprite().getBoundingRectangle();
         Rectangle rp = payaso.getSprite().getBoundingRectangle();
-            if (puntos >= 15) {
+            if (puntos >= 7) {
                 rp = payaso.getSpriteGrande().getBoundingRectangle();
                 float offset = rp.getWidth() * .15f;
                 rp.setX(rp.getX() + offset);
