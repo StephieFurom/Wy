@@ -149,7 +149,7 @@ public class PantallaToyStation implements Screen {
 
     private void cargarTexturasSprites() {
 
-        texturaFondo = new Texture(Gdx.files.internal("toylandfinal1.png"));
+        texturaFondo = new Texture(Gdx.files.internal("toyland2.png"));
         spriteFondo = new Sprite(texturaFondo);
 
         texturaBtnPause = new Texture(Gdx.files.internal("PAUSACHIQUITO.png"));
@@ -362,7 +362,7 @@ public class PantallaToyStation implements Screen {
     public void dispose() {
         AssetManager assetManager = principal.getAssetManager();
         assetManager.unload("SpriteCa.png");
-        assetManager.unload(".png");
+        assetManager.unload("toyland2.png");
         assetManager.unload("heladosprite.png");
         assetManager.unload("malomono.png");
         assetManager.unload("vidabn.png");
