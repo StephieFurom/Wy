@@ -70,19 +70,13 @@ public class SegundoNivelCompletado implements Screen {
 
         texturaBtnQuit = new Texture(Gdx.files.internal("QUIT.png"));
         spriteBtnQuit = new Sprite(texturaBtnQuit);
-        spriteBtnQuit.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnQuit.getWidth() / 2,
-                (float) (Principal.ALTO_MUNDO / 1.7));
+        spriteBtnQuit.setPosition((float) (Principal.ANCHO_MUNDO / 3.5 - spriteBtnQuit.getWidth() / 2),
+                (float) (Principal.ALTO_MUNDO / 4.5));
 
-        texturaBtnContinue = new Texture(Gdx.files.internal("sonno.png"));
+        texturaBtnContinue = new Texture(Gdx.files.internal("CONTINUE.png"));
         spriteBtnContinue = new Sprite(texturaBtnContinue);
-        spriteBtnContinue.setPosition((float) (Principal.ANCHO_MUNDO / 2 - spriteBtnContinue.getWidth() / 2),
-                (float) (Principal.ALTO_MUNDO / 2.75));
-
-
-        texturaBtnReturn = new Texture(Gdx.files.internal("RETURN.png"));
-        spriteBtnReturn = new Sprite(texturaBtnReturn);
-        spriteBtnReturn.setPosition((float) (Principal.ANCHO_MUNDO / 1.2 - spriteBtnReturn.getWidth() / 2),
-                Principal.ALTO_MUNDO / 7);
+        spriteBtnContinue.setPosition((float) (Principal.ANCHO_MUNDO / 1.5 - spriteBtnContinue.getWidth() / 2),
+                (float) (Principal.ALTO_MUNDO / 4.5));
     }
 
     @Override
@@ -98,7 +92,6 @@ public class SegundoNivelCompletado implements Screen {
         spriteFondo.draw(batch);
         spriteBtnQuit.draw(batch);
         spriteBtnContinue.draw(batch);
-        spriteBtnReturn.draw(batch);
 
         batch.end();
     }

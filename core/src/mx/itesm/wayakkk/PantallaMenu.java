@@ -102,7 +102,7 @@ public class PantallaMenu implements Screen {
         spriteBtnAjustes.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnAjustes.getWidth() / 2,
                 (float) (Principal.ALTO_MUNDO / 4.8));
 
-        texturaBtnInstrucciones = new Texture(Gdx.files.internal("SETTINGS.png"));
+        texturaBtnInstrucciones = new Texture(Gdx.files.internal("help1.png"));
         spriteBtnInstrucciones = new Sprite(texturaBtnInstrucciones);
         spriteBtnInstrucciones.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInstrucciones.getWidth() / 2,
                 (float) (Principal.ALTO_MUNDO / 23));
@@ -149,7 +149,7 @@ public class PantallaMenu implements Screen {
                     touchX <= spriteBtnJugar.getX() + spriteBtnJugar.getWidth()
                     && touchY >= spriteBtnJugar.getY()
                     && touchY <= spriteBtnJugar.getY() + spriteBtnJugar.getHeight()) {
-                principal.setScreen(new PantallaToyStation(principal));
+                principal.setScreen(new SegundoNivelCompletado(principal));
 
             }
             if (touchX >= spriteBtnAjustes.getX() &&
