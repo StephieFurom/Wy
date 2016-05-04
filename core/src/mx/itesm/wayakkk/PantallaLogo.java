@@ -43,7 +43,7 @@ public class PantallaLogo implements Screen {
     }
 
     private void cargarTeturasSprites() {
-        texturaFondo = new Texture(Gdx.files.internal("PANTALLAfonbn.png"));
+        texturaFondo = new Texture(Gdx.files.internal("logotec.png"));
         spriteFondo = new Sprite(texturaFondo);
     }
 
