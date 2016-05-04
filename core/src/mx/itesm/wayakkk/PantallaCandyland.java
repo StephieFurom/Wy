@@ -123,7 +123,7 @@ public class PantallaCandyland implements Screen {
 
         texturaBroccoli = new Texture(Gdx.files.internal("malobrocop3.png"));
         brocco = new Broccoli(texturaBroccoli);
-        brocco.setVelY(-4);
+        brocco.setVelY(-2);
         brocco.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
         texturaHelado = new Texture(Gdx.files.internal("heladosprite.png"));
