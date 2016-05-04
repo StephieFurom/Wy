@@ -24,9 +24,7 @@ import java.util.Random;
 public class PantallaCandyland implements Screen {
 
     public static final float ANCHO_MUNDO = 1280;
-
     private final Principal principal;
-
     private OrthographicCamera camara;
     private Viewport vista;
 
@@ -96,10 +94,13 @@ public class PantallaCandyland implements Screen {
         crearObjetos();
         cargarTexturasSprites();
         cargarAudio();
-        estadoJuego=EstadosJuego.Jugando;
+        estadoJuego = EstadosJuego.Jugando;
         Gdx.input.setInputProcessor(new ProcesadorEntrada());
+        cargarRecursos();
+        Gdx.input.setCatchBackKey(true);
+    }
 
-        //helado.setVelY((int) .5);
+    private void cargarRecursos() {
     }
 
     private void cargarAudio() {

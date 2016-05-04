@@ -75,10 +75,6 @@ public class PantallaJuego implements Screen {
     private Sprite vidaTres;
 
     private SpriteBatch batch;
-
-    private Texture texturaRueda;
-    private Sprite spriteRuedita;
-
     private Object EstadoMovimiento;
     private EstadosJuego estadoJuego;
 
@@ -117,7 +113,7 @@ public class PantallaJuego implements Screen {
     private void cargarAudio() {
         musicaJuego = Gdx.audio.newMusic(Gdx.files.internal("PrimerNivelMus.mp3"));
         musicaJuego.setLooping(true);
-        if (PantallaMenu.musica == true)
+        if (PantallaMenu.musica==true)
             musicaJuego.play();
     }
 
