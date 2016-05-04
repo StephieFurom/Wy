@@ -75,6 +75,10 @@ public class PantallaJuego implements Screen {
     private Sprite vidaTres;
 
     private SpriteBatch batch;
+
+    private Texture texturaRueda;
+    private Sprite spriteRuedita;
+
     private Object EstadoMovimiento;
     private EstadosJuego estadoJuego;
 
@@ -113,7 +117,7 @@ public class PantallaJuego implements Screen {
     private void cargarAudio() {
         musicaJuego = Gdx.audio.newMusic(Gdx.files.internal("PrimerNivelMus.mp3"));
         musicaJuego.setLooping(true);
-        if (PantallaMenu.musica==true)
+        if (PantallaMenu.musica == true)
             musicaJuego.play();
     }
 
@@ -188,6 +192,11 @@ public class PantallaJuego implements Screen {
         spriteBtnQuit.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnQuit.getWidth() / 2,
                 (float) (Principal.ALTO_MUNDO / 3.4));
 
+        texturaRueda = new Texture(Gdx.files.internal("ruedaalta.png"));
+        spriteRuedita = new Sprite(texturaRueda);
+        spriteRuedita.setPosition(Principal.ANCHO_MUNDO / 2 - spriteRuedita.getWidth() / 2,
+                (float) (Principal.ALTO_MUNDO / 2));
+
         texturaVida = new Texture(Gdx.files.internal("vidabn.png"));
 
         vidaUno = new Sprite(texturaVida);
@@ -201,7 +210,9 @@ public class PantallaJuego implements Screen {
         vidaTres = new Sprite(texturaVida);
         vidaTres.setPosition((float) (Principal.ANCHO_MUNDO / 1.4 - spriteBtnPause.getWidth() / 2),
                 (float) (Principal.ALTO_MUNDO / 1.13));
+
     }
+
 
     @Override
     public void render(float delta) {
@@ -370,10 +381,12 @@ public class PantallaJuego implements Screen {
 
     @Override
     public void pause() {
+
     }
 
     @Override
     public void resume() {
+
     }
 
     @Override
@@ -400,6 +413,7 @@ public class PantallaJuego implements Screen {
         texturaFondoU.dispose();
         texturaBtnQuit.dispose();
         texturaBtnResume.dispose();
+        texturaRueda.dispose();
         musicaJuego.dispose();
     }
 
@@ -422,6 +436,14 @@ public class PantallaJuego implements Screen {
                     touchX < spriteBtnResume.getX() + spriteBtnResume.getWidth()
                     && touchY >= spriteBtnResume.getY()
                     && touchY <= spriteBtnResume.getY() + spriteBtnResume.getHeight()) {
+                estadoJuego = EstadosJuego.Jugando;
+
+            }
+
+            if (touchX >= spriteRuedita.getX() &&
+                    touchX < spriteRuedita.getX() + spriteRuedita.getWidth()
+                    && touchY >= spriteRuedita.getY()
+                    && touchY <= spriteRuedita.getY() + spriteRuedita.getHeight()) {
                 estadoJuego = EstadosJuego.Jugando;
 
             }
