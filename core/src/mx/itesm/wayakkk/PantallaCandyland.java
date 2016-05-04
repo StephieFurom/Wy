@@ -294,9 +294,9 @@ public class PantallaCandyland implements Screen {
             float offset = d.getWidth() * .20f;
             d.setX(d.getX() + offset);
             d.setWidth((float) (d.getWidth() - 2.0 * offset));
-            offset = d.getHeight() * 30f;
+            offset = d.getHeight() * 40f;
             d.setY(d.getY() + offset);
-            d.setHeight((float) (d.getHeight() - 3.0 * offset));
+            d.setHeight((float) (d.getHeight() - 4.0 * offset));
             vidas = vidas - 1;
             if (PantallaMenu.musica == true)
                 sonidoMalo.play();

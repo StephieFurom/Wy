@@ -37,7 +37,7 @@ public class Mono {
         tiempoAnimacion = 0;
         sprite = new Sprite(texturaPersonaje[0][0]);
         estadoMov = EstadoMovimiento.Caer;
-        velX=15;
+        velX=17;
     }
 
     public void render(SpriteBatch batch) {
