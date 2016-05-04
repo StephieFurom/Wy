@@ -123,6 +123,7 @@ public class PantallaCandyland implements Screen {
 
         texturaBroccoli = new Texture(Gdx.files.internal("malobrocop3.png"));
         brocco = new Broccoli(texturaBroccoli);
+        brocco.setVelY(-4);
         brocco.getSprite().setPosition(rand.nextInt((int) ANCHO_MUNDO), Principal.ALTO_MUNDO);
 
         texturaHelado = new Texture(Gdx.files.internal("heladosprite.png"));
@@ -214,7 +215,7 @@ public class PantallaCandyland implements Screen {
                 spriteFondo.draw(batch);
                 spriteBtnPause.draw(batch);
 
-                if (puntos >= 15) {
+                if (puntos >= 5) {
                     principal.setScreen(new SegundoNivelCompletado(principal));
                 }
 

@@ -17,7 +17,7 @@ public class Broccoli {
 
     Random randC2 = new Random();
     float[] arr = {-1f, -2f, -2.5f,};
-    public final float VelY = arr[randC2.nextInt(2)];
+    public float VelY = arr[randC2.nextInt(2)];
 
     private Sprite sprite;
 
@@ -86,6 +86,10 @@ public class Broccoli {
 
     public float getY() {
         return sprite.getY();
+    }
+
+    public void setVelY(int velY) {
+        this.VelY = velY;
     }
 
     public enum EstadoMovimiento {

@@ -136,7 +136,7 @@ public class SegundoNivelCompletado implements Screen {
                     touchX < spriteBtnContinue.getX() + spriteBtnContinue.getWidth()
                     && touchY >= spriteBtnContinue.getY()
                     && touchY <= spriteBtnContinue.getY() + spriteBtnContinue.getHeight()) {
-                principal.setScreen(new PantallaCandyland(principal));
+                principal.setScreen(new PantallaToyStation(principal));
 
             }
             if (touchX >= spriteBtnQuit.getX() &&
