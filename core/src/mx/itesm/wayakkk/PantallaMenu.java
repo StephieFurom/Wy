@@ -84,7 +84,7 @@ public class PantallaMenu implements Screen {
 
     private void cargarTexturasSprites() {
 
-        texturaFondo = new Texture(Gdx.files.internal("fondopantallainicio.png"));
+        texturaFondo = new Texture(Gdx.files.internal("fondo2.png"));
         spriteFondo = new Sprite(texturaFondo);
 
         texturaBtnJugar = new Texture(Gdx.files.internal("PLAY.png"));
@@ -102,7 +102,7 @@ public class PantallaMenu implements Screen {
         spriteBtnAjustes.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnAjustes.getWidth() / 2,
                 (float) (Principal.ALTO_MUNDO / 4.8));
 
-        texturaBtnInstrucciones = new Texture(Gdx.files.internal("help1.png"));
+        texturaBtnInstrucciones = new Texture(Gdx.files.internal("help2.png"));
         spriteBtnInstrucciones = new Sprite(texturaBtnInstrucciones);
         spriteBtnInstrucciones.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInstrucciones.getWidth() / 2,
                 (float) (Principal.ALTO_MUNDO / 23));
