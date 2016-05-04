@@ -124,7 +124,6 @@ public class SegundoNivelCompletado implements Screen {
         musicaMenu.dispose();
         texturaBtnContinue.dispose();
         texturaBtnQuit.dispose();
-        texturaBtnReturn.dispose();
         texturaFondo.dispose();
 
     }
