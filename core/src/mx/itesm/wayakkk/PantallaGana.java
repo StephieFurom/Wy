@@ -68,7 +68,7 @@ public class PantallaGana implements Screen {
 
         texturaBtnQuit = new Texture(Gdx.files.internal("QUIT.png"));
         spriteBtnQuit = new Sprite(texturaBtnQuit);
-        spriteBtnQuit.setPosition((float) (Principal.ANCHO_MUNDO / 1.5 - spriteBtnQuit.getWidth() / 2),
+        spriteBtnQuit.setPosition((float) (Principal.ANCHO_MUNDO / 2 - spriteBtnQuit.getWidth() / 2),
                 (float) (Principal.ALTO_MUNDO / 5.5));
 
     }
